@@ -1,0 +1,105 @@
+.single-card {
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0);
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 15px;
+    @media screen and (max-width: 767px) {
+        padding-top: 5%;
+    }
+    @media screen and (max-width: 576px) {
+        padding-top: 3%;
+    }
+    img {
+        position: relative;
+        display: block;
+        max-width: 100%;
+        max-height: auto;
+        backface-visibility: hidden;
+    }
+}
+
+.single-card-footer,
+.single-card-footer-with-pencil {
+    background-color: rgba(0, 0, 0, 0);
+    border-top: none;
+    font-size: 12px;
+    line-height: 60px;
+    height: 60px;
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto;
+    @media screen and (max-width: 272px) {
+        line-height: 30px;
+        height: 80px;
+    }
+}
+
+.single-card-footer,
+.single-card-footer-with-pencil {
+    .posted-date {
+        @media screen and (min-width: 992px) {
+            width: 50%;
+            display: inline-block;
+        }
+        @media screen and (max-width: 991px) {
+            width: 50%;
+            display: inline-block;
+        }
+        @media screen and (max-width: 350px) {
+            width: 40%;
+        }
+    }
+    .single-card-stats {
+        float: right;
+        @media screen and (min-width: 992px) {
+            width: 50%;
+            display: inline-block;
+        }
+        @media screen and (max-width: 991px) {
+            width: 50%;
+            display: inline-block;
+        }
+        @media screen and (max-width: 350px) {
+            width: 60%;
+        }
+    }
+    .block {
+        padding-right: 5px;
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+            display: inline-block;
+        }
+        @media screen and (max-width: 350px) {
+            padding-right: 0;
+        }
+        @media screen and (max-width: 272px) {
+            display: block;
+        }
+    }
+}
+
+.single-quote {
+    font-size: 12px;
+    padding: 0 30px 60px 30px;
+    max-width: none;
+    &-card {
+        padding-top: 40px;
+        @media screen and (max-width: 767px) {
+            padding-top: 20px;
+        }
+    }
+    blockquote {
+        max-width: 700px;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        padding: 30px;
+        border: 2px solid #2a2a2a;
+        word-wrap: break-word;
+        font-size: 13px;
+        line-height: 1.6em;
+        letter-spacing: 0.2em;
+    }
+    @media screen and (max-width: 767px) {
+        padding: 0 15px 10px;
+    }
+}

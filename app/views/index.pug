@@ -1,0 +1,58 @@
+extends layout.pug
+
+block PAGE_TITLE
+    title This is awesome
+
+block LOAD_CSS
+    link(rel='stylesheet', type='text/css', href='css/pages/index.css')
+
+block HEADER_P
+    p ... My.prototype.Blog(); ...
+
+block MAIN_CONTENT
+    section
+        //- First load the admin's profile card
+        article(class='col-sm-4', id='webmaster-banner')
+            #webmaster-profile
+                #webmaster-avatar
+                h2#webmaster-name GeorgeGkas
+                p Front End developer
+                p Web Designer
+                a(id='webmaster-about-link', href="#")
+                    span <
+                    |  About ME
+                    span  />
+
+        //- Then get the featured post
+        article(class="col-sm-4 #{_FEATURE_SUB_CLASS}" id="feature-post")
+            h3#feature-post-title 
+                span(class="glyphicon glyphicon-star")
+                | Featured Post 
+                span(class="glyphicon glyphicon-star")
+
+            | !{_FEATURE_POST_CONTENT}
+            
+
+        //- All the other posts are follow
+        article(class="col-sm-4 #{_LATEST_SUB_CLASS}" id="latest-post")
+            h3#latest-post-title Latest Posts
+
+            | !{_LATEST_POST_CONTENT}
+
+
+        //- All the otrher posts ordered by latest
+        | !{_OTHER_POSTS} 
+
+
+           
+
+
+
+block LOAD_JS
+    -
+        jsList = ['vendors/jquery.min.js',
+                  'vendors/masonry.min.js',
+                  'vendors/nicescroll.min.js',
+                  'pages/index.js']
+    each js in jsList
+        script(src="javascript/" + js)

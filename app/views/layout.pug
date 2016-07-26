@@ -1,0 +1,41 @@
+doctype html
+html
+    head
+        block PAGE_TITLE
+
+        //- Meta First
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(charset='UTF-8')
+
+        //- Load Fonts
+        -
+            fontList = ['Ubuntu', 
+                        'Amatica+SC', 
+                        'Dancing+Script', 
+                        'Open+Sans+Condensed:300,700&subset=latin,greek']
+
+        each font in fontList
+            link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=" + font)
+
+        //- Load stylesheets
+        link(rel='stylesheet', type='text/css', href='../css/main.css')
+        block LOAD_CSS
+
+    body
+        .container
+            header#page-header
+                h1 Blog
+                block HEADER_P
+                    p 
+
+            
+            block MAIN_CONTENT
+
+
+            footer#page-footer
+                small 
+                    | Copyright 
+                    span.glyphicon.glyphicon-copyright-mark
+                    |  2016 George G. Gkasdrogkas
+
+        block LOAD_JS

@@ -1,0 +1,17 @@
+a,
+a:hover,
+a:focus {
+    background: none;
+    outline: none;
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: 2px;
+    background-color: rgb(251, 251, 251);
+    font-size: $BaseFontSize;
+    cursor: default;
+}
+

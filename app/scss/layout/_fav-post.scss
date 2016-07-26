@@ -1,0 +1,30 @@
+#fav-post {
+    margin-top: 30px;
+    border-radius: 50%;
+}
+
+#fav-post .fav {
+    padding: 15px 0px 5px;
+    display: block;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    font-size: 39px;
+    -webkit-transition-duration: 0.25s;
+    transition-duration: 0.25s;
+    cursor: pointer;
+    width: 100px;
+    margin: 0 auto;
+}
+
+#fav-post .fav-after {
+    color: #da3d3d;
+}
+
+#fav-post .fav:hover {
+    color: #da3d3d;
+}
+
+#fav-post .fav:active {
+    color: #da3d3d;
+}

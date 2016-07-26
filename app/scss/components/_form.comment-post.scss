@@ -1,0 +1,67 @@
+#comment-post-form {
+    #user {
+        float: left;
+    }
+    #email {
+        float: right;
+        margin-left: 10px;
+    }
+    #user,
+    #email {
+        width: calc(50% - 5px);
+        display: inline-block;
+        @media screen and (max-width: 576px) {
+            width: 100%;
+            display: block;
+        }
+    }
+}
+
+#comment-user-name,
+#comment-user-email {
+    border: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0);
+    min-width: 100%;
+    padding: 10px 10px 10px 20px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin: 0 auto 20px auto;
+    -webkit-transition-duration: 0.15s;
+    transition-duration: 0.15s;
+    &:focus {
+        border-bottom: 5px solid rgba(66, 83, 86, 0.9);
+    }
+    @media screen and (max-width: 576px) {
+        min-width: 100%;
+    }
+}
+
+#comment-user-body {
+    border: 1px solid black;
+    min-width: 100% !important;
+    padding: 10px 10px 10px 20px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+}
+
+#comment-submit-section {
+    padding-bottom: 40px;
+    button {
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: rgba(0, 0, 0, 0);
+        border: 2px solid RGBA(0, 0, 0, 0.2);
+        &:focus {
+            border: 2px solid rgba(0, 0, 0, 0.6);
+        }
+    }
+}
+
+#comment-info {
+    padding-top: 17px;
+    font-size: 14px;
+}

@@ -1,0 +1,139 @@
+.quote {
+    font-size: 12px;
+    padding: 0 30px 60px 30px;
+    &-card {
+        padding-top: 40px;
+        background-color: #fff;
+    }
+    &-card-title {
+        margin: 0 30px 10px;
+        color: #656565;
+        text-transform: lowercase;
+        font-size: 12px;
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+            margin-left: 10px;
+        }
+        @media screen and (max-width: 767px) {
+            margin-right: 10px;
+        }
+    }
+    blockquote {
+        font-size: 13px;
+        line-height: 1.6em;
+        max-width: 230px;
+        margin: 0 0 20px 30px;
+        padding: 10px 20px;
+        border-left: 2px solid #2a2a2a;
+        letter-spacing: 0.2em;
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+            margin: 0 0 20px 10px;
+            padding: 10px 10px;
+            word-wrap: break-word;
+        }
+        @media screen and (max-width: 767px) {
+            max-width: none;
+        }
+        @media screen and (max-width: 576px) {
+            word-wrap: break-word;
+        }
+    }
+    @media screen and (max-width: 767px) {
+        padding: 0 15px 10px;
+    }
+}
+
+.quote .quote-footer-with-pencil {
+    font-size: 12px;
+    line-height: 60px;
+    height: 60px;
+    cursor: pointer;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+        line-height: 30px;
+        height: 80px;
+    }
+    @media screen and (max-width: 272px) {
+        height: 80px;
+        line-height: 30px;
+    }
+    .posted-date {
+        @media screen and (min-width: 992px) and (max-width: 1199px) {
+            width: 40%;
+            line-height: 30px;
+        }
+        @media screen and (max-width: 349px) {
+            width: 41%;
+        }
+    }
+    .quote-card-stats {
+        @media screen and (min-width: 992px) and (max-width: 1199px) {
+            width: 60%;
+        }
+        @media screen and (max-width: 349px) {
+            width: 59%;
+        }
+    }
+    .block {
+        padding-right: 0;
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+            display: block;
+            &:first-child {
+                float: left;
+            }
+            &:nth-child(2) {
+                float: left;
+            }
+            &:nth-child(3) {
+                display: inline;
+            }
+        }
+        @media screen and (max-width: 325px) {
+            padding-right: 0;
+        }
+        @media screen and (max-width: 272px) {
+            display: block;
+        }
+    }
+}
+
+.quote .quote-footer {
+    font-size: 12px;
+    line-height: 60px;
+    height: 60px;
+    cursor: pointer;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+    .block {
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+            display: block;
+        }
+        @media screen and (max-width: 325px) {
+            padding-right: 0;
+        }
+        @media screen and (max-width: 272px) {
+            display: block;
+            line-height: 30px;
+        }
+    }
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+        line-height: 30px;
+    }
+    @media screen and (max-width: 272px) {
+        line-height: 30px;
+    }
+}
+
+.quote-card-stats {
+    display: inline-block;
+    float: right;
+    width: 59%;
+    @media screen and (max-width: 767px) {
+        width: 50%;
+    }
+    @media screen and (max-width: 383px) {
+        width: 60%;
+    }
+}

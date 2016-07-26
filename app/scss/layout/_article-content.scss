@@ -1,0 +1,183 @@
+#article-body {
+    font-size: 1em;
+    p,
+    aside,
+    figcaption {
+        max-width: 700px;
+        line-height: 1.5;
+        margin: 0 auto 5px;
+        padding: 10px;
+    }
+    p:first-child::first-letter {
+        font-size: 7em;
+        color: #4E56B8;
+        margin: -2px 10px 0 0;
+        line-height: 1;
+        float: left;
+    }
+    a {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-style: dashed;
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: underline;
+            text-decoration-style: dashed;
+            color: #505050;
+        }
+    }
+    blockquote {
+        max-width: 700px;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        padding: 20px;
+        border-left: 2px solid #2a2a2a;
+        background-color: #f2f2f2;
+        font-size: 14px;
+        font-family: serif;
+        letter-spacing: inherit;
+    }
+    pre {
+        max-width: 700px;
+        margin: 0 auto 15px auto;
+        border: 1px solid rgba(204, 204, 204, 0.12);
+        border-radius: 0;
+        font-size: 14px;
+    }
+    mark {
+        font-size: 15px;
+        background-color: #ececec;
+    }
+    // the table tag is a draft for my blog yet.
+    // it lucks responsiveness on small screen devices
+    // but it holds small data quite well
+    table {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 15px auto;
+        th {
+            border-bottom: 2px solid rgba(100, 167, 159, 0.6);
+            text-align: center;
+        }
+        caption {
+            text-align: center;
+        }
+    }
+    ul {
+        display: block;
+        max-width: 700px;
+        margin: 0 auto 5px auto;
+        padding-left: 30px;
+        font-weight: 700;
+        &:first-child {
+            font-weight: 400;
+        }
+
+        li {
+            padding-top: 5px;
+
+        }
+
+        & > li.no-order {
+            display: block;
+            margin-left: -20px;
+            list-style: none;
+        }
+    }
+    ol {
+        counter-reset: item;
+        display: block;
+        max-width: 700px;
+        margin: 0 auto 5px auto;
+        padding-left: 30px;
+        font-weight: 700;
+        &:first-child {
+            font-weight: 400;
+        }
+
+        li {
+            counter-increment: item;
+            padding-top: 5px;
+
+        }
+        & > li {
+            display: block;
+            &::before {
+                content: counters(item, ".") " ";
+                margin-left: -20px;
+            }
+        }
+        & > li.no-order {
+            display: block;
+            &::before {
+                content: " ";
+                margin-left: -20px;
+            }
+        }
+    }
+    img {
+        display: block;
+        max-width: 100%;
+    }
+    figure {
+        max-width: 700px;
+        margin: 0 auto;
+        display: block;
+    }
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.25%;
+        /* 16:9 */
+        padding-top: 25px;
+        height: 0;
+        display: block;
+        margin: 0 auto;
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .video {
+        max-width: 750px;
+        max-height: 600px;
+        margin: 0 auto 35px;
+    }
+    .cp_embed_iframe {
+        /*CODEPEN IFRAME*/
+        max-width: 750px !important;
+        display: block !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+        margin-bottom: 15px !important;
+    }
+    .description,
+    figcaption {
+        font-style: italic;
+        color: #626262;
+    }
+    .section-title {
+        font-size: 19px;
+        max-width: 700px;
+        font-weight: 700;
+        border-bottom: 1px solid #000;
+        .sect a {
+            text-decoration: none;
+
+            &:hover {
+                color: inherit;
+            }
+        }
+    }
+    #article-post-date {
+        font-size: 12px;
+        text-align: center;
+    }
+    #article-end {
+        margin-bottom: -15px;
+        text-align: center;
+    }
+}

@@ -1,0 +1,20 @@
+h3#feature-post-title,
+h3#latest-post-title {
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 14px;
+
+    @media screen and (max-width: 991px) {
+        font-size: 12px;
+    }
+
+    @media screen and (max-width: 767px) {
+        font-size: 16px;
+    }
+
+    @media screen and (max-width: 576px) {
+        font-size: 14px;
+    }
+}
+
+@import "../components/_card.scss";

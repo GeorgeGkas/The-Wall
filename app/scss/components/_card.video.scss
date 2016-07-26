@@ -1,0 +1,116 @@
+.video-footer-with-pencil {
+    font-size: 12px;
+    line-height: 60px;
+    height: 60px;
+    cursor: pointer;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+        line-height: 30px;
+        height: 80px;
+    }
+    @media screen and (max-width: 272px) {
+        line-height: 30px;
+        height: 80px;
+    }
+    .posted-date {
+        @media screen and (min-width: 992px) and (max-width: 1199px) {
+            width: 40%;
+        }
+        @media screen and (max-width: 767px) {
+            width: 50%;
+        }
+        @media screen and (max-width: 349px) {
+            width: 41%;
+        }
+    }
+    .video-card-stats {
+        @media screen and (min-width: 992px) and (max-width: 1199px) {
+            width: 60%;
+        }
+        @media screen and (max-width: 767px) {
+            width: 50%;
+        }
+        @media screen and (max-width: 349px) {
+            width: 59%;
+        }
+    }
+    .block {
+        @media screen and (min-width: 992px) and (max-width: 1199px) {
+            padding-right: 0;
+        }
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+            display: block;
+            &:first-child {
+                text-align: left;
+            }
+            &:nth-child(2) {
+                float: left;
+            }
+            &:nth-child(3) {
+                margin-top: -30px;
+                margin-left: 30px;
+            }
+        }
+        @media screen and (max-width: 325px) {
+            padding-right: 0;
+        }
+        @media screen and (max-width: 272px) {
+            display: block;
+        }
+    }
+}
+
+.video-footer {
+    font-size: 12px;
+    line-height: 60px;
+    height: 60px;
+    cursor: pointer;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+        line-height: 30px;
+        .block {
+            display: block;
+        }
+    }
+
+    @media screen and (max-width: 292px) {
+        padding-right: 0;
+    }
+    @media screen and (max-width: 272px) {
+        display: block;
+        line-height: 30px;
+    }
+
+    .block {
+        @media screen and (max-width: 272px) {
+            display: inline-block;
+        }
+    }
+
+    .video-card-stats {
+        @media screen and (max-width: 767px) {
+            width: 50%;
+        }
+    }
+}
+
+.video-card-stats {
+    display: inline-block;
+    float: right;
+    width: 59%;
+    .block {
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+            padding-right: 0;
+        }
+        @media screen and (max-width: 767px) {
+            width: 50%;
+        }
+        @media screen and (max-width: 383px) {
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,50 @@
+@import "../vendors/_dataTables.bootstrap.min.scss";
+@import "../vendors_extensions/_dataTables.bootstrap.min.scss";
+
+#feature-post,
+#other-posts,
+#logout-placeholder {
+    margin-bottom: 10px;
+}
+
+#feature-post,
+#other-posts {
+    h4 {
+        font-size: 16px;
+        color: #777;
+        &:nth-child(1) {
+            padding-top: 15px;
+        }
+        @media screen and (max-width: 767px) { 
+            text-align: center;
+        }
+    }
+    table {
+        font-size: 14px;
+        .glyphicon-asterisk,
+        .glyphicon-arrow-up {
+            font-size: 10px;
+            color: #388cde;
+            top: -5px;
+            left: -2px;
+        }
+    }
+    .undelete-post {
+        color: #de3838;
+        font-weight: 700;
+    }
+}
+
+#logout-placeholder {
+    text-align: center;
+    padding: 30px 15px;
+    a {
+        padding: 10px 20px;
+        border: 1px solid;
+        transition: 0.25s;
+        &:hover {
+            background-color: rgb(45, 45, 45);
+            color: #fff;
+        }
+    }
+}

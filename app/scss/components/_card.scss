@@ -1,0 +1,43 @@
+article {
+    padding-bottom: 60px;
+    @media screen and (max-width: 767px) {
+        position: relative !important;
+        top: 0 !important;
+        padding-bottom: 10px !important;
+    }
+}
+
+.card {
+    margin: 2%;
+    padding: 15px;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+    @media screen and (max-width: 767px) {
+        padding-top: 5%;
+        background-color: #fff;
+    }
+    @media screen and (max-width: 576px) {
+        padding-top: 3%;
+        background-color: #fff;
+    }
+}
+
+
+.card .block {
+    padding-right: 5px;
+}
+
+.card .posted-date {
+    display: inline-block;
+    width: 41%;
+    @media screen and (max-width: 767px) {
+        width: 50%
+    }
+    @media screen and (max-width: 383px) {
+        width: 40%;
+    }
+}
+
+@import "_card.webmaster.scss";
+@import "_card.image.scss";
+@import "_card.quote.scss";
+@import "_card.video.scss";

@@ -1,0 +1,46 @@
+#email-subscription-form {}
+
+#offer-email-subscription {
+    font-size: 19px;
+    line-height: 3;
+    color: #413857;
+}
+
+#got-email-subscription {}
+
+#email-subscription-input {
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border: 1px solid #d7d6d6;
+    background: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    width: 250px;
+    font-size: 15px;
+    color: #333232;
+    outline: none;
+    text-align: center;
+}
+
+#email-subscription-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 0;
+    background-color: rgb(48, 155, 155);
+    border: 0;
+    padding: 10px 15px;
+    color: #fff;
+    //border-radius: 3px;
+    width: 280px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-transition-duration: 0.25s;
+    transition-duration: 0.25s;
+    text-align: center;
+}
+
+#email-subscription-button:focus {
+    background-color: rgba(39, 41, 39, 0.82);
+}

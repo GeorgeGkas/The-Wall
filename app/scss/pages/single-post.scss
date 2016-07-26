@@ -1,0 +1,49 @@
+#post-content {
+    overflow: hidden;
+}
+
+#get-updates-and-fav {
+    max-width: 650px;
+    line-height: 1.5;
+    margin: 0 auto 15px;
+    padding: 0px 10px 20px 10px;
+    text-align: center;
+    font-size: 12px;
+    color: #9b9b9b;
+}
+
+#social-section {
+    max-width: 970px;
+    margin: 0 auto;
+    border-top: 1px solid RGBA(0, 0, 0, 0.15);
+    @media screen and (min-width: 768px) {
+        background-color: #f6f6f6;
+    }
+}
+
+#comments {
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 10px 10px 60px;
+}
+
+#comment-post-area {}
+
+#comment-post-message {
+    padding-left: 5px;
+    border-left: 3px solid rgb(34, 168, 92);
+    max-width: 450px;
+    margin: 0px auto 20px;
+    border-right: 3px solid rgb(34, 168, 92);
+    text-align: center;
+}
+
+@import "../components/_card.single-post.scss";
+@import "../components/_form.email-subscription.scss";
+@import "../components/_form.comment-post.scss";
+@import "../layout/_article-content.scss";
+@import "../layout/_fav-post.scss";
+@import "../layout/_authorAbout.scss";
+@import "../layout/_comments-list.scss";
+@import "../vendors/_prism.scss";
+@import "../vendors_extensions/_prism.scss";

@@ -1,0 +1,41 @@
+@import "../utils/_vertical-align.scss";
+@import "../utils/_row-eq-height.scss";
+#aboutAuthor {
+    max-width: 700px;
+    margin: 10px auto 20px;
+    #aboutWrapper {
+        padding: 15px;
+        @media screen and (min-width: 768px) {
+            @include row-eq-height();
+            border: 1px solid black;
+        }
+    }
+    #authorImage {
+        //border: 1px solid red;
+        img {
+            border-radius: 50%;
+            margin: 0 auto;
+            display: block;
+            transition: 0.20s;
+            @media screen and (min-width: 768px) {
+                @include vertical-align();
+            }
+
+            &:hover {
+                opacity: 0.7;
+                cursor: pointer;
+            }
+        }
+    }
+    #authorSmallBio {
+        //border: 1px solid blue;
+        p {
+            font-size: 14px;
+             @media screen and (max-width: 767px) { 
+                padding-top: 15px;
+                max-width: 80%;
+                margin: 0 auto;
+             }
+        }
+    }
+}

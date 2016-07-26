@@ -1,0 +1,33 @@
+.container {
+    padding-right: 0;
+    padding-left: 0;
+    border-top: 5px solid rgba(0, 0, 0, .83);
+}
+
+.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.row {
+    margin: 0;
+}
+
+.glyphicon {
+    padding-right: 5px;
+}
+
+abbr[data-original-title],
+abbr[title] {
+    border: none;
+}
+
+label {
+    font-size: 12px;
+}
+
+.table-responsive {
+    @media screen and (max-width: 767px) {
+        border: 0;
+    }
+}

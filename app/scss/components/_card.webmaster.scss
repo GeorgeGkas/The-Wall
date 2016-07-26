@@ -1,0 +1,28 @@
+#webmaster-profile {
+    margin: 2%;
+    padding: 45px 15px 15px 15px;
+    text-align: center;
+}
+
+#webmaster-avatar {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    background-image: url('http://67.media.tumblr.com/fad1e6baa5c3bac246e258df4f9103f3/tumblr_mvj0dccSnC1s3lf4oo1_500.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: block;
+    margin: 0 auto;
+}
+
+#webmaster-name {
+    font-size: 2em;
+    font-family: sans-serif;
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+        font-size: 1.6em;
+    }
+}
+
+#webmaster-about-link span{
+    color: rgb(195, 195, 195);
+}

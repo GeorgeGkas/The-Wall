@@ -1,0 +1,42 @@
+header {
+    text-align: center;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    &#page-header {
+        font-family: 'Amatica Sc', 'Ubuntu', sans-serif;
+        #jumbotron {
+            position: absolute;
+            font-size: 19px;
+        }
+        h1 {
+            font-size: 37px;
+            margin: 0 0 10px;
+            line-height: inherit;
+        }
+        p {
+            font-size: $BaseFontSize;
+            font-weight: $BoldFont;
+            margin: 0 0 10px;
+            line-height: inherit;
+        }
+    }
+    &#article-head {
+        font-family: 'Open Sans Condensed', 'Ubuntu', sans-serif;
+        text-transform: uppercase;
+        padding-bottom: 60px;
+        text-align: center;
+        #article-title {
+            font-weight: 700;
+            letter-spacing: 6px;
+            color: #4b5b65;
+            padding: 5px;
+            font-size: 24px;
+        }
+        #article-author {
+            font-size: 20px;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+    }
+}
