@@ -1,7 +1,7 @@
 extends layout.pug
 
 block PAGE_TITLE
-    title This is awesome
+    title NodeJSBlog
 
 block LOAD_CSS
     link(rel='stylesheet', type='text/css', href='css/pages/index.css')
@@ -41,7 +41,8 @@ block MAIN_CONTENT
 
 
         //- All the otrher posts ordered by latest
-        | !{_OTHER_POSTS} 
+         each post _OTHER_POSTS
+
 
 
            

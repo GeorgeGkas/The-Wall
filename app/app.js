@@ -1,26 +1,21 @@
 var express = require('express');
 var app = express();
-var mysql = require('mysql');
+var MYSQL_db = require('./models/MYSQL');
 
-
-var MYSQL = mysql.createConnection({
+var mysql = new MYSQL_db({
     host: 'localhost',
     user: 'root',
     password: 'thisisapassword',
     database : 'NodeJSBlog'
 });
 
-MYSQL.connect();
+mysql.connect();
 
-/*MYSQL.query('SELECT * FROM ', function(err, rows, fields) {
-  if (!err)
-    console.log('The solution is: ', rows);
-  else
-    console.log('Error while performing Query.');
-});
+mysql.log();
 
-*/
-MYSQL.end();
+mysql.end();
+
+
 
 app.set('view engine', 'pug');
 app.use(express.static('public'));

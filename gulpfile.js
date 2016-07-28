@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
-var gulpIf = require('gulp-if');
 var del = require('del');
 var runSequence = require('run-sequence');
 
@@ -24,6 +23,6 @@ gulp.task('scss', function() {
 });
 
 
-gulp.task('watchSCSS', function() {
+gulp.task('watch', function() {
     gulp.watch('app/scss/**/*.scss', ['scss']);
 });
