@@ -1,4 +1,4 @@
-var MYSQL_db = require('../../app/models/MYSQL');
+var MYSQL_db = require('../../app/models/database/MYSQL');
 var authors_table = require('./authors/authors-spec.js');
 
 var mysql = new MYSQL_db({
@@ -10,6 +10,8 @@ var mysql = new MYSQL_db({
 
 mysql.connect();
 
-authors_table.runTest();
+authors_table.runTest(mysql);
+
+
 
 mysql.end();

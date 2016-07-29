@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var MYSQL_db = require('./models/MYSQL');
+var MYSQL_db = require('./models/database/MYSQL');
 
 var mysql = new MYSQL_db({
     host: 'localhost',
@@ -17,10 +17,9 @@ mysql.insert_author({
     description: 'Junior Web Developer'
 });
 
-mysql.insert_author({
-    name: 'Georgedrogkas',
-    avatar: 'humblr_mvj0dccSnC1s3lf4oo1_500.jpg',
-    description: 'Juniper'
+mysql.update_author({
+    name: 's',
+    newName: 'george'
 });
 
 mysql.select_author('all', function(data) {
