@@ -11,23 +11,6 @@ var mysql = new MYSQL_db({
 
 mysql.connect();
 
-mysql.insert_author({
-    name: 'George G. Gkasdrogkas',
-    avatar: 'https://67.media.tumblr.com/fad1e6baa5c3bac246e258df4f9103f3/tumblr_mvj0dccSnC1s3lf4oo1_500.jpg',
-    description: 'Junior Web Developer'
-});
-
-mysql.update_author({
-    name: 's',
-    newName: 'george'
-});
-
-mysql.select_author('all', function(data) {
-    console.log(data[0].author_ID);
-});
-
-mysql.delete_author('all');
-
 mysql.end();
 
 

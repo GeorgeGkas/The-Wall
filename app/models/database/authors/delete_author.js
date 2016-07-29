@@ -17,7 +17,7 @@ module.exports = {
                 }
             );
         } else {
-            throw new Error('No parameter provided to delete_author call ... nn');
+            throw new Error('No parameter provided to delete_author call.');
         }
     }
 }

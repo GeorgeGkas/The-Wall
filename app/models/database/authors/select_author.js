@@ -17,7 +17,7 @@ module.exports = {
                 }
             );
         } else {
-            throw new Error('No query provided to select_author call ... nn');
+            throw new Error('No parameter provided to select_author call.');
         }
     }
 }

@@ -81,6 +81,26 @@ module.exports = {
                 });
             });
 
+            describe('select_author/', function() {
+                describe('wrong parameter provided', function() {
+                    it('empty', function() {
+                        expect(function() {
+                            mysql.select_author();
+                        }).toThrow(new Error("No parameter provided to select_author call."));
+                    });
+                });
+            });
+
+            describe('delete_author/', function() {
+                describe('wrong parameter provided', function() {
+                    it('empty', function() {
+                        expect(function() {
+                            mysql.delete_author();
+                        }).toThrow(new Error("No parameter provided to delete_author call."));
+                    });
+                });
+            });
+
         });
 
     }
