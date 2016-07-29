@@ -9,3 +9,6 @@ app/admin
 
 # COMPILED FILES GENERATED THROUGH GULP 
 app/public/css
+
+#Other files
+npm-debug.json

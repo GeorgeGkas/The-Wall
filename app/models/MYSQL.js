@@ -1,5 +1,7 @@
 'use strict';
 var mysql = require('mysql');
+var authors_methods = require('./MYSQL.authors_methods');
+
 class MYSQL {
     constructor(connection_details) {
         this.conn = mysql.createConnection({
@@ -11,29 +13,21 @@ class MYSQL {
     }
 
     connect() {
-        this.conn.connect();
+        this.conn.connect(function(err) {
+            if (!err) {
+                console.log("Database is connected ... nn");
+            } else {
+                console.log("Error connecting database ... nn");
+            }
+        });
     }
 
     end() {
         this.conn.end();
     }
 
-    insert_author() {
-
-    }
-
-    select_author() {
-
-    }
-
-    update_author() {
-
-    }
-
-    delete_author() {
-        
-    }
 }
 
+Object.assign(MYSQL.prototype, authors_methods);
 
 module.exports = MYSQL;

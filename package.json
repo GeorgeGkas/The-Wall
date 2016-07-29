@@ -4,7 +4,7 @@
   "description": "My blog site",
   "main": "app/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine-node spec"
   },
   "author": "GeorgeGkas",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "gulp-csso": "^2.0.0",
     "gulp-sass": "^2.3.2",
     "gulp-uglify": "^1.5.4",
+    "jasmine-node": "^1.14.5",
     "mysql": "^2.11.1",
     "pug-cli": "^1.0.0-alpha6",
     "run-sequence": "^1.2.2"
