@@ -11,4 +11,4 @@ app/admin
 app/public/css
 
 #Other files
-npm-debug.json
+app/npm-debug.json
