@@ -1,11 +1,15 @@
 module.exports = {
-    delete_author: function(author_name) {
+    delete_author: function(author_name, callback) {
+
+        if (typeof(callback)==='undefined') callback = function() {};
+
         if (author_name == 'all') {
             this.conn.query(
                 'DELETE FROM authors',
                 function(err, result) {
                     if (err) throw err;
                     console.log('All the authors deleted ... nn');
+                    callback(result);
                 }
             );
         } else if (author_name != null || author_name != undefined) {
@@ -14,6 +18,7 @@ module.exports = {
                 function(err, result) {
                     if (err) throw err;
                     console.log('Deleted Author ' + author_name + ' ... nn');
+                    callback(result);
                 }
             );
         } else {

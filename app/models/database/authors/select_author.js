@@ -1,5 +1,7 @@
 module.exports = {
     select_author: function(query, callback) {
+        if (typeof(callback)==='undefined') callback = function() {};
+        
         if (query == '*') {
             this.conn.query(
                 'SELECT * FROM  authors',

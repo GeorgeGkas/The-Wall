@@ -1,5 +1,7 @@
 module.exports = {
-    insert_author: function(author_details) {
+    insert_author: function(author_details, callback) {
+        if (typeof(callback)==='undefined') callback = function() {};
+
         if ('name' in author_details && 'avatar' in author_details && 'description' in author_details) {
             this.conn.query(
                 'INSERT INTO authors (author_avatar, author_description, author_name) VALUES(?, ?, ?);', 
@@ -7,6 +9,7 @@ module.exports = {
                 function(err, result) {
                     if (err) throw err;
                     console.log('Created Author ' + author_details.name + ' ... nn');
+                    callback();
                 }
             );
         } else {

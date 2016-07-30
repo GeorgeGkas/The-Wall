@@ -10,10 +10,23 @@ var mysql = new MYSQL_db({
     database : 'NodeJSBlog'
 });
 
-mysql.connect();
+mysql.connect(function() {
 
+});
 
-mysql.end();
+mysql.insert_author({
+    name: 'George G. Gkasdrogkas',
+    avatar: 'none',
+    description: 'Web Developer & Designer'
+}, function() {
+    mysql.select_author('name|George G. Gkasdrogkas', function(res) {
+        console.log(res[0].author_ID);
+        mysql.delete_author('George G. Gkasdrogkas', function() {
+            console.log('done');
+            mysql.end();
+        });
+    });
+});
 
 
 

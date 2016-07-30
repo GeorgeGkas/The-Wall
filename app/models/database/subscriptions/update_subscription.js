@@ -1,5 +1,7 @@
 module.exports = {
-    update_subscription: function(sub_details) {
+    update_subscription: function(sub_details, callback) {
+        if (typeof(callback)==='undefined') callback = function() {};
+
         this.conn.query(
             'UPDATE email_subscriptions SET subscription_IP = ?, subscription_date = ?, subscription_active = ?  WHERE subscription_email = ?;', 
             [sub_details.ip, sub_details.date, sub_details.active, sub_details.email],
@@ -11,6 +13,7 @@ module.exports = {
                 } else {
                     console.log('User ' + sub_details.email + ' has resubscribe to email updates.');
                 }
+                callback();
                 
             }
         );

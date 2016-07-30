@@ -1,5 +1,7 @@
 module.exports = {
     select_subscription: function(query, callback) {
+        if (typeof(callback)==='undefined') callback = function() {};
+        
         if (query == '*') {
             this.conn.query(
                 'SELECT * FROM  email_subscriptions',
