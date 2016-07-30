@@ -1,5 +1,6 @@
 var MYSQL_db = require('../../app/models/database/MYSQL');
 var authors_table = require('./authors/authors-spec.js');
+var email_subscriptions = require('./email_subscriptions/email_subscriptions-spec.js');
 
 var mysql = new MYSQL_db({
     host: 'localhost',
@@ -11,7 +12,7 @@ var mysql = new MYSQL_db({
 mysql.connect();
 
 authors_table.runTest(mysql);
-
+email_subscriptions.runTest(mysql);
 
 
 mysql.end();
