@@ -1,17 +1,17 @@
 module.exports = {
-    select_author: function(query, callback) {
+    select_subscription: function(query, callback) {
         if (query == '*') {
             this.conn.query(
-                'SELECT * FROM  authors',
+                'SELECT * FROM  email_subscriptions',
                 function(err, result) {
                     if (err) throw err;
                     else callback(result);
                 }
             );
         } else if (query != undefined) {
-            if (query.split('|')[0] == 'name') {
+            if (query.split('|')[0] == 'email') {
                 this.conn.query(
-                    'SELECT * FROM authors WHERE author_name = ?', 
+                    'SELECT * FROM email_subscriptions WHERE subscription_email = ?', 
                     [query.split('|')[1]],
                     function(err, result) {
                         if (err) throw err;
@@ -29,7 +29,7 @@ module.exports = {
             }
 
         } else {
-            throw new Error('No parameter provided to select_author call.');
+            throw new Error('No parameter provided to select_subscription call.');
         }
     }
 }

@@ -6,6 +6,10 @@ var insert_author = require('./authors/insert_author');
 var select_author = require('./authors/select_author');
 var update_author = require('./authors/update_author');
 
+var insert_subscription = require('./subscriptions/insert_subscription');
+var update_subscription = require('./subscriptions/update_subscription');
+var select_subscription = require('./subscriptions/select_subscription');
+
 class MYSQL {
     constructor(connection_details) {
         this.conn = mysql.createConnection({
@@ -36,7 +40,11 @@ Object.assign(MYSQL.prototype,
     delete_author,
     insert_author,
     select_author,
-    update_author
+    update_author,
+
+    insert_subscription,
+    update_subscription,
+    select_subscription
 );
 
 module.exports = MYSQL;

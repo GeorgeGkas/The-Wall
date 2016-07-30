@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var MYSQL_db = require('./models/database/MYSQL');
+var utils = require('./models/utils/functions');
 
 var mysql = new MYSQL_db({
     host: 'localhost',
@@ -10,6 +11,7 @@ var mysql = new MYSQL_db({
 });
 
 mysql.connect();
+
 
 mysql.end();
 
