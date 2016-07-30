@@ -8,7 +8,6 @@ module.exports = {
                 [author_details.avatar, author_details.description, author_details.name],
                 function(err, result) {
                     if (err) throw err;
-                    console.log('Created Author ' + author_details.name + ' ... nn');
                     callback();
                 }
             );

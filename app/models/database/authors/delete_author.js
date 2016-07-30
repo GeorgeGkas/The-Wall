@@ -8,7 +8,6 @@ module.exports = {
                 'DELETE FROM authors',
                 function(err, result) {
                     if (err) throw err;
-                    console.log('All the authors deleted ... nn');
                     callback(result);
                 }
             );
@@ -17,7 +16,6 @@ module.exports = {
                 'DELETE FROM authors WHERE author_name = ?', [author_name],
                 function(err, result) {
                     if (err) throw err;
-                    console.log('Deleted Author ' + author_name + ' ... nn');
                     callback(result);
                 }
             );

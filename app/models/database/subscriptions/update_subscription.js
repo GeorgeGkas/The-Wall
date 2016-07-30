@@ -8,11 +8,11 @@ module.exports = {
             function(err, result) {
                 if (err) throw err;
 
-                if (sub_details.active === 0) {
+               /* if (sub_details.active === 0) {
                     console.log('User ' + sub_details.email + ' unsubscribed to email updates.');
                 } else {
                     console.log('User ' + sub_details.email + ' has resubscribe to email updates.');
-                }
+                }*/
                 callback();
                 
             }

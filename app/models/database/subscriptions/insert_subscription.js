@@ -7,7 +7,6 @@ module.exports = {
             [sub_details.email, sub_details.ip, sub_details.date],
             function(err, result) {
                 if (err) throw err;
-                console.log('User ' + sub_details.email + ' has subscribe to email updates.');
                 callback();
             }
         );

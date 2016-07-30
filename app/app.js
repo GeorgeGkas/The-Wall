@@ -10,9 +10,7 @@ var mysql = new MYSQL_db({
     database : 'NodeJSBlog'
 });
 
-mysql.connect(function() {
-
-});
+mysql.connect();
 
 mysql.insert_author({
     name: 'George G. Gkasdrogkas',
@@ -21,7 +19,8 @@ mysql.insert_author({
 }, function() {
     mysql.select_author('name|George G. Gkasdrogkas', function(res) {
         console.log(res[0].author_ID);
-        mysql.delete_author('George G. Gkasdrogkas', function() {
+        mysql.delete_author('George G. Gkasdrogkas', function(res) {
+            console.log(res.affectedRows + ' affected rows.')
             console.log('done');
             mysql.end();
         });
