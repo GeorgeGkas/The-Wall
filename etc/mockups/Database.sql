@@ -6,15 +6,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
---
--- Database: `NodeJSBlog`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `authors`
---
 
 CREATE TABLE IF NOT EXISTS `authors` (
   `author_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -23,13 +14,7 @@ CREATE TABLE IF NOT EXISTS `authors` (
   `author_avatar` text COLLATE utf8_bin NOT NULL,
   `author_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`author_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `comments`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
 CREATE TABLE IF NOT EXISTS `comments` (
   `comment_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -41,15 +26,8 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `comment_state` enum('approved','pending','deleted') COLLATE utf8_bin NOT NULL DEFAULT 'pending',
   `comment_like_count` int(10) unsigned NOT NULL,
   `comment_author_email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`comment_ID`),
-  KEY `comment_post_ID` (`comment_post_ID`)
+  PRIMARY KEY (`comment_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `email_subscriptions`
---
 
 CREATE TABLE IF NOT EXISTS `email_subscriptions` (
   `subscription_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -60,26 +38,13 @@ CREATE TABLE IF NOT EXISTS `email_subscriptions` (
   PRIMARY KEY (`subscription_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `likes_counter`
---
-
 CREATE TABLE IF NOT EXISTS `likes_counter` (
   `like_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `like_type` enum('post','comment') COLLATE utf8_bin NOT NULL,
-  `like_content_ID` int(11) NOT NULL,
+  `like_content_ID` int(10) unsigned NOT NULL,
   `like_IP` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`like_ID`),
-  KEY `like_ID` (`like_ID`)
+  PRIMARY KEY (`like_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `posts`
---
 
 CREATE TABLE IF NOT EXISTS `posts` (
   `post_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -89,12 +54,11 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `post_status` enum('draft','published','deleted') COLLATE utf8_bin NOT NULL DEFAULT 'draft',
   `post_type` enum('img','quote','video') COLLATE utf8_bin NOT NULL,
   `post_like_count` int(10) unsigned NOT NULL DEFAULT '0',
-  `post_comment_count` int(11) unsigned NOT NULL DEFAULT '0',
+  `post_comment_count` int(10) unsigned NOT NULL DEFAULT '0',
   `post_has_article` tinyint(1) NOT NULL DEFAULT '0',
   `article_title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `article_content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`post_ID`),
-  KEY `author_ID` (`author_ID`)
+  PRIMARY KEY (`post_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

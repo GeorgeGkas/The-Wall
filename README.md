@@ -7,7 +7,8 @@ This is an experiment project. The goal behind it is to create a blog that will 
 - Work-flow Automation with Gulp.js
 - Better understanding of SCSS, the css preprocessor and it's design patterns
 - Npm usage
-- DRY principle
+- DRY, CRUD principles
+- SoC *(Separation of concerns)*
 - UI/UX design
 - Understand testing procedure. *(node-jasmine testing suit is used)*
 - Learning some basic database designing in Mysql. 

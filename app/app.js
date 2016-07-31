@@ -19,11 +19,16 @@ mysql.insert_author({
     email: 'georgegkas@gmail.com'
 }, function() {
     mysql.select_author('email|georgegkas@gmail.com', function(res) {
-        console.log(res[0].author_ID);
-        mysql.delete_author('georgegkas@gmail.com', function(res) {
-            console.log(res.affectedRows + ' affected rows.')
-            console.log('done');
-            mysql.end();
+        mysql.insert_post({
+            author: res[0].author_ID,
+            date: utils.get_curr_date(),
+            content: 'image here',
+            type: 'img'
+        }, function() {
+            mysql.delete_author('all', function() {
+                mysql.delete_post('8');
+                mysql.end();
+            });
         });
     });
 });
