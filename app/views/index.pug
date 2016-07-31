@@ -1,5 +1,10 @@
 extends layout.pug
 
+include mixins/card_image.pug
+include mixins/card_video.pug
+include mixins/card_quote.pug
+
+
 block PAGE_TITLE
     title NodeJSBlog
 
@@ -41,7 +46,23 @@ block MAIN_CONTENT
 
 
         //- All the otrher posts ordered by latest
-         each post _OTHER_POSTS
+        each post in _OTHER_POSTS
+            if post.post_type == 'quote'
+                article(class="col-sm-4 quote")
+                    +quote-card(post)
+
+            else 
+                article(class="col-sm-4")
+                    .card
+                        if post.post_type == 'img'
+                            +image-card(post)
+
+                        else
+                            +video-card(post)
+
+
+            
+
 
 
 

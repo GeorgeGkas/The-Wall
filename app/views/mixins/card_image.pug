@@ -1,0 +1,16 @@
+mixin image-card(post)
+    .image-card
+        img(src=post.post_content, class="center-block")
+        .image-card-stats
+            p
+                span.block 
+                    span(class="glyphicon glyphicon-heart")
+                    span(class="heart-counter") #{post.post_like_count}
+                span.block
+                    span(class="glyphicon glyphicon-comment")
+                    span(class="comments-counter") #{post.post_comment_count}
+                if post.post_has_article
+                    span.block
+                        span(class="glyphicon glyphicon-pencil")
+    .image-date-placeholder
+        time(datetime=post.post_date) #{post.post_date}
