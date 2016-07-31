@@ -9,7 +9,8 @@ module.exports = {
                             function() {
                                 mysql.insert_author({
                                     avatar: 'test',
-                                    description: 'test'
+                                    description: 'test',
+                                    email: 'test'
                                 });
                             }
                         ).toThrow(new Error("You need to provide all the parameters to insert_author call."));
@@ -20,7 +21,8 @@ module.exports = {
                             function() {
                                 mysql.insert_author({
                                     avatar: 'test',
-                                    name: 'test'
+                                    name: 'test',
+                                     email: 'test'
                                 });
                             }
                         ).toThrow(new Error("You need to provide all the parameters to insert_author call."));
@@ -31,7 +33,20 @@ module.exports = {
                             function() {
                                 mysql.insert_author({
                                     description: 'test',
-                                    name: 'test'
+                                    name: 'test',
+                                    email: 'test'
+                                });
+                            }
+                        ).toThrow(new Error("You need to provide all the parameters to insert_author call."));
+                    });
+
+                    it('email', function() {
+                        expect(
+                            function() {
+                                mysql.insert_author({
+                                    description: 'test',
+                                    name: 'test',
+                                    avatar: 'test'
                                 });
                             }
                         ).toThrow(new Error("You need to provide all the parameters to insert_author call."));
@@ -59,21 +74,21 @@ module.exports = {
                         ).toThrow(new Error("Empty parameter provided. Can not change anything."));
                     });
 
-                    it('no row name undentifier', function() {
+                    it('no row email undentifier', function() {
                         expect(
                             function() {
                                 mysql.update_author({
                                     newName: 'test'
                                 });
                             }
-                        ).toThrow(new Error("Please provide the author's name whose informations will be change."));
+                        ).toThrow(new Error("Please provide the author's email whose informations will be change."));
                     });
 
                     it('no new parameters to change', function() {
                         expect(
                             function() {
                                 mysql.update_author({
-                                    name: 'test'
+                                    email: 'test'
                                 });
                             }
                         ).toThrow(new Error("Empty parameter provided. Can not change anything."));

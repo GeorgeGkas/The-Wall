@@ -19,11 +19,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `authors` (
   `author_ID` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
+  `author_email` varchar(100) COLLATE utf8_bin NOT NULL,
   `author_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `author_avatar` text COLLATE utf8_bin NOT NULL,
   `author_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`author_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+
 
 -- --------------------------------------------------------
 

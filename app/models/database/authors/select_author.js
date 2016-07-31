@@ -11,9 +11,9 @@ module.exports = {
                 }
             );
         } else if (query != undefined) {
-            if (query.split('|')[0] == 'name') {
+            if (query.split('|')[0] == 'email') {
                 this.conn.query(
-                    'SELECT * FROM authors WHERE author_name = ?', 
+                    'SELECT * FROM authors WHERE author_email = ?', 
                     [query.split('|')[1]],
                     function(err, result) {
                         if (err) throw err;
