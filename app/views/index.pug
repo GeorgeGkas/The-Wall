@@ -28,46 +28,62 @@ block MAIN_CONTENT
                     |  About ME
                     span  />
 
-        //- Then get the featured post
-        article(class="col-sm-4 #{_FEATURE_SUB_CLASS}" id="feature-post")
-            h3#feature-post-title 
-                span(class="glyphicon glyphicon-star")
-                | Featured Post 
-                span(class="glyphicon glyphicon-star")
+     
+        - var postCount = 0
+        each post in _POST_LIST
+            if postCount == 0
+                if post.post_type == 'quote'
+                    article(class="col-sm-4 quote" id="feature-post")
+                        h3#feature-post-title 
+                            span(class="glyphicon glyphicon-star")
+                            | Featured Post 
+                            span(class="glyphicon glyphicon-star")
+                        +quote-card(post)
 
-            | !{_FEATURE_POST_CONTENT}
-            
+                else 
+                    article(class="col-sm-4")
+                        h3#feature-post-title 
+                            span(class="glyphicon glyphicon-star")
+                            | Featured Post 
+                            span(class="glyphicon glyphicon-star")
+                        .card
+                            if post.post_type == 'img'
+                                +image-card(post)
 
-        //- All the other posts are follow
-        article(class="col-sm-4 #{_LATEST_SUB_CLASS}" id="latest-post")
-            h3#latest-post-title Latest Posts
+                            else
+                                +video-card(post)
+                - postCount = postCount + 1
 
-            | !{_LATEST_POST_CONTENT}
+            else if postCount == 1
+                if post.post_type == 'quote'
+                    article(class="col-sm-4 quote" id="latest-post")
+                        h3#latest-post-title Latest Posts
+                        +quote-card(post)
 
+                else 
+                    article(class="col-sm-4")
+                        h3#latest-post-title Latest Posts
+                        .card
+                            if post.post_type == 'img'
+                                +image-card(post)
 
-        //- All the otrher posts ordered by latest
-        each post in _OTHER_POSTS
-            if post.post_type == 'quote'
-                article(class="col-sm-4 quote")
-                    +quote-card(post)
+                            else
+                                +video-card(post)
+                - postCount = postCount + 1
 
             else 
-                article(class="col-sm-4")
-                    .card
-                        if post.post_type == 'img'
-                            +image-card(post)
+                if post.post_type == 'quote'
+                    article(class="col-sm-4 quote")
+                        +quote-card(post)
 
-                        else
-                            +video-card(post)
+                else 
+                    article(class="col-sm-4")
+                        .card
+                            if post.post_type == 'img'
+                                +image-card(post)
 
-
-            
-
-
-
-
-           
-
+                            else
+                                +video-card(post)
 
 
 block LOAD_JS

@@ -37,9 +37,15 @@ app.use(express.static('public'));
 
 app.get('/', function(req, res) {
     res.render('index', {
-        _FEATURE_POST_CONTENT: 'ABC',
-        _LATEST_POST_CONTENT: 'DEF',
-        _OTHER_POSTS: [
+        _POST_LIST: [
+        {
+                post_type: 'video',
+                post_content: '4O9OJJUrDOE',
+                post_date: '2016-07-31 14:16:15',
+                post_like_count: 954,
+                post_comment_count: 524,
+                post_has_article: 1
+            },
 
             {
                 post_type: 'quote',
@@ -50,20 +56,12 @@ app.get('/', function(req, res) {
                 post_comment_count: 200,
                 post_has_article: 1
             },
-            {
+             {
                 post_type: 'img',
                 post_content: 'http://66.media.tumblr.com/0fc8eb068e3b3505e93d531934df9ee4/tumblr_o3xgaegrev1tm0l12o1_500.jpg',
                 post_date: '2016-07-31 14:16:15',
                 post_like_count: 0,
                 post_comment_count: 0,
-                post_has_article: 1
-            },
-            {
-                post_type: 'video',
-                post_content: '4O9OJJUrDOE',
-                post_date: '2016-07-31 14:16:15',
-                post_like_count: 954,
-                post_comment_count: 524,
                 post_has_article: 1
             }
         ]
