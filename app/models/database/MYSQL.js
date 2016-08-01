@@ -12,6 +12,7 @@ var select_subscription = require('./subscriptions/select_subscription');
 
 var insert_post = require('./posts/insert_post');
 var delete_post = require('./posts/delete_post');
+var select_post = require('./posts/select_post');
 
 class MYSQL {
     constructor(connection_details) {
@@ -50,7 +51,8 @@ Object.assign(MYSQL.prototype,
     select_subscription,
 
     insert_post,
-    delete_post
+    delete_post,
+    select_post
 );
 
 module.exports = MYSQL;

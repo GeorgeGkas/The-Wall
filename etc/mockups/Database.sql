@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `likes_counter` (
 
 CREATE TABLE IF NOT EXISTS `posts` (
   `post_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `author_ID` int(10) unsigned NOT NULL,
+  `author_email` VARCHAR( 100 ) NOT NULL,
   `post_date` datetime NOT NULL,
   `post_content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_status` enum('draft','published','deleted') COLLATE utf8_bin NOT NULL DEFAULT 'draft',
@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `post_has_article` tinyint(1) NOT NULL DEFAULT '0',
   `article_title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `article_content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_feature_dynamic` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`post_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 

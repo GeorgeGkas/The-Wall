@@ -1,17 +1,19 @@
 var express = require('express');
 var app = express();
 var MYSQL_db = require('./models/database/MYSQL');
-var utils = require('./models/utils/functions');
+var helper = require('./models/utils/functions');
+var util = require('util');
 
-/*var mysql = new MYSQL_db({
+var mysql = new MYSQL_db({
     host: 'localhost',
     user: 'root',
     password: 'thisisapassword',
-    database : 'NodeJSBlog'
+    database: 'NodeJSBlog'
 });
 
 mysql.connect();
 
+/*
 mysql.insert_author({
     name: 'George G. Gkasdrogkas',
     avatar: 'http://67.media.tumblr.com/fad1e6baa5c3bac246e258df4f9103f3/tumblr_mvj0dccSnC1s3lf4oo1_500.jpg',
@@ -20,8 +22,8 @@ mysql.insert_author({
 }, function() {
     mysql.select_author('email|georgegkas@gmail.com', function(res) {
         mysql.insert_post({
-            author: res[0].author_ID,
-            date: utils.get_curr_date(),
+            author: 'georgegkas@gmail.com',
+            date: helper.get_curr_date(),
             content: 'http://66.media.tumblr.com/0fc8eb068e3b3505e93d531934df9ee4/tumblr_o3xgaegrev1tm0l12o1_500.jpg',
             type: 'img'
         }, function() {
@@ -31,14 +33,28 @@ mysql.insert_author({
 });
 */
 
+/*mysql.insert_post({
+    author: 'nikos@gmail.com',
+    date: helper.get_curr_date(),
+    content: 'I hope you have a nice day',
+    type: 'quote',
+    title: 'NICE DATE',
+});*/
+
+mysql.select_post({
+    author: 'georgegkas@gmail.com'
+}, function(res) {
+    console.log(util.inspect(res, false, null));
+    mysql.end();
+});
+
 
 app.set('view engine', 'pug');
 app.use(express.static('public'));
 
 app.get('/', function(req, res) {
     res.render('index', {
-        _POST_LIST: [
-        {
+        _POST_LIST: [{
                 post_type: 'video',
                 post_content: '4O9OJJUrDOE',
                 post_date: '2016-07-31 14:16:15',
@@ -55,8 +71,7 @@ app.get('/', function(req, res) {
                 post_like_count: 376,
                 post_comment_count: 200,
                 post_has_article: 1
-            },
-             {
+            }, {
                 post_type: 'img',
                 post_content: 'http://66.media.tumblr.com/0fc8eb068e3b3505e93d531934df9ee4/tumblr_o3xgaegrev1tm0l12o1_500.jpg',
                 post_date: '2016-07-31 14:16:15',
@@ -69,8 +84,6 @@ app.get('/', function(req, res) {
 });
 
 
-app.listen(3000, function() {
-    console.log('Example app listening on port 3000!');
+app.listen(4000, function() {
+    console.log('Example app listening on port 4000!');
 });
-
-
