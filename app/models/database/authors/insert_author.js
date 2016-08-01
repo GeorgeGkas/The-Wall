@@ -8,7 +8,7 @@ module.exports = {
                 [author_details.avatar, author_details.description, author_details.name, author_details.email],
                 function(err, result) {
                     if (err) throw err;
-                    callback();
+                    callback(result);
                 }
             );
         } else {

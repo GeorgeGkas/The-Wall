@@ -7,7 +7,7 @@ module.exports = {
             [sub_details.email, sub_details.ip, sub_details.date],
             function(err, result) {
                 if (err) throw err;
-                callback();
+                callback(result);
             }
         );
 

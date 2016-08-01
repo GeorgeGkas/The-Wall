@@ -14,6 +14,7 @@ module.exports = {
                 'UPDATE  authors SET author_avatar = ? WHERE author_email = ?', [author_details.newAvatar, author_details.email],
                 function(err, result) {
                     if (err) throw err;
+                    callback(result);
                 }
             );
         }
@@ -23,6 +24,7 @@ module.exports = {
                 'UPDATE  authors SET author_description = ? WHERE author_email = ?', [author_details.newDescription, author_details.email],
                 function(err, result) {
                     if (err) throw err;
+                    callback(result);
                 }
             );
         }
@@ -32,11 +34,10 @@ module.exports = {
                 'UPDATE  authors SET author_name = ? WHERE author_email = ?', [author_details.newName, author_details.email],
                 function(err, result) {
                     if (err) throw err;
+                    callback(result);
                 }
             );
         }
-
-        callback();
 
     }
 }
