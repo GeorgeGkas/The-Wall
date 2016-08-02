@@ -38,14 +38,6 @@ CREATE TABLE IF NOT EXISTS `email_subscriptions` (
   PRIMARY KEY (`subscription_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
-CREATE TABLE IF NOT EXISTS `likes_counter` (
-  `like_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `like_type` enum('post','comment') COLLATE utf8_bin NOT NULL,
-  `like_content_ID` int(10) unsigned NOT NULL,
-  `like_IP` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`like_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
-
 CREATE TABLE IF NOT EXISTS `posts` (
   `post_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `author_email` VARCHAR( 100 ) NOT NULL,
