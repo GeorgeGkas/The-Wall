@@ -28,7 +28,6 @@ var mysql = new MYSQL_db({
 });
 
 
-
 mysql.connect();
 
 app.get('/', function(req, res) {
