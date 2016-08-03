@@ -10,6 +10,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `authors` (
   `author_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `author_email` varchar(100) COLLATE utf8_bin NOT NULL,
+  `author_role` enum('admin','writer') COLLATE utf8_bin NOT NULL DEFAULT 'writer',
   `author_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `author_avatar` text COLLATE utf8_bin NOT NULL,
   `author_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,

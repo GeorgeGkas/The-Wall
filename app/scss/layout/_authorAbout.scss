@@ -3,6 +3,7 @@
 #aboutAuthor {
     max-width: 700px;
     margin: 10px auto 20px;
+    font-weight: 300;
     #aboutWrapper {
         padding: 15px;
         @media screen and (min-width: 768px) {
@@ -12,15 +13,19 @@
     }
     #authorImage {
         //border: 1px solid red;
-        img {
+        #image-placeholder {
+            width: 125px;
+            height: 125px;
             border-radius: 50%;
-            margin: 0 auto;
+            background-image: url('');
+            background-size: cover;
+            background-repeat: no-repeat;
             display: block;
-            transition: 0.20s;
+            margin: 0 auto;
+            transition: 0.2s;
             @media screen and (min-width: 768px) {
                 @include vertical-align();
             }
-
             &:hover {
                 opacity: 0.7;
                 cursor: pointer;
@@ -29,13 +34,22 @@
     }
     #authorSmallBio {
         //border: 1px solid blue;
-        p {
-            font-size: 14px;
-             @media screen and (max-width: 767px) { 
+        font-size: 14px;
+        p#author-role {
+            font-weight: 700;
+            @media screen and (max-width: 767px) {
+                text-align: center;
                 padding-top: 15px;
                 max-width: 80%;
                 margin: 0 auto;
-             }
+            }
+        }
+        p#author-description {
+            @media screen and (max-width: 767px) {
+                padding-top: 15px;
+                max-width: 80%;
+                margin: 0 auto;
+            }
         }
     }
 }

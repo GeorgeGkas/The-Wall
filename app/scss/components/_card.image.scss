@@ -39,7 +39,7 @@
 
 .image-card .image-card-stats {
     position: absolute;
-    top: 50%;
+    top: 44%;
     left: 0;
     overflow: hidden;
     width: 100%;
@@ -58,6 +58,9 @@
     }
     p {
         padding-left: 15px;
+        @media screen and (max-width: 767px) {
+            color: #212121;
+        }
     }
 }
 

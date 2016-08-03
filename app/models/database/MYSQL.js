@@ -15,6 +15,8 @@ var delete_post = require('./posts/delete_post');
 var select_post = require('./posts/select_post');
 var update_post = require('./posts/update_post');
 
+var post_like = require('./likes/post_like');
+
 class MYSQL {
     constructor(connection_details) {
         this.conn = mysql.createConnection({
@@ -54,7 +56,9 @@ Object.assign(MYSQL.prototype,
     insert_post,
     delete_post,
     select_post,
-    update_post
+    update_post,
+
+    post_like
 );
 
 module.exports = MYSQL;

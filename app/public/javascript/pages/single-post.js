@@ -28,11 +28,21 @@ $(document).ready(function() {
     $('#comment-user-name').keyup(updateCount);
     $('#comment-user-name').keydown(updateCount);
 
-    $('#post-favorite-button').click(function() {
+    $('#post-favorite-button').click(function(event) {
+        $('#fav-head').slideToggle();
         $('#post-favorite-button').fadeOut(function() {
-            $('#fav-head').slideToggle();
             $('#post-favorite-button-after, #fav-added').fadeIn();
         });
+        $.ajax({
+            type: 'POST',
+            url: '/post/like',
+            dataType: 'json',
+            data: {
+                id: document.getElementById('post-content').getAttribute('data-post_id')
+            }
+
+        });
+
     });
 
     $('.comment-favorite-button').click(function() {
@@ -48,9 +58,11 @@ $(document).ready(function() {
     });
 
     $('#email-subscription-button').click(function() {
-        $('#email-subscription-button,  #email-subscription-input').slideToggle(function() {
-            $('#got-email-subscription').fadeIn();
-        });
+        if ($('#email-subscription-input').val().trim() != '') {
+            $('#email-subscription-button,  #email-subscription-input').slideToggle(function() {
+                $('#got-email-subscription').fadeIn();
+            });
+        }
 
 
     });

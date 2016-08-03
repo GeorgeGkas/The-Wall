@@ -9,7 +9,7 @@ html
 
         //- Load Fonts
         -
-            fontList = ['Ubuntu', 
+            fontList = ['Ubuntu:300,400,700', 
                         'Amatica+SC', 
                         'Dancing+Script', 
                         'Open+Sans+Condensed:300,700&subset=latin,greek']
@@ -24,7 +24,10 @@ html
     body
         .container
             header#page-header
-                h1 Blog
+                div(class="pull-left")
+                    a(href="/", id="jumbotron")
+                        span(class="glyphicon glyphicon-home")
+                h1 THE WALL
                 block HEADER_P
                     p 
 

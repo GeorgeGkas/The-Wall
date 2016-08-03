@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     $('html').niceScroll();
 
-    $('.quote-card-title').each(function() {
+    $('.post-title').each(function() {
         var text = $(this).html().split(/[\s!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/).join('-');
         $(this).html(text);
     });

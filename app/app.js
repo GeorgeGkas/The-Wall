@@ -1,16 +1,24 @@
+var compression = require('compression');
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser')
 var MYSQL_db = require('./models/database/MYSQL');
 var helper = require('./models/utils/functions');
 var util = require('util');
 
-process.on('uncaughtException', function(err) {
+/*process.on('uncaughtException', function(err) {
     // handle the error safely
     console.log(err)
-});
+});*/
 
+app.use(compression());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 app.use(express.static('public'));
+
 
 var mysql = new MYSQL_db({
     host: 'localhost',
@@ -24,14 +32,106 @@ var mysql = new MYSQL_db({
 mysql.connect();
 
 app.get('/', function(req, res) {
+    mysql.select_post(
+        'SELECT * FROM posts WHERE  post_feature_dynamic=(SELECT MAX(post_feature_dynamic) FROM posts) ORDER BY post_date DESC',
+        function(featured_post) {
+            mysql.select_post({
+                status: 'draft'
+            }, function(posts_res) {
+                var posts = [];
+                if (posts_res.length > 0 || featured_post.length > 0) {
+                    posts = helper.prepare_index_post_data(posts_res, featured_post[0]);
+                }
+
+                mysql.select_author('admin|georgegkas@gmail.com', function(author_res) {
+                    res.render('index', {
+                        _POST_LIST: posts,
+                        _ADMIN_AVATAR: author_res[0].author_avatar
+                    });
+                });
+            });
+        }
+    );
+
+});
+
+app.get('/post/:postTitle', function(req, res) {
     mysql.select_post({
-        status: 'draft'
-    }, function(result) {
-        res.render('index', {
-            _POST_LIST: helper.prepate_index_post_data(result)
-        });
+        title: req.params.postTitle.split('-').join(' ')
+    }, function(post_res) {
+        if (helper.isEmpty(post_res)) {
+            res.status(404).end('Content not Found');
+        } else {
+            mysql.select_author('email|' + post_res[0].author_email, function(author_res) {
+                var dateFormat = String(post_res[0]['post_date']).substr(4, 11).split(' ');
+                res.render('single-post', {
+                    _POST: {
+                        post_type: post_res[0].post_type,
+                        post_content: post_res[0].post_content,
+                        post_date: dateFormat[1] + ' ' + dateFormat[0] + ' ' + dateFormat[2],
+                        post_like_count: post_res[0].post_like_count,
+                        post_comment_count: post_res[0].post_comment_count,
+                        post_has_article: post_res[0].post_has_article,
+                        post_title: post_res[0].post_title,
+                        article_content: post_res[0].article_content,
+                        post_ID: post_res[0].post_ID
+                    },
+                    _AUTHOR: author_res[0],
+                    _COMMENT_LIST: []
+                });
+            });
+        }
     });
 });
+
+app.post('/post/like', function(req, res) {
+    mysql.post_like(req.body.id, function() {
+        res.sendStatus(200);
+    });
+
+});
+
+
+app.get('/404', function(req, res, next) {
+    // trigger a 404 since no other middleware
+    // will match /404 after this one, and we're not
+    // responding here
+    next();
+});
+
+app.get('/403', function(req, res, next) {
+    // trigger a 403 error
+    var err = new Error('not allowed!');
+    err.status = 403;
+    next(err);
+});
+
+app.get('/500', function(req, res, next) {
+    // trigger a generic (500) error
+    next(new Error('keyboard cat!'));
+});
+
+
+
+app.use(function(req, res, next) {
+    res.status(404);
+
+    /*// respond with html page
+    if (req.accepts('html')) {
+      res.render('404', { url: req.url });
+      return;
+    }*/
+
+    /*// respond with json
+    if (req.accepts('json')) {
+      res.send({ error: 'Not found' });
+      return;
+    }*/
+
+    // default to plain-text. send()
+    res.type('txt').send('Content not Found');
+});
+
 
 app.listen(4000, function() {
     console.log('Example app listening on port 4000!');

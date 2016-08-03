@@ -1,7 +1,8 @@
 mixin video-card(post)
     div(class="embed-responsive embed-responsive-4by3")
         iframe(class="embed-responsive-item", src= "https://www.youtube.com/embed/" + post.post_content,  frameborder="0", allowfullscreen)
-    a(href="")
+    - var post_href = String(post.post_title).split(' ').join('-');
+    a(href="post/" + post_href)
         .video-footer
             p.posted-date
                 time(datetime=post.post_date) #{post.post_date}

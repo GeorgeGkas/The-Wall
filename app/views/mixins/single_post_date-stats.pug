@@ -1,0 +1,13 @@
+mixin single_post_date-stats(post)
+    p.posted-date 
+        time(datetime=post.post_date) #{post.post_date}
+    p.single-card-stats
+        span.block 
+            span(class="glyphicon glyphicon-heart")
+            span(class="heart-counter") #{post.post_like_count}
+        span.block
+            span(class="glyphicon glyphicon-comment")
+            span(class="comments-counter") #{post.post_comment_count}
+        if post.post_has_article
+            span.block
+                span(class="glyphicon glyphicon-pencil")

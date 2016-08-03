@@ -2,6 +2,7 @@ mixin image-card(post)
     .image-card
         img(src=post.post_content, class="center-block")
         .image-card-stats
+            p #{post.post_title}
             p
                 span.block 
                     span(class="glyphicon glyphicon-heart")
@@ -12,5 +13,7 @@ mixin image-card(post)
                 if post.post_has_article
                     span.block
                         span(class="glyphicon glyphicon-pencil")
-    .image-date-placeholder
-        time(datetime=post.post_date) #{post.post_date}
+    - var post_href = String(post.post_title).split(' ').join('-');
+    a(href="post/" + post_href)
+        .image-date-placeholder
+            time(datetime=post.post_date) #{post.post_date}

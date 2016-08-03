@@ -1,0 +1,132 @@
+extends layout.pug
+
+include mixins/single_post_date-stats.pug
+
+block PAGE_TITLE
+    title #{_POST.post_title}
+
+block LOAD_CSS
+    link(rel='stylesheet', type='text/css', href='../css/pages/single-post.css')
+
+block HEADER_P
+    p ... My.prototype.Blog(); ...
+
+block MAIN_CONTENT
+    .container-fluid
+        main(role="main", id="main-view")
+            section(id="post-content", data-post_id=_POST.post_ID)
+                article(class="col-sm-12")
+                    - var quote_class = _POST.post_type == 'quote' ? 'single-quote' : '';
+                    div(class="single-card " + quote_class)
+
+                        if _POST.post_type == 'quote' 
+                            .single-quote-card
+                                blockquote
+                                    p #{_POST.post_content}
+                        else if _POST.post_type == 'img' 
+                            img(src=_POST.post_content, class="center-block")
+                        else 
+                            div(class="embed-responsive embed-responsive-4by3")
+                                iframe(class="embed-responsive-item", src= "https://www.youtube.com/embed/" + _POST.post_content,  frameborder="0", allowfullscreen)
+
+                        if _POST.post_has_article
+                            .single-card-footer-with-pencil
+                                +single_post_date-stats(_POST)
+                        else
+                            .single-card-footer
+                                +single_post_date-stats(_POST)
+
+
+            section#article-content
+                article
+                    header#article-head
+                        h1#article-title #{_POST.post_title}
+                        p#article-author Created by #{_AUTHOR.author_name}
+                    article#article-body 
+                        if _POST.post_has_article == 1
+                            |   !{_POST.article_content}
+
+                            p#article-end ***
+                            p#article-post-date 
+                                |   As posted in 
+                                time(datetime=_POST.post_date) #{_POST.post_date}
+
+
+        section#aboutAuthor
+            div(id="aboutWrapper", class="clearfix row")
+                div(id="authorImage", class="col-sm-4")
+                    a(href="mailto:" + _AUTHOR.author_email)
+                        div(id="image-placeholder", style="background-image: url(" + _AUTHOR.author_avatar + ")")
+                div(id="authorSmallBio", class="col-sm-8")
+                    if _AUTHOR.author_role == 'admin'
+                        p#author-role Admin
+                    else
+                        p#author-role Guest Author
+
+                    p#author-description #{_AUTHOR.author_description}
+
+        section#get-updates-and-fav
+            form(id="email-subscription-form", method="post")
+                p#offer-email-subscription Did you like this post?
+                p#got-email-subscription I know it's harsh, but this feature has not yet implemented.
+                //- You will get more in your email soon.
+                input(type="text", autocomplete="off", placeholder="feed it with email", id="email-subscription-input")
+                button(id="email-subscription-button", type="submit")
+                    span Get email updates
+
+            #fav-post
+                p#fav-head Press the love button
+                button(class="glyphicon glyphicon-heart-empty fav", id="post-favorite-button")
+                span(class="glyphicon glyphicon-heart fav fav-after" id="post-favorite-button-after")
+                p#fav-added +1
+
+        section#social-section
+            #comments
+                ol#comments-list
+                    each comment in _COMMENT_LIST
+                        li(class="single-comment clearfix",id=comment.comment_ID)
+                            .user
+                                | #{comment.comment_author}
+                                span(class="glyphicon glyphicon-heart pull-right comment-heart comment-favorite-button-after")
+                                span(class="glyphicon glyphicon-heart-empty pull-right comment-heart comment-favorite-button")
+                                span(class="comment-heart-count pull-right")
+                                    |    #{comment.comment_like_count}
+
+                            .comment-body
+                                |   #{comment.comment_content}
+
+                            .comment-post-date
+                                |   posted on 
+                                time(datetime=comment.date) #{comment.comment_date}
+
+                #comment-post-area
+                    #comment-post-message Comments are not yet implemented.
+                    //- Thank you. Just wait for moderator acceptance.
+                    form(id="comment-post-form", method="post")
+                        #user
+                            input(input type="text", placeholder="Your name here.", id="comment-user-name", maxlength="25", disabled)
+
+                        #email
+                            input(type="text", placeholder="Your email here.", id="comment-user-email", disabled)
+
+                        #comment-editor
+                            textarea(placeholder="Leave a comment.", onkeyup="textAreaAdjust(this);", rows="2", id="comment-user-body", disabled)
+                                
+                        #comment-submit-section
+                            button(type="submit", disabled)
+                                span(id="comment-submit-button-content")
+                                span(class="glyphicon glyphicon-send")
+                                    |   Post
+                            span(class="pull-right", id="comment-info")
+
+
+block LOAD_JS
+    -
+        jsList = ['vendors/jquery.min.js',
+                  'vendors/nicescroll.min.js',
+                  'vendors/scrollIntoView.min.js',
+                  'pages/single-post.js',
+                  'vendors/prism.min.js'
+                  ]
+    each js in jsList
+        script(src="../javascript/" + js)

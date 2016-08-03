@@ -1,14 +1,5 @@
 # Dependency directories
 node_modules
 
-# ALPHA / DRAFT FILES
-app/sample.html
-app/single-post.html
-app/index.html
-app/admin
-
-# COMPILED FILES GENERATED THROUGH GULP 
-app/public/css
-
 #Other files
 app/npm-debug.json

@@ -6,7 +6,7 @@ include mixins/card_quote.pug
 
 
 block PAGE_TITLE
-    title NodeJSBlog
+    title THE WALL - A Blog From George G. Gkasdrogkas
 
 block LOAD_CSS
     link(rel='stylesheet', type='text/css', href='css/pages/index.css')
@@ -19,7 +19,7 @@ block MAIN_CONTENT
         //- First load the admin's profile card
         article(class='col-sm-4', id='webmaster-banner')
             #webmaster-profile
-                #webmaster-avatar
+                div(id="webmaster-avatar", style="background-image: url(" + _ADMIN_AVATAR + ")")
                 h2#webmaster-name GeorgeGkas
                 p Front End developer
                 p Web Designer

@@ -14,9 +14,9 @@ module.exports = {
         } else if (typeof select_details !== 'object') {
             throw new Error('Non Object. Wrong parameter provided to select_post call.');
         } else {
-            var params = ['type', 'status', 'author'];
+            var params = ['type', 'status', 'author', 'title'];
             var provided = [];
-            var db_params = ['post_type', 'post_status', 'author_email']
+            var db_params = ['post_type', 'post_status', 'author_email', 'post_title']
 
             for (var i = 0; i < params.length; i++) {
                 var p = params[i];

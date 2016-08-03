@@ -1,9 +1,10 @@
 mixin quote-card(post)
     .card.quote-card
-        h4.quote-card-title #{post.post_title}
+        h4.post-title #{post.post_title}
         blockquote
             p #{post.post_content}
-        a(href="")
+        - var post_href = String(post.post_title).split(' ').join('-');
+        a(href="post/" + post_href)
             .quote-footer
                 p.posted-date
                     time(datetime=post.post_date) #{post.post_date}

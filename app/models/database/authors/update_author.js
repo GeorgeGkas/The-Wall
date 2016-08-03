@@ -1,42 +1,33 @@
 module.exports = {
     update_author: function(author_details, callback) {
 
-        if (typeof(callback)==='undefined') callback = function() {};
+        if (typeof(callback) === 'undefined') callback = function() {};
 
-        if (author_details == undefined || !('newName' in author_details) && !('newDescription' in author_details) && !('newAvatar' in author_details)) {
+        if (author_details == undefined || !('newName' in author_details) && !('newDescription' in author_details) && !('newAvatar' in author_details) && !('newRole' in author_details)) {
             throw new Error('Empty parameter provided. Can not change anything.');
         } else if (!('email' in author_details)) {
             throw new Error("Please provide the author's email whose informations will be change.");
-        }
+        } else {
 
-        if ('newAvatar' in author_details) {
+            var params = ['newAvatar', 'newDescription', 'newName', 'newRole'];
+            var provided = [];
+            var db_params = ['author_avatar', 'author_description', 'author_name', 'author_role'];
+
+            for (var i = 0; i < params.length; i++) {
+                var p = params[i];
+                if (author_details[p] !== undefined) {
+                    provided.push(db_params[i] + '=\'' + author_details[params[i]] + '\'');
+                }
+            }
+
+            var query = 'UPDATE authors SET ' + provided.join(' , ') + ' WHERE author_email = \'' + author_details.email + '\'';
             this.conn.query(
-                'UPDATE  authors SET author_avatar = ? WHERE author_email = ?', [author_details.newAvatar, author_details.email],
+                query,
                 function(err, result) {
                     if (err) throw err;
                     callback(result);
-                }
-            );
-        }
+                });
 
-        if ('newDescription' in author_details) {
-            this.conn.query(
-                'UPDATE  authors SET author_description = ? WHERE author_email = ?', [author_details.newDescription, author_details.email],
-                function(err, result) {
-                    if (err) throw err;
-                    callback(result);
-                }
-            );
-        }
-
-        if ('newName' in author_details) {
-            this.conn.query(
-                'UPDATE  authors SET author_name = ? WHERE author_email = ?', [author_details.newName, author_details.email],
-                function(err, result) {
-                    if (err) throw err;
-                    callback(result);
-                }
-            );
         }
 
     }
