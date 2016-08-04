@@ -5,16 +5,19 @@ module.exports = {
         if (typeof update_details == undefined || update_details == null || update_details.length <= 0) {
             throw new Error('No parameter provided to update_post call.');
         } else if (typeof update_details === 'string') {
-            this.conn.query(
-                update_details,
-                function(err, result) {
-                    if (err) throw err;
-                    callback(result);
-                });
+            this.pool.getConnection(function(err, connection) {
+                connection.query(
+                    update_details,
+                    function(err, result) {
+                        if (err) throw err;
+                        connection.release();
+                        callback(result);
+                    });
+            });
         } else if (typeof update_details !== 'object') {
             throw new Error('Non Object. Wrong parameter provided to update_post call.');
         } else {
-            if(!('id' in update_details)) {
+            if (!('id' in update_details)) {
                 throw new Error('Please provide the post id to update.');
             }
 
@@ -30,12 +33,15 @@ module.exports = {
             }
 
             var query = 'UPDATE posts SET ' + provided.join(' , ') + ' WHERE post_ID = ' + update_details.id;
-            this.conn.query(
-                query,
-                function(err, result) {
-                    if (err) throw err;
-                    callback(result);
-                });
+            this.pool.getConnection(function(err, connection) {
+                connection.query(
+                    query,
+                    function(err, result) {
+                        if (err) throw err;
+                        connection.release();
+                        callback(result);
+                    });
+            });
         }
     }
 }

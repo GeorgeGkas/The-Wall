@@ -68,9 +68,8 @@ block MAIN_CONTENT
         section#get-updates-and-fav
             form(id="email-subscription-form", method="post")
                 p#offer-email-subscription Did you like this post?
-                p#got-email-subscription I know it's harsh, but this feature has not yet implemented.
-                //- You will get more in your email soon.
-                input(type="text", autocomplete="off", placeholder="feed it with email", id="email-subscription-input")
+                p#got-email-subscription You will get more in your email soon.
+                input(type="email", autocomplete="off", placeholder="feed it with email", id="email-subscription-input")
                 button(id="email-subscription-button", type="submit")
                     span Get email updates
 
@@ -100,20 +99,19 @@ block MAIN_CONTENT
                                 time(datetime=comment.date) #{comment.comment_date}
 
                 #comment-post-area
-                    #comment-post-message Comments are not yet implemented.
-                    //- Thank you. Just wait for moderator acceptance.
+                    #comment-post-message Thank you. Just wait for moderator acceptance.
                     form(id="comment-post-form", method="post")
                         #user
-                            input(input type="text", placeholder="Your name here.", id="comment-user-name", maxlength="25", disabled)
+                            input(input type="text", placeholder="Your name here.", id="comment-user-name", maxlength="25")
 
                         #email
-                            input(type="text", placeholder="Your email here.", id="comment-user-email", disabled)
+                            input(type="text", placeholder="Your email here.", id="comment-user-email")
 
                         #comment-editor
-                            textarea(placeholder="Leave a comment.", onkeyup="textAreaAdjust(this);", rows="2", id="comment-user-body", disabled)
+                            textarea(placeholder="Leave a comment.", onkeyup="textAreaAdjust(this);", rows="2", id="comment-user-body")
                                 
                         #comment-submit-section
-                            button(type="submit", disabled)
+                            button(type="submit")
                                 span(id="comment-submit-button-content")
                                 span(class="glyphicon glyphicon-send")
                                     |   Post

@@ -6,6 +6,7 @@ var MYSQL_db = require('./models/database/MYSQL');
 var helper = require('./models/utils/functions');
 var util = require('util');
 
+// not so safe indeed!
 /*process.on('uncaughtException', function(err) {
     // handle the error safely
     console.log(err)
@@ -27,15 +28,12 @@ var mysql = new MYSQL_db({
     database: 'NodeJSBlog'
 });
 
-
-mysql.connect();
-
 app.get('/', function(req, res) {
     mysql.select_post(
-        'SELECT * FROM posts WHERE  post_feature_dynamic=(SELECT MAX(post_feature_dynamic) FROM posts) ORDER BY post_date DESC',
+        'SELECT * FROM posts WHERE  post_feature_dynamic=(SELECT MAX(post_feature_dynamic) FROM posts) AND post_status=\'published\' ORDER BY post_date DESC',
         function(featured_post) {
             mysql.select_post({
-                status: 'draft'
+                status: 'published'
             }, function(posts_res) {
                 var posts = [];
                 if (posts_res.length > 0 || featured_post.length > 0) {
@@ -63,20 +61,25 @@ app.get('/post/:postTitle', function(req, res) {
         } else {
             mysql.select_author('email|' + post_res[0].author_email, function(author_res) {
                 var dateFormat = String(post_res[0]['post_date']).substr(4, 11).split(' ');
-                res.render('single-post', {
-                    _POST: {
-                        post_type: post_res[0].post_type,
-                        post_content: post_res[0].post_content,
-                        post_date: dateFormat[1] + ' ' + dateFormat[0] + ' ' + dateFormat[2],
-                        post_like_count: post_res[0].post_like_count,
-                        post_comment_count: post_res[0].post_comment_count,
-                        post_has_article: post_res[0].post_has_article,
-                        post_title: post_res[0].post_title,
-                        article_content: post_res[0].article_content,
-                        post_ID: post_res[0].post_ID
-                    },
-                    _AUTHOR: author_res[0],
-                    _COMMENT_LIST: []
+                mysql.select_comment({
+                    post_id: post_res[0].post_ID,
+                    state: 'approved'
+                }, function(comment_res) {
+                    res.render('single-post', {
+                        _POST: {
+                            post_type: post_res[0].post_type,
+                            post_content: post_res[0].post_content,
+                            post_date: dateFormat[1] + ' ' + dateFormat[0] + ' ' + dateFormat[2],
+                            post_like_count: post_res[0].post_like_count,
+                            post_comment_count: post_res[0].post_comment_count,
+                            post_has_article: post_res[0].post_has_article,
+                            post_title: post_res[0].post_title,
+                            article_content: post_res[0].article_content,
+                            post_ID: post_res[0].post_ID
+                        },
+                        _AUTHOR: author_res[0],
+                        _COMMENT_LIST: helper.prepare_comments_data(comment_res)
+                    });
                 });
             });
         }
@@ -85,7 +88,47 @@ app.get('/post/:postTitle', function(req, res) {
 
 app.post('/post/like', function(req, res) {
     mysql.post_like(req.body.id, function() {
-        res.sendStatus(200);
+        res.status(200).send({success: ''}); 
+    });
+
+});
+
+app.post('/post/comment/like', function(req, res) {
+    mysql.comment_like(req.body.id, function() {
+        res.status(200).send({success: ''}); 
+    });
+
+});
+
+app.post('/post/subscribe', function(req, res) {
+    mysql.insert_subscription({
+        email: req.body.email,
+        date: helper.get_curr_date()
+    }, function(result) {
+        if (result.err) {
+            res.status(400).send({error: result.msg}); 
+        } else {
+            res.status(200).send({success: ''}); 
+        }
+    });
+
+});
+
+
+app.post('/post/comment', function(req, res) {
+    mysql.insert_comment({
+        author_email: req.body.email,
+        date: helper.get_curr_date(),
+        post_id: req.body.post_id,
+        author_name: req.body.name,
+        content: req.body.content,
+
+    }, function(result) {
+        if (result.err) {
+            res.status(400).send({error: result.msg}); 
+        } else {
+            res.status(200).send({success: ''}); 
+        }
     });
 
 });
@@ -132,6 +175,6 @@ app.use(function(req, res, next) {
 });
 
 
-app.listen(4000, function() {
+app.listen(3000, function() {
     console.log('Example app listening on port 4000!');
 });

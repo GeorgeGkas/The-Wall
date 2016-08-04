@@ -1,21 +1,22 @@
 module.exports = {
-    post_like: function(post_id, callback) {
+    comment_like: function(comment_id, callback) {
         if (typeof(callback) === 'undefined') callback = function() {};
 
-        if (post_id != null || post_id != undefined) {
+        if (comment_id != null || comment_id != undefined) {
             this.pool.getConnection(function(err, connection) {
                 connection.query(
-                    'UPDATE posts SET `post_like_count` = `post_like_count` + 1, `post_feature_dynamic` = `post_feature_dynamic` + 1 WHERE post_ID = ?', [post_id],
+                    'UPDATE comments SET `comment_like_count` = `comment_like_count` + 1 WHERE comment_ID = ?', 
+                    [comment_id],
                     function(err, result) {
                         if (err) throw err;
                         connection.release();
                         callback(result);
-                    }
-                );
+
+                    });
             });
 
         } else {
-            throw new Error('No post_id provided to post_like call.');
+            throw new Error('Wrong comment_id provided to comment_like call.');
         }
 
     }

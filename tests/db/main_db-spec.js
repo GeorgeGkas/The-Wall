@@ -6,13 +6,8 @@ var mysql = new MYSQL_db({
     host: 'localhost',
     user: 'root',
     password: 'thisisapassword',
-    database : 'test_NodeJSBlog'
+    database: 'test_NodeJSBlog'
 });
-
-mysql.connect();
 
 authors_table.runTest(mysql);
 email_subscriptions.runTest(mysql);
-
-
-mysql.end();

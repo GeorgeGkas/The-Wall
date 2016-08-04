@@ -1,33 +1,47 @@
 module.exports = {
     select_subscription: function(query, callback) {
-        if (typeof(callback)==='undefined') callback = function() {};
-        
+        if (typeof(callback) === 'undefined') callback = function() {};
+
         if (query == '*') {
-            this.conn.query(
-                'SELECT * FROM  email_subscriptions',
-                function(err, result) {
-                    if (err) throw err;
-                    else callback(result);
-                }
-            );
+            this.pool.getConnection(function(err, connection) {
+                connection.query(
+                    'SELECT * FROM  email_subscriptions',
+                    function(err, result) {
+                        if (err) throw err;
+                        else {
+                            connection.release();
+                            callback(result);
+                        }
+                    }
+                );
+            });
         } else if (query != undefined) {
             if (query.split('|')[0] == 'email') {
-                this.conn.query(
-                    'SELECT * FROM email_subscriptions WHERE subscription_email = ?', 
-                    [query.split('|')[1]],
-                    function(err, result) {
-                        if (err) throw err;
-                        else callback(result);
-                    }
-                );
+                this.pool.getConnection(function(err, connection) {
+                    connection.query(
+                        'SELECT * FROM email_subscriptions WHERE subscription_email = ?', [query.split('|')[1]],
+                        function(err, result) {
+                            if (err) throw err;
+                            else {
+                                connection.release();
+                                callback(result);
+                            }
+                        }
+                    );
+                });
             } else {
-                this.conn.query(
-                    query,
-                    function(err, result) {
-                        if (err) throw err;
-                        else callback(result);
-                    }
-                );
+                this.pool.getConnection(function(err, connection) {
+                    connection.query(
+                        query,
+                        function(err, result) {
+                            if (err) throw err;
+                            else {
+                                connection.release();
+                                callback(result);
+                            }
+                        }
+                    );
+                });
             }
 
         } else {

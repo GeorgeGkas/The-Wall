@@ -6,6 +6,7 @@ $(document).ready(function() {
     $('#post-favorite-button-after').hide();
     $('.comment-favorite-button-after').hide();
     $('#got-email-subscription').hide();
+    $('#comment-post-message').hide();
 
     $('#comment-user-body').click(function(event) {
         event.stopPropagation();
@@ -29,16 +30,18 @@ $(document).ready(function() {
     $('#comment-user-name').keydown(updateCount);
 
     $('#post-favorite-button').click(function(event) {
-        $('#fav-head').slideToggle();
-        $('#post-favorite-button').fadeOut(function() {
-            $('#post-favorite-button-after, #fav-added').fadeIn();
-        });
         $.ajax({
             type: 'POST',
             url: '/post/like',
             dataType: 'json',
             data: {
                 id: document.getElementById('post-content').getAttribute('data-post_id')
+            },
+            success: function() {
+                $('#fav-head').slideToggle();
+                $('#post-favorite-button').fadeOut(function() {
+                    $('#post-favorite-button-after, #fav-added').fadeIn();
+                });
             }
 
         });
@@ -46,24 +49,64 @@ $(document).ready(function() {
     });
 
     $('.comment-favorite-button').click(function() {
-        commentID = '#' + $(this).closest('li.single-comment').attr('id');
-        $(this).fadeOut(function() {
-            $(commentID + ' .comment-heart-count').html(parseInt($(commentID + ' .comment-heart-count').html(), 10) + 1);
-            $(commentID + ' .comment-favorite-button-after').fadeIn();
+        var $this = $(this);
+        $.ajax({
+            type: 'POST',
+            url: '/post/comment/like',
+            dataType: 'json',
+            data: {
+                id: $(this).closest('li').attr('id')
+            },
+            success: function() {
+                commentID = '#' + $this.closest('li.single-comment').attr('id');
+                $this.fadeOut(function() {
+                    $(commentID + ' .comment-heart-count').html(parseInt($(commentID + ' .comment-heart-count').html(), 10) + 1);
+                    $(commentID + ' .comment-favorite-button-after').fadeIn();
+                });
+            }
+
         });
     });
 
-    $('#email-subscription-form').submit(function(event) {
+    $('#email-subscription-form, #comment-post-form').submit(function(event) {
         event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/post/subscribe',
+            dataType: 'json',
+            data: {
+                email: $('#email-subscription-input').val()
+            },
+            success: function() {
+                $('#email-subscription-button,  #email-subscription-input').slideToggle(function() {
+                    $('#got-email-subscription').fadeIn();
+                });
+            }
+
+        });
     });
 
-    $('#email-subscription-button').click(function() {
-        if ($('#email-subscription-input').val().trim() != '') {
-            $('#email-subscription-button,  #email-subscription-input').slideToggle(function() {
-                $('#got-email-subscription').fadeIn();
-            });
-        }
 
+    $('#comment-submit-section button').click(function() {
+        $.ajax({
+            type: 'POST',
+            url: '/post/comment',
+            dataType: 'json',
+            data: {
+                email: $('#comment-post-form #email input').val(),
+                name: $('#comment-post-form #user input').val(),
+                content: $('#comment-post-form #comment-editor textarea').val().replace(/\r?\n/g, '<br />'),
+                post_id: document.getElementById('post-content').getAttribute('data-post_id')
+            },
+            success: function() {
+                $('#comment-post-form').fadeOut(function() {
+                    $('#comment-post-message').fadeIn();
+                });
+            },
+            error: function(err) {
+                $('#comment-info').text(err.responseJSON.error).fadeIn();
+            }
+        });
 
     });
 
@@ -83,6 +126,6 @@ function textAreaAdjust(o) {
     });
 }
 
-$(window).click(function() {
-    $('#comment-info').fadeOut();
+$('html').not('#comment-submit-section button').click(function() {
+    $('#comment-info').fadeOut().text('');
 });

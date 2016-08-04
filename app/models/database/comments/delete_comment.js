@@ -1,12 +1,12 @@
 module.exports = {
-    delete_post: function(post_id, callback) {
-
+    delete_comment: function(comment_id, callback) {
         if (typeof(callback) === 'undefined') callback = function() {};
 
-        if (post_id != null || post_id != undefined) {
+        if (comment_id != null || comment_id != undefined) {
             this.pool.getConnection(function(err, connection) {
-                conenction.query(
-                    'DELETE FROM posts WHERE post_ID = ?', [post_id],
+                connection.query(
+                    'DELETE FROM comments WHERE comment_ID = ?', 
+                    [comment_id],
                     function(err, result) {
                         if (err) throw err;
                         connection.release();
@@ -15,7 +15,7 @@ module.exports = {
                 );
             });
         } else {
-            throw new Error('No parameter provided to delete_post call.');
+            throw new Error('No parameter provided to delete_comment call.');
         }
     }
 }

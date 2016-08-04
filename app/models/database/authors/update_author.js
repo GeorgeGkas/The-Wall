@@ -21,12 +21,15 @@ module.exports = {
             }
 
             var query = 'UPDATE authors SET ' + provided.join(' , ') + ' WHERE author_email = \'' + author_details.email + '\'';
-            this.conn.query(
+            this.pool.getConnection(function(err, connection) {
+            connection.query(
                 query,
                 function(err, result) {
                     if (err) throw err;
+                    connection.release();
                     callback(result);
                 });
+        });
 
         }
 

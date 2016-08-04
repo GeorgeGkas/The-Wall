@@ -4,7 +4,7 @@
   "description": "My blog site",
   "main": "app/app.js",
   "scripts": {
-    "test": "jasmine-node spec"
+    "test": "jasmine-node tests"
   },
   "author": "GeorgeGkas",
   "license": "ISC",

@@ -22,7 +22,7 @@ module.exports = {
                                 mysql.insert_author({
                                     avatar: 'test',
                                     name: 'test',
-                                     email: 'test'
+                                    email: 'test'
                                 });
                             }
                         ).toThrow(new Error("You need to provide all the parameters to insert_author call."));

@@ -34,6 +34,22 @@ module.exports = {
     },
     isEmpty: function(val) {
         return (val === undefined || val == null || val.length <= 0) ? true : false;
+    },
+    prepare_comments_data: function(res) {
+        var data = [];
+        for (var i = 0; i < res.length; ++i) {
+            var dateFormat = String(res[i]['comment_date']).substr(4, 11).split(' ');
+            data.push({
+                comment_ID: res[i].comment_ID,
+                comment_author: res[i].comment_author,
+                comment_like_count: res[i].comment_like_count,
+                comment_content: res[i].comment_content,
+                comment_date: dateFormat[1] + ' ' + dateFormat[0] + ' ' + dateFormat[2],
+
+            });
+        }
+        return data;
+
     }
 
 }

@@ -1,9 +1,9 @@
 module.exports = {
-    select_post: function(select_details, callback) {
+    select_comment: function(select_details, callback) {
         if (typeof(callback) === 'undefined') callback = function() {};
 
         if (typeof select_details == undefined || select_details == null || select_details.length <= 0) {
-            throw new Error('No parameter provided to select_post call.');
+            throw new Error('No parameter provided to select_comment call.');
         } else if (typeof select_details === 'string') {
             this.pool.getConnection(function(err, connection) {
                 connection.query(
@@ -17,11 +17,11 @@ module.exports = {
             });
 
         } else if (typeof select_details !== 'object') {
-            throw new Error('Non Object. Wrong parameter provided to select_post call.');
+            throw new Error('Non Object. Wrong parameter provided to select_comment call.');
         } else {
-            var params = ['type', 'status', 'author', 'title'];
+            var params = ['post_id', 'state'];
             var provided = [];
-            var db_params = ['post_type', 'post_status', 'author_email', 'post_title']
+            var db_params = ['comment_post_ID', 'comment_state']
 
             for (var i = 0; i < params.length; i++) {
                 var p = params[i];
@@ -30,10 +30,7 @@ module.exports = {
                 }
             }
 
-            var limit = '';
-            if ('limit' in select_details) limit = 'LIMIT ' + select_details.limit;
-
-            var query = 'SELECT * FROM posts WHERE ' + provided.join(' AND ') + ' ORDER BY post_date DESC ' + limit;
+            var query = 'SELECT * FROM comments WHERE ' + provided.join(' AND ') + ' ORDER BY comment_date DESC';
             this.pool.getConnection(function(err, connection) {
                 connection.query(
                     query,
