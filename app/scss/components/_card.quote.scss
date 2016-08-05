@@ -76,10 +76,10 @@
         }
     }
     .block {
-        padding-right: 0;
+        //padding-right: 0;
         @media screen and (min-width: 768px) and (max-width: 991px) {
             display: block;
-            &:first-child {
+            /* &:first-child {
                 float: left;
             }
             &:nth-child(2) {
@@ -87,10 +87,10 @@
             }
             &:nth-child(3) {
                 display: inline;
-            }
+            } */
         }
         @media screen and (max-width: 325px) {
-            padding-right: 0;
+            //padding-right: 0;
         }
         @media screen and (max-width: 272px) {
             display: block;
@@ -111,7 +111,7 @@
             display: block;
         }
         @media screen and (max-width: 325px) {
-            padding-right: 0;
+            //padding-right: 0;
         }
         @media screen and (max-width: 272px) {
             display: block;

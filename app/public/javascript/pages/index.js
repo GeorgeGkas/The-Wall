@@ -1,16 +1,41 @@
 $(document).ready(function() {
 
     $('html').niceScroll();
+    $('#no-more-posts').hide();
 
     $('.post-title').each(function() {
-        var text = $(this).html().split(/[\s!$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/).join('-');
+        var text = $(this).html().split(' ').join('-');
         $(this).html(text);
+    });
+
+    $('#load-more').click(function() {
+        $.ajax({
+            type: 'POST',
+            url: '/get_more_posts',
+            dataType: 'json',
+            success: function(res) {
+                // do nothing as the content rendered on the server side
+                //$('#post-content').append(res.posts).masonry('appended', $(res.posts));
+                if (res.posts.length > 0) {
+                    var $posts = $(res.posts);
+                    $('#post-content').append($posts).masonry('appended', $posts);
+                } else {
+                    $('#load-more').fadeOut(function() {
+                        $('#no-more-posts').fadeIn();
+                    });
+                }
+            },
+            error: function(err) {
+                console.log(err.responseJSON.error);
+            }
+
+        });
     });
 });
 
 
 $(window).on('load', function() {
-    $('section').masonry({
+    $('#post-content').masonry({
         itemSelector: 'article',
         transitionDuration: '0.2s'
     });
@@ -20,9 +45,9 @@ $(window).on('load', function() {
 
 $(window).resize(function() {
     if (jQuery(window).innerWidth() < 768) {
-        jQuery('section').masonry('destroy');
+        jQuery('#post-content').masonry('destroy');
     } else {
-        jQuery('section').masonry({
+        jQuery('#post-content').masonry({
             itemSelector: 'article',
             transitionDuration: '0.2s'
         });

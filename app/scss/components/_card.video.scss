@@ -38,7 +38,7 @@
     }
     .block {
         @media screen and (min-width: 992px) and (max-width: 1199px) {
-            padding-right: 0;
+            //padding-right: 0;
         }
         @media screen and (min-width: 768px) and (max-width: 991px) {
             display: block;
@@ -104,7 +104,7 @@
     width: 59%;
     .block {
         @media screen and (min-width: 768px) and (max-width: 991px) {
-            padding-right: 0;
+            //padding-right: 0;
         }
         @media screen and (max-width: 767px) {
             width: 50%;

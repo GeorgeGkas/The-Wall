@@ -6,6 +6,7 @@ var MYSQL_db = require('./models/database/MYSQL');
 var helper = require('./models/utils/functions');
 var util = require('util');
 
+var last_received_id = 0;
 
 // not so safe indeed!
 /*process.on('uncaughtException', function(err) {
@@ -29,16 +30,30 @@ var mysql = new MYSQL_db({
     database: 'NodeJSBlog'
 });
 
+//Can't set headers after they are sent fix
+app.use(function(req, res, next) {
+    var _send = res.send;
+    var sent = false;
+    res.send = function(data) {
+        if (sent) return;
+        _send.bind(res)(data);
+        sent = true;
+    };
+    next();
+});
+
 app.get('/', function(req, res) {
     mysql.select_post(
         'SELECT * FROM posts WHERE  post_feature_dynamic=(SELECT MAX(post_feature_dynamic) FROM posts) AND post_status=\'published\' ORDER BY post_date DESC',
         function(featured_post) {
             mysql.select_post({
-                status: 'published'
+                status: 'published',
+                limit: 1
             }, function(posts_res) {
                 var posts = [];
                 if (posts_res.length > 0 || featured_post.length > 0) {
                     posts = helper.prepare_index_post_data(posts_res, featured_post[0]);
+                    last_received_id = posts[posts.length - 1].post_ID;
                 }
 
                 mysql.select_author('admin|georgegkas@gmail.com', function(author_res) {
@@ -89,16 +104,34 @@ app.get('/post/:postTitle', function(req, res) {
     });
 });
 
+app.post('/get_more_posts', function(req, res) {
+    mysql.select_post('SELECT * FROM posts WHERE post_ID < ' + last_received_id + ' AND post_status=\'published\' ORDER BY post_date DESC LIMIT 1',
+        function(query_res) {
+            var posts = [];
+            if (query_res.length > 0) {
+                posts = helper.prepare_index_post_data(query_res, undefined);
+                last_received_id = posts[posts.length - 1].post_ID;
+            }
+            res.render('generate_more_posts', {
+                _POST_LIST: posts
+            }, function(err, rendered) {
+                if (err) res.status(400).send({ error: 'Could not load posts.' });
+                else res.status(200).send({ posts: rendered });
+            });
+
+        });
+
+});
+
 app.post('/post/like', function(req, res) {
     mysql.post_like(req.body.id, function() {
-        res.status(200).send({success: ''}); 
+        res.status(200).send({ success: '' });
     });
-
 });
 
 app.post('/post/comment/like', function(req, res) {
     mysql.comment_like(req.body.id, function() {
-        res.status(200).send({success: ''}); 
+        res.status(200).send({ success: '' });
     });
 
 });
@@ -109,9 +142,9 @@ app.post('/post/subscribe', function(req, res) {
         date: helper.get_curr_date()
     }, function(result) {
         if (result.err) {
-            res.status(400).send({error: result.msg}); 
+            res.status(400).send({ error: result.msg });
         } else {
-            res.status(200).send({success: ''}); 
+            res.status(200).send({ success: '' });
         }
     });
 
@@ -128,9 +161,9 @@ app.post('/post/comment', function(req, res) {
 
     }, function(result) {
         if (result.err) {
-            res.status(400).send({error: result.msg}); 
+            res.status(400).send({ error: result.msg });
         } else {
-            res.status(200).send({success: ''}); 
+            res.status(200).send({ success: '' });
         }
     });
 

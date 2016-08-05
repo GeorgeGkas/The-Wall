@@ -3,7 +3,12 @@ mixin video-card(post)
         iframe(class="embed-responsive-item", src= "https://www.youtube.com/embed/" + post.post_content,  frameborder="0", allowfullscreen)
     - var post_href = String(post.post_title).split(' ').join('-');
     a(href="post/" + post_href)
-        .video-footer
+
+        -   var with_pencil = ''
+            if post.post_has_article == 1
+                -   with_pencil = '-with-pencil'
+
+        div(class="video-footer"+with_pencil)
             p.posted-date
                 time(datetime=post.post_datetime_tag) #{post.post_date}
             p.video-card-stats

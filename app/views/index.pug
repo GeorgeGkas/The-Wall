@@ -15,7 +15,7 @@ block HEADER_P
     p ... My.prototype.Blog(); ...
 
 block MAIN_CONTENT
-    section
+    section#post-content
         //- First load the admin's profile card
         article(class='col-sm-4', id='webmaster-banner')
             div(itemscope, itemtype="http://schema.org/Person", id="webmaster-profile")
@@ -84,6 +84,11 @@ block MAIN_CONTENT
 
                             else
                                 +video-card(post)
+
+    p#no-more-posts Blog first launched at Aug 2016
+    #load-more
+        a(href="javascript:void(0);") 
+            span(class="glyphicon glyphicon-chevron-down")
 
 
 block LOAD_JS

@@ -5,19 +5,21 @@ module.exports = {
     prepare_index_post_data: function(res, featured) {
         var data = [];
 
-        var dateFormat = String(featured['post_date']).substr(4, 11).split(' ');
-        data.push({
-            post_type: featured.post_type,
-            post_content: featured.post_content,
-            post_date: dateFormat[1] + ' ' + dateFormat[0] + ' ' + dateFormat[2],
-            post_like_count: featured.post_like_count,
-            post_comment_count: featured.post_comment_count,
-            post_has_article: featured.post_has_article,
-            post_title: featured.post_title,
-            alt: featured.alt,
-            post_datetime_tag: featured.post_date
-        });
-
+        if (featured !== undefined) {
+            var dateFormat = String(featured['post_date']).substr(4, 11).split(' ');
+            data.push({
+                post_type: featured.post_type,
+                post_content: featured.post_content,
+                post_date: dateFormat[1] + ' ' + dateFormat[0] + ' ' + dateFormat[2],
+                post_like_count: featured.post_like_count,
+                post_comment_count: featured.post_comment_count,
+                post_has_article: featured.post_has_article,
+                post_title: featured.post_title,
+                alt: featured.alt,
+                post_datetime_tag: featured.post_date,
+                post_ID: featured.post_ID
+            });
+        }
 
         for (var i = 0; i < res.length; ++i) {
             var dateFormat = String(res[i]['post_date']).substr(4, 11).split(' ');
@@ -30,7 +32,8 @@ module.exports = {
                 post_comment_count: res[i].post_comment_count,
                 post_has_article: res[i].post_has_article,
                 post_title: res[i].post_title,
-                alt: res[i].alt
+                alt: res[i].alt,
+                post_ID: res[i].post_ID
             });
         }
 
