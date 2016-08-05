@@ -14,6 +14,8 @@ module.exports = {
             post_comment_count: featured.post_comment_count,
             post_has_article: featured.post_has_article,
             post_title: featured.post_title,
+            alt: featured.alt,
+            post_datetime_tag: featured.post_date
         });
 
 
@@ -23,10 +25,12 @@ module.exports = {
                 post_type: res[i].post_type,
                 post_content: res[i].post_content,
                 post_date: dateFormat[1] + ' ' + dateFormat[0] + ' ' + dateFormat[2],
+                post_datetime_tag: res[i].post_date,
                 post_like_count: res[i].post_like_count,
                 post_comment_count: res[i].post_comment_count,
                 post_has_article: res[i].post_has_article,
                 post_title: res[i].post_title,
+                alt: res[i].alt
             });
         }
 
@@ -45,6 +49,7 @@ module.exports = {
                 comment_like_count: res[i].comment_like_count,
                 comment_content: res[i].comment_content,
                 comment_date: dateFormat[1] + ' ' + dateFormat[0] + ' ' + dateFormat[2],
+                datetime_tag: res[i]['comment_date']
 
             });
         }

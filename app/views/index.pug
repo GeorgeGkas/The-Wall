@@ -6,7 +6,7 @@ include mixins/card_quote.pug
 
 
 block PAGE_TITLE
-    title THE WALL - George G. Gkasdrogkas
+    title THE WALL | George G. Gkasdrogkas
 
 block LOAD_CSS
     link(rel='stylesheet', type='text/css', href='css/pages/index.css')
@@ -18,14 +18,14 @@ block MAIN_CONTENT
     section
         //- First load the admin's profile card
         article(class='col-sm-4', id='webmaster-banner')
-            #webmaster-profile
-                div(id="webmaster-avatar", style="background-image: url(" + _ADMIN_AVATAR + ")")
+            div(itemscope, itemtype="http://schema.org/Person", id="webmaster-profile")
+                div(id="webmaster-avatar", style="background-image: url(" + _ADMIN_AVATAR + ")", itemprop="image")
                 h2#webmaster-name GeorgeGkas
-                p Front End developer
-                p Web Designer
-                a(id='webmaster-about-link', href="#")
+                p(itemprop="jobTitle") Front End developer
+                p(itemprop="jobTitle") Web Designer
+                a(id='webmaster-about-link', href="https://github.com/georgegks", itemprop="url")
                     span <
-                    |  About ME
+                    |  Github ME
                     span  />
 
      

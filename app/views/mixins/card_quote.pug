@@ -7,7 +7,7 @@ mixin quote-card(post)
         a(href="post/" + post_href)
             .quote-footer
                 p.posted-date
-                    time(datetime=post.post_date) #{post.post_date}
+                    time(datetime=post.post_datetime_tag) #{post.post_date}
                 p.quote-card-stats
                     span.block 
                         span(class="glyphicon glyphicon-heart")

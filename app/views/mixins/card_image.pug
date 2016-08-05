@@ -1,6 +1,6 @@
 mixin image-card(post)
     .image-card
-        img(src=post.post_content, class="center-block")
+        img(src=post.post_content, class="center-block", alt=post.alt)
         .image-card-stats
             p #{post.post_title}
             p
@@ -16,4 +16,4 @@ mixin image-card(post)
     - var post_href = String(post.post_title).split(' ').join('-');
     a(href="post/" + post_href)
         .image-date-placeholder
-            time(datetime=post.post_date) #{post.post_date}
+            time(datetime=post.post_datetime_tag) #{post.post_date}

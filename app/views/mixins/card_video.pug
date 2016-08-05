@@ -5,7 +5,7 @@ mixin video-card(post)
     a(href="post/" + post_href)
         .video-footer
             p.posted-date
-                time(datetime=post.post_date) #{post.post_date}
+                time(datetime=post.post_datetime_tag) #{post.post_date}
             p.video-card-stats
                 span.block 
                     span(class="glyphicon glyphicon-heart")

@@ -1,10 +1,11 @@
 var compression = require('compression');
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 var MYSQL_db = require('./models/database/MYSQL');
 var helper = require('./models/utils/functions');
 var util = require('util');
+
 
 // not so safe indeed!
 /*process.on('uncaughtException', function(err) {
@@ -75,7 +76,9 @@ app.get('/post/:postTitle', function(req, res) {
                             post_has_article: post_res[0].post_has_article,
                             post_title: post_res[0].post_title,
                             article_content: post_res[0].article_content,
-                            post_ID: post_res[0].post_ID
+                            post_ID: post_res[0].post_ID,
+                            alt: post_res[0].alt,
+                            post_datetime_tag: post_res[0].post_date
                         },
                         _AUTHOR: author_res[0],
                         _COMMENT_LIST: helper.prepare_comments_data(comment_res)
@@ -176,5 +179,5 @@ app.use(function(req, res, next) {
 
 
 app.listen(3000, function() {
-    console.log('Example app listening on port 4000!');
+    console.log('Example app listening on port 3000!');
 });

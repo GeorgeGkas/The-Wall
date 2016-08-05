@@ -2,8 +2,12 @@ extends layout.pug
 
 include mixins/single_post_date-stats.pug
 
+block META
+    meta(name="author", content=_AUTHOR.author_name)
+    meta(name="created", content=_POST.post_datetime_tag)
+
 block PAGE_TITLE
-    title #{_POST.post_title}
+    title The Wall | #{_POST.post_title}
 
 block LOAD_CSS
     link(rel='stylesheet', type='text/css', href='../css/pages/single-post.css')
@@ -12,8 +16,8 @@ block HEADER_P
     p ... My.prototype.Blog(); ...
 
 block MAIN_CONTENT
-    .container-fluid
-        main(role="main", id="main-view")
+    div(class="container-fluid", itemscope, itemtype="http://schema.org/Article")
+        main(id="main-view")
             section(id="post-content", data-post_id=_POST.post_ID)
                 article(class="col-sm-12")
                     - var quote_class = _POST.post_type == 'quote' ? 'single-quote' : '';
@@ -24,7 +28,7 @@ block MAIN_CONTENT
                                 blockquote
                                     p #{_POST.post_content}
                         else if _POST.post_type == 'img' 
-                            img(src=_POST.post_content, class="center-block")
+                            img(src=_POST.post_content, class="center-block", alt=_POST.alt)
                         else 
                             div(class="embed-responsive embed-responsive-4by3")
                                 iframe(class="embed-responsive-item", src= "https://www.youtube.com/embed/" + _POST.post_content,  frameborder="0", allowfullscreen)
@@ -40,22 +44,27 @@ block MAIN_CONTENT
             section#article-content
                 article
                     header#article-head
-                        h1#article-title #{_POST.post_title}
-                        p#article-author Created by #{_AUTHOR.author_name}
-                    article#article-body 
-                        if _POST.post_has_article == 1
+                        h1(id="article-title", itemprop="name") #{_POST.post_title}
+                        p#article-author 
+                            |   Created by 
+                            span(itemprop="author", itemscope itemtype="http://schema.org/Person") 
+                                a(href="mailto:"+_AUTHOR.author_email, itemprop="email")
+                                    span(itemprop="name") #{_AUTHOR.author_name}
+
+                    if _POST.post_has_article == 1
+                        article#article-body 
                             |   !{_POST.article_content}
 
                             p#article-end ***
                             p#article-post-date 
                                 |   As posted in 
-                                time(datetime=_POST.post_date) #{_POST.post_date}
+                                time(itemprop="dateCreated", datetime=_POST.post_datetime_tag) #{_POST.post_date}
 
 
         section#aboutAuthor
             div(id="aboutWrapper", class="clearfix row")
                 div(id="authorImage", class="col-sm-4")
-                    a(href="mailto:" + _AUTHOR.author_email)
+                    a(href="mailto:" + _AUTHOR.author_email, itemprop="email")
                         div(id="image-placeholder", style="background-image: url(" + _AUTHOR.author_avatar + ")")
                 div(id="authorSmallBio", class="col-sm-8")
                     if _AUTHOR.author_role == 'admin'
@@ -96,13 +105,13 @@ block MAIN_CONTENT
 
                             .comment-post-date
                                 |   posted on 
-                                time(datetime=comment.date) #{comment.comment_date}
+                                time(datetime=comment.datetime_tag) #{comment.comment_date}
 
                 #comment-post-area
                     #comment-post-message Thank you. Just wait for moderator acceptance.
                     form(id="comment-post-form", method="post")
                         #user
-                            input(input type="text", placeholder="Your name here.", id="comment-user-name", maxlength="25")
+                            input(type="text", placeholder="Your name here.", id="comment-user-name", maxlength="25")
 
                         #email
                             input(type="text", placeholder="Your email here.", id="comment-user-email")
