@@ -1,5 +1,10 @@
 # Dependency directories
 node_modules
 
+#Exclude drafts
+app/index.html
+app/sample.html
+app/single-post.html
+
 #Other files
 app/npm-debug.json
