@@ -1,0 +1,3 @@
+- USERS
+    Add subscription delete functionality
+    Add email send functionality

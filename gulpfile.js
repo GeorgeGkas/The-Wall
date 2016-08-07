@@ -13,12 +13,12 @@ var autoprefixer = require('gulp-autoprefixer');
 gulp.task('scss', function() {
     return gulp.src('app/scss/**/*.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer({
+        /*.pipe(autoprefixer({
             browsers: ['>1%'],
             cascade: false
         }))
         .pipe(csso())
-        .pipe(cssnano())
+        .pipe(cssnano())*/
         .pipe(gulp.dest('app/public/css'))
 });
 

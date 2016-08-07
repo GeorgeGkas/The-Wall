@@ -5,15 +5,28 @@ module.exports = {
         if (typeof update_details == undefined || update_details == null || update_details.length <= 0) {
             throw new Error('No parameter provided to update_post call.');
         } else if (typeof update_details === 'string') {
-            this.pool.getConnection(function(err, connection) {
-                connection.query(
-                    update_details,
-                    function(err, result) {
-                        if (err) throw err;
-                        connection.release();
-                        callback(result);
-                    });
-            });
+            if (update_details.split('|')[0] == 'add-one-view') {
+                this.pool.getConnection(function(err, connection) {
+                    connection.query(
+                        'UPDATE posts SET `number_of_views` = `number_of_views` + 1 WHERE post_ID = ?',
+                        [update_details.split('|')[1]],
+                        function(err, result) {
+                            if (err) throw err;
+                            connection.release();
+                            callback(result);
+                        });
+                });
+            } else {
+                this.pool.getConnection(function(err, connection) {
+                    connection.query(
+                        update_details,
+                        function(err, result) {
+                            if (err) throw err;
+                            connection.release();
+                            callback(result);
+                        });
+                });
+            }
         } else if (typeof update_details !== 'object') {
             throw new Error('Non Object. Wrong parameter provided to update_post call.');
         } else {

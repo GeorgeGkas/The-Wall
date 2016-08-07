@@ -81,6 +81,7 @@ app.get('/post/:postTitle', function(req, res) {
                     post_id: post_res[0].post_ID,
                     state: 'approved'
                 }, function(comment_res) {
+                    mysql.update_post('add-one-view|'+post_res[0].post_ID);
                     res.render('single-post', {
                         _POST: {
                             post_type: post_res[0].post_type,
@@ -93,7 +94,8 @@ app.get('/post/:postTitle', function(req, res) {
                             article_content: post_res[0].article_content,
                             post_ID: post_res[0].post_ID,
                             alt: post_res[0].alt,
-                            post_datetime_tag: post_res[0].post_date
+                            post_datetime_tag: post_res[0].post_date, 
+                            number_of_views: post_res[0].number_of_views
                         },
                         _AUTHOR: author_res[0],
                         _COMMENT_LIST: helper.prepare_comments_data(comment_res)

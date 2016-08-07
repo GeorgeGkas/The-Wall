@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `comment_author` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `comment_date` datetime NOT NULL,
   `comment_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `comment_state` enum('approved','pending','deleted') COLLATE utf8_bin NOT NULL DEFAULT 'pending',
+  `comment_state` enum('approved','pending') COLLATE utf8_bin NOT NULL DEFAULT 'pending',
   `comment_like_count` int(10) unsigned NOT NULL DEFAULT '0',
   `comment_author_email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`comment_ID`)
@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `post_title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `article_content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_feature_dynamic` int(10) unsigned NOT NULL DEFAULT '0',
+   `number_of_views` INT UNSIGNED NOT NULL DEFAULT '0',
   PRIMARY KEY (`post_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 

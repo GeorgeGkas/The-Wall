@@ -16,14 +16,6 @@ module.exports = {
                             connection.release();
                             callback(result);
                         });
-                } else if (comment_details.state == 'deleted') {
-                    connection.query(
-                        'UPDATE posts SET `post_comment_count` = `post_comment_count` - 1, `post_feature_dynamic` = `post_feature_dynamic` - 2 WHERE post_ID = ?', [comment_details.post_id],
-                        function(err, result) {
-                            if (err) throw err;
-                            connection.release();
-                            callback(result);
-                        });
                 }
 
                 connection.query(
