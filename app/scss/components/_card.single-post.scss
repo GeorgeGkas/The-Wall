@@ -38,6 +38,10 @@
 
 .single-card-footer,
 .single-card-footer-with-pencil {
+     @media screen and (max-width: 991px) {
+        margin-left: 4%;
+     }
+
     .posted-date {
         @media screen and (min-width: 992px) {
             width: 50%;
@@ -49,6 +53,7 @@
         }
         @media screen and (max-width: 350px) {
             width: 40%;
+
         }
     }
     .single-card-stats {

@@ -72,6 +72,11 @@ main#main-view {
       line-height: 30px;
       height: 80px; } }
 
+@media screen and (max-width: 991px) {
+  .single-card-footer,
+  .single-card-footer-with-pencil {
+    margin-left: 4%; } }
+
 @media screen and (min-width: 992px) {
   .single-card-footer .posted-date,
   .single-card-footer-with-pencil .posted-date {

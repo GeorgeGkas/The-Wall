@@ -1,21 +1,83 @@
 $(document).ready(function() {
-    if ($(window).innerWidth() < 768) {
-        $('#menu, .overlay').hide();
-    }
-
+    //$('#menu-placeholder').hide();
+    //$('#posts-submenu').hide();
     $('.ripple-btn').on('click', rippleAnimation);
 
     $('html').niceScroll();
 
-    $('#jumbotron').click(function() {
-        $('#menu').slideToggle();
-    });
-
     $('#close-menu').click(function() {
         $('#menu-placeholder').animate({
-            'margin-left': '-50%'
-        });
+            'margin-left': '-100%'
+        }, 1000);
         $('.overlay').fadeOut();
+    });
+
+    $('.sub-category-back').click(function() {
+        $('.ripple').remove()
+        setTimeout(function() {
+            $('.sub-category-back').closest("ul").animate({
+                'margin-left': '500px'
+            }, 400, function() {
+                $('#main-menu > li').not('#webmaster').show().animate({
+                    'margin-left': '0'
+                }, 200).clearQueue();
+                $('.cnt').fadeIn();
+            });
+
+        }, 200);
+    });
+
+    $('#posts-submenu-reveal').click(function() {
+        setTimeout(function() {
+            $('.cnt').fadeOut();
+            $('#main-menu > li').not('#webmaster').animate({
+                'margin-left': '-100%'
+            }, 200, function() {
+                $(this).hide();
+                $('#posts-submenu').animate({
+                    'margin-left': '0'
+                }, 400).clearQueue();
+            });
+
+        }, 200);
+    });
+
+    $('#subscriptions-submenu-reveal').click(function() {
+        setTimeout(function() {
+            $('.cnt').fadeOut();
+            $('#main-menu > li').not('#webmaster').animate({
+                'margin-left': '-100%'
+            }, 200, function() {
+                $(this).hide();
+                $('#subscriptions-submenu').animate({
+                    'margin-left': '0'
+                }, 400).clearQueue();
+            });
+
+        }, 200);
+    });
+
+    $('#comments-submenu-reveal').click(function() {
+        setTimeout(function() {
+            $('.cnt').fadeOut();
+            $('#main-menu > li').not('#webmaster').animate({
+                'margin-left': '-100%'
+            }, 200, function() {
+                $(this).hide();
+                $('#comments-submenu').animate({
+                    'margin-left': '0'
+                }, 400).clearQueue();
+            });
+
+        }, 200);
+    });
+
+
+    $('#sidebar-reveal').click(function() {
+        $('#menu-placeholder').animate({
+            'margin-left': '0'
+        }, 500);
+        $('.overlay').fadeIn();
     });
 
     /* $('#menu > ul > li ul').each(function(index, e) {
@@ -23,41 +85,20 @@ $(document).ready(function() {
          var content = '<span class=\"cnt\">' + count + '</span>';
          $(e).closest('li').children('a').append(content);
      });*/
-    $('#menu > ul > li > a').click(function() {
-        $('#menu li').removeClass('active');
-        $(this).closest('li').addClass('active');
-        var checkElement = $(this).next();
-        if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
-            $(this).closest('li').removeClass('active');
-            checkElement.slideUp('normal');
-        }
-        if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
-            $('#menu ul ul:visible').slideUp('normal');
-            checkElement.slideDown('normal');
-        }
-        if ($(this).closest('li').find('ul').children().length == 0) {
-            return true;
-        } else {
-            return false;
-        }
+
+
+    $('.sub-category-options').not('.sub-category-back').click(function() {
+        setTimeout(function() {
+            $('#menu-placeholder').animate({
+                'margin-left': '-100%'
+            }, 1000);
+            $('.overlay').fadeOut();
+        }, 200);
     });
+
+
 });
 
-
-
-$(window).resize(function() {
-    if (jQuery(window).innerWidth() < 768) {
-        $('#menu, .cnt, .overlay').hide();
-        $('#menu-placeholder').css({
-            'margin-left': '0'
-        });
-    } else {
-        $('#menu-placeholder').css({
-            'margin-left': '-50%'
-        });
-
-    }
-});
 
 
 function rippleAnimation(e) {
@@ -65,7 +106,7 @@ function rippleAnimation(e) {
 
     //remove ripple if it's already on
     $oldRipple = $('.ripple');
-    if ($this.has($oldRipple)) $oldRipple.remove();
+    if ($this.has($oldRipple)) $('.ripple').remove();
     //If your page has more than one button instead of this just do $('.ripple').remove() to remove them all
 
     //create element
@@ -102,4 +143,6 @@ function rippleAnimation(e) {
 
     //and append it
     $this.append($ripple);
+    return false;
+
 }

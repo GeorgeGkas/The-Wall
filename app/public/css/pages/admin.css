@@ -1,14 +1,13 @@
 body {
-  position: relative; }
+  position: absolute;
+  width: 100%;
+  height: 100%; }
 
 #menu {
   overflow-y: scroll;
+  overflow-x: hidden;
   height: 100%;
   width: calc(100% + 19px); }
-  @media screen and (max-width: 767px) {
-    #menu {
-      overflow: hidden;
-      width: 100%; } }
 
 nav,
 nav ul,
@@ -95,12 +94,16 @@ nav > ul > li.active {
 nav > ul > li > a > span.cnt {
   position: absolute;
   top: 20px;
-  right: 30px;
+  right: 50px;
   padding: 0;
   margin: 0;
   background: none;
   font-size: 10px;
   color: #D86612; }
+  @media screen and (max-width: 767px) {
+    nav > ul > li > a > span.cnt {
+      right: -40px;
+      width: 0; } }
 
 nav > ul ul > li > a > span.cnt {
   position: absolute;
@@ -118,20 +121,23 @@ nav > ul ul > li > a > span.cnt {
   height: 100%;
   background-color: #fff;
   overflow: hidden;
-  box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.35); }
+  box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.35);
+  margin-left: -100%; }
   @media screen and (max-width: 767px) {
     #menu-placeholder {
       border: 0;
-      position: relative;
-      background-color: inherit;
+      width: 360px;
       box-shadow: none; } }
+  @media screen and (max-width: 360px) {
+    #menu-placeholder {
+      width: 100%; } }
 
 #jumbotron {
-  position: relative;
+  position: absolute;
   padding-left: 1.25em;
   font-size: 29px;
-  display: none;
-  margin-top: 10px;
+  margin-top: 13px;
+  z-index: 91;
   height: 30px; }
   @media screen and (max-width: 767px) {
     #jumbotron {
@@ -142,32 +148,22 @@ nav > ul ul > li > a > span.cnt {
   position: absolute;
   left: 0;
   top: 0.25em;
-  width: 1em;
-  height: 0.15em;
+  width: 20px;
+  height: 0.1em;
   background: black;
-  box-shadow: 0 0.25em 0 0 black, 0 0.5em 0 0 black; }
+  box-shadow: 0 0.2em 0 0 black, 0 0.41em 0 0 black; }
 
 nav ul ul li:hover {
   background-color: #e3e3e3; }
 
 #screen {
-  border-top: 2px solid rgba(0, 0, 0, 0.83);
   max-height: 80%; }
   @media screen and (max-width: 767px) {
     #screen {
       margin-top: 15px; } }
 
-#helper-submenu {
-  border-bottom: 1px solid black;
-  font-size: 12px; }
-  #helper-submenu ul {
-    padding-left: 0;
-    margin-top: 10px; }
-    #helper-submenu ul li {
-      display: inline-block; }
-
 #main-content {
-  padding-top: 10px;
+  padding-top: 60px;
   padding-bottom: 10px;
   border-top: 2px solid #000; }
 
@@ -181,7 +177,7 @@ nav ul ul li:hover {
     margin-bottom: 15px; }
 
 .glyphicon {
-  padding-right: 15px; }
+  margin-right: 15px; }
 
 #webmaster {
   padding-top: 20px;
@@ -213,7 +209,7 @@ nav ul ul li:hover {
 
 #webmaster-name {
   display: inline-block;
-  width: 60%;
+  width: 55%;
   position: absolute;
   margin-top: 10px;
   margin-left: 10px;
@@ -221,7 +217,8 @@ nav ul ul li:hover {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  font-weight: 700; }
+  font-weight: 700;
+  padding-bottom: 10px; }
   @media screen and (max-width: 767px) {
     #webmaster-name {
       display: block;
@@ -237,17 +234,23 @@ nav ul ul li:hover {
 
 #close-menu {
   position: absolute;
-  right: 10px;
+  right: 15px;
   top: 15px;
   color: rgba(0, 0, 0, 0.75);
   padding: 15px;
   transition: .2s;
   cursor: pointer; }
-  @media screen and (max-width: 767px) {
-    #close-menu {
-      display: none; } }
   #close-menu:hover {
     color: rgba(0, 0, 0, 0.35); }
+  @media screen and (max-width: 759px) {
+    #close-menu {
+      right: 20px; } }
+  @media screen and (max-width: 360px) {
+    #close-menu {
+      right: 15px; } }
+  @media screen and (max-width: 320px) {
+    #close-menu {
+      right: 0; } }
 
 .full-li {
   padding-right: 0; }
@@ -258,9 +261,10 @@ nav ul ul li:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 10;
+  z-index: 95;
   background-color: black;
   opacity: 0.5;
+  display: none;
   /*dim the background*/ }
 
 .ripple-btn {
@@ -286,3 +290,92 @@ nav ul ul li:hover {
     transform: translate(-50%, -50%) scale(1.2); }
   100% {
     opacity: 0; } }
+
+.sub-category:hover {
+  background-color: inherit; }
+
+.sub-category-options {
+  font-size: 16px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transition: .4s; }
+  .sub-category-options .glyphicon {
+    padding-right: 0; }
+  .sub-category-options:hover {
+    color: #D51941; }
+  .sub-category-options .sub-icon {
+    position: absolute;
+    margin-left: -18px;
+    margin-top: 7px;
+    opacity: 0; }
+  .sub-category-options:focus {
+    animation-name: sub-category-click;
+    animation-duration: .6s; }
+
+.sub-category-back {
+  font-size: 19px;
+  padding-top: 10px;
+  padding-bottom: 10px; }
+  .sub-category-back:hover {
+    color: inherit; }
+
+@keyframes sub-category-click {
+  100% {
+    transform: scale(1.5);
+    color: #ddd;
+    opacity: 0.3; } }
+
+#posts-submenu,
+#subscriptions-submenu,
+#comments-submenu {
+  margin-left: 500px;
+  position: absolute;
+  width: 100%; }
+
+#container {
+  padding-left: 0;
+  padding-right: 0; }
+
+#app-bar {
+  height: 60px;
+  position: fixed;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  left: 0;
+  right: 0;
+  z-index: 90;
+  border-top: 2px solid rgba(0, 0, 0, 0.83);
+  background-color: #fbfbfb; }
+  #app-bar #left-region,
+  #app-bar #right-region {
+    list-style: none; }
+    #app-bar #left-region li,
+    #app-bar #right-region li {
+      display: inline-block; }
+  #app-bar #left-region {
+    padding-left: 40px; }
+    @media screen and (max-width: 360px) {
+      #app-bar #left-region {
+        padding-left: 25px; } }
+    #app-bar #left-region #sidebar-reveal {
+      position: absolute;
+      height: 100%;
+      line-height: 60px; }
+    #app-bar #left-region #blog-name {
+      position: absolute;
+      padding-left: 50px; }
+      @media screen and (max-width: 360px) {
+        #app-bar #left-region #blog-name {
+          padding-left: 40px; } }
+  #app-bar #right-region {
+    font-size: 19px;
+    line-height: 60px; }
+    @media screen and (max-width: 360px) {
+      #app-bar #right-region {
+        padding-right: 0; } }
+    #app-bar #right-region li {
+      float: right;
+      padding-right: 20px; }
+      @media screen and (max-width: 360px) {
+        #app-bar #right-region li {
+          padding-right: 10px; } }

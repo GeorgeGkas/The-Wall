@@ -14,66 +14,37 @@
 </head>
 
 <body>
-<div class="overlay"></div>
-    <div class="row">
-
-
+    <div class="overlay"></div>
+    <div class="row" id="wrapper">
         <div class="col-sm-4 col-md-3" id="menu-placeholder">
             <nav id="menu">
-                <ul>
+                <ul id="main-menu">
                     <li id="webmaster">
-                       <div id="webmaster-avatar" itemprop="image"></div>
-                       <p id="webmaster-name">George G. Gkasdrogkas</p>
-                       <span id="close-menu" class=" glyphicon glyphicon-menu-left"></span>
+                        <div id="webmaster-avatar" itemprop="image"></div>
+                        <p id="webmaster-name">George G. Gkasdrogkas</p>
+                        <span id="close-menu" class=" glyphicon glyphicon-menu-left"></span>
                     </li>
                     <li class="ripple-btn">
                         <a href="#" class="full-lι">
                             <span><i class="glyphicon glyphicon-home"></i> <span class="menu-text">Dashboard</span></span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="ripple-btn">
+                    <li class="ripple-btn">
+                        <a href="#" id="posts-submenu-reveal">
                             <span><i class="glyphicon glyphicon-pencil"></i> <span class="menu-text">Posts</span></span>
                         </a>
-                        <ul style="display: none;">
-                            <li class="even ripple-btn"><a href="#"><span>All</span></a></li>
-                            <li class="odd ripple-btn"><a href="#"><span>Published</span></a></li>
-                            <li class="even ripple-btn"><a href="#"><span>Drafts</span></a></li>
-                            <li class="odd ripple-btn"><a href="#"><span>Deleted</span></a></li>
-                        </ul>
                     </li>
-                    <li>
-                        <a href="#" class="ripple-btn">
+                    <li class="ripple-btn">
+                        <a href="#" id="subscriptions-submenu-reveal">
                             <span><i class="glyphicon glyphicon-bookmark"></i> <span class="menu-text">Subs</span></span>
                             <span class="cnt glyphicon glyphicon-certificate"></span>
                         </a>
-                        <ul style="display: none;">
-                            <li class="even ripple-btn"><a href="#"><span>All</span></a></li>
-                            <li class="odd ripple-btn"><a href="#"><span>Active</span></a></li>
-                            <li class="even ripple-btn"><a href="#"><span>Deleted</span></a></li>
-                        </ul>
                     </li>
-                    <li>
-                        <a href="#" class="ripple-btn">
+                    <li class="ripple-btn">
+                        <a href="#" id="comments-submenu-reveal">
                             <span><i class="glyphicon glyphicon-comment"></i> <span class="menu-text">Comments</span></span>
                             <span class="cnt glyphicon glyphicon-certificate"></span>
                         </a>
-                        <ul style="display: none;" >
-                            <li class="even ripple-btn"><a href="#"><span>All</span></a></li>
-                            <li class="odd ripple-btn"><a href="#"><span>Pending</span></a></li>
-                            <li class="even ripple-btn"><a href="#"><span>Aproved</span><span class="cnt">4</span></a></li>
-                            <li class="odd ripple-btn"><a href="#"><span>Deleted</span></a></li>
-                        </ul>
-                    </li>
-                    <li >
-                        <a href="#" class="ripple-btn">
-                            <span><i class="glyphicon glyphicon-heart"></i> <span class="menu-text">Favorites</span></span>
-                            <span class="cnt glyphicon glyphicon-certificate"></span>
-                        </a>
-                         <ul style="display: none;">
-                            <li class="even ripple-btn"><a href="#"><span>Latest</span></a></li>
-                             <li class="even ripple-btn"><a href="#"><span>All Time</span></a></li>
-                        </ul>
                     </li>
                     <li class="ripple-btn">
                         <a href="#">
@@ -91,65 +62,129 @@
                         </a>
                     </li>
                 </ul>
+                <ul id="posts-submenu">
+                    <li class="sub-category clearfix">
+                        <a href="#" class="sub-category-options col-sm-4 col-xs-4" title="Most Loved">
+                            <i class=" glyphicon glyphicon-heart"></i>
+                        </a>
+                        <a href="#" class="sub-category-options col-sm-4 col-xs-4" title="All">
+                            <i class="glyphicon glyphicon-globe"></i>
+                        </a>
+                        <a href="#" class="sub-category-options col-sm-4 col-xs-4" title="Featured">
+                            <i class="glyphicon glyphicon-star"></i>
+                        </a>
+                    </li>
+                    <li class="sub-category clearfix">
+                        <a href="#" class="sub-category-options col-sm-4 col-xs-4 " title="Published">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                        <a href="#" class="sub-category-options col-sm-4 col-xs-4 " title="Drafts">
+                            <i class="glyphicon glyphicon-file"></i>
+                        </a>
+                        <a href="#" class="sub-category-options col-sm-4 col-xs-4 " title="Deleted">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </li>
+                    <li class="sub-category clearfix">
+                        <a href="#" class="sub-category-options col-sm-12 col-xs-12 sub-category-back" title="Back">
+                            <i class="glyphicon glyphicon-arrow-left"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul id="subscriptions-submenu">
+                    <li class="sub-category clearfix">
+                        <a href="#" class="sub-category-options col-sm-4 col-xs-4" title="Active">
+                            <i class="glyphicon glyphicon-sunglasses"></i>
+                        </a>
+                        <a href="#" class="sub-category-options col-sm-4 col-xs-4" title="Deleted">
+                            <i class="glyphicon glyphicon-ban-circle"></i>
+                        </a>
+                        <a href="#" class="sub-category-options col-sm-4 col-xs-4" title="All">
+                            <i class="glyphicon glyphicon-globe"></i>
+                        </a>
+                    </li>
+                    <li class="sub-category clearfix">
+                        <a href="#" class="sub-category-options col-sm-12 col-xs-12 sub-category-back" title="Back">
+                            <i class="glyphicon glyphicon-arrow-left"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul id="comments-submenu">
+                    <li class="sub-category clearfix">
+                        <a href="#" class="sub-category-options col-sm-3 col-xs-3" title="All">
+                            <i class="glyphicon glyphicon-globe"></i>
+                        </a>
+                        <a href="#" class="sub-category-options col-sm-3 col-xs-3" title="Approved">
+                            <i class="glyphicon glyphicon-ok"></i>
+                        </a>
+                        <a href="#" class="sub-category-options col-sm-3 col-xs-3" title="Pending">
+                            <i class="glyphicon glyphicon-time"></i>
+                        </a>
+                        <a href="#" class="sub-category-options col-sm-3 col-xs-3" title="Most Loved">
+                            <i class="glyphicon glyphicon-thumbs-up"></i>
+                        </a>
+                    </li>
+                    <li class="sub-category clearfix">
+                        <a href="#" class="sub-category-options col-sm-12 col-xs-12 sub-category-back" title="Back">
+                            <i class="glyphicon glyphicon-arrow-left"></i>
+                        </a>
+                    </li>
+                </ul>
             </nav>
         </div>
-        <div class="col-sm-12 col-md-12">
-            <div>
-                <a href="javascript:void(0)" id="jumbotron">
-                </a>
+        <div class="col-sm-12 col-md-12" id="container">
+            <div id="app-bar">
+                <ul id="left-region" class="navbar-left col-sm-6 col-xs-6 col-md-6">
+                    <li id="sidebar-reveal">
+                        <a href="javascript:void(0);" id="jumbotron" title="Menu">
+                        </a>
+                    </li>
+                    <li>
+                        <p id="blog-name">
+                            The Wall
+                        </p>
+                    </li>
+                </ul>
+                <ul id="right-region" class="navbar-right col-sm-6 col-xs-6 col-ms-6">
+                    <li>
+                        <a href="javascript:void(0);" title="Search">
+                            <span><i class="glyphicon glyphicon-search" ></i></span>
+                        </a>
+
+                    </li>
+                    <li>
+                        <a href="" title="New post">
+                            <span><i class="glyphicon glyphicon-plus"></i></span>
+                        </a>
+                    </li>
+                </ul>
+               
             </div>
-            <div class="container-fluid" id="screen">
-                <div id="helper-submenu">
-                    <ul>
-                        <li>
-                            <a href="">
-                                <span><i class="glyphicon glyphicon-cog"></i> Options</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <span><i class="glyphicon glyphicon-cog"></i> Options</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div id="main-content">
-                    <ul id="cards-placeholder">
-                        <li>
-                            
-                        </li>
-                        <li>
-                            
-                        </li>
-                        <li>
-                            
-                        </li>
-                        <li>
-                            
-                        </li>
-                        <li>
-                            
-                        </li>
-                        <li>
-                            
-                        </li>
-                        <li>
-                            
-                        </li>
-                        <li>
-                            
-                        </li>
-                        <li>
-                            
-                        </li>
-                        <li>
-                            
-                        </li>
-                        <li>
-                            
-                        </li>
-                    </ul>
-                </div>
+            <div id="main-content">
+               <!--  <ul id="cards-placeholder">
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                    <li>
+                    </li>
+                </ul> -->
             </div>
         </div>
     </div>

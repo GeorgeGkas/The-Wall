@@ -49,7 +49,7 @@ block MAIN_CONTENT
                             |   Created by 
                             span(itemprop="author", itemscope itemtype="http://schema.org/Person") 
                                 a(href="mailto:"+_AUTHOR.author_email, itemprop="email")
-                                    span(itemprop="name") #{_AUTHOR.author_name}
+                                    span(itemprop="name", id="author-name") #{_AUTHOR.author_name}
                         p#number-of-views and viewed #{_POST.number_of_views} times
 
                     if _POST.post_has_article == 1

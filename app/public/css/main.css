@@ -5531,6 +5531,9 @@ header {
       font-size: 20px;
       letter-spacing: 2px;
       font-weight: 500; }
+      @media screen and (max-width: 360px) {
+        header#article-head #article-author #author-name {
+          display: block; } }
     header#article-head #number-of-views {
       text-transform: lowercase; }
 
