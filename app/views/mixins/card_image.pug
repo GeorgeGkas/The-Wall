@@ -1,6 +1,6 @@
 mixin image-card(post)
     .image-card
-        img(src=post.post_content, class="center-block", alt=post.alt)
+        img(src=post.post_content, class="center-block", alt=post.post_title)
         .image-card-stats
             p #{post.post_title}
             p

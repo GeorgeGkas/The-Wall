@@ -15,7 +15,6 @@ module.exports = {
                 post_comment_count: featured.post_comment_count,
                 post_has_article: featured.post_has_article,
                 post_title: featured.post_title,
-                alt: featured.alt,
                 post_datetime_tag: featured.post_date,
                 post_ID: featured.post_ID
             });
@@ -32,7 +31,6 @@ module.exports = {
                 post_comment_count: res[i].post_comment_count,
                 post_has_article: res[i].post_has_article,
                 post_title: res[i].post_title,
-                alt: res[i].alt,
                 post_ID: res[i].post_ID
             });
         }

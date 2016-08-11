@@ -1,0 +1,74 @@
+extends ../layout.pug
+
+block PAGE_TITLE
+    title THE {404} WALL | George G. Gkasdrogkas
+
+block LOAD_CSS
+    link(rel='stylesheet', type='text/css', href='../css/pages/404.css')
+
+block HEADER_P
+    p ... My.error.404(); ...
+
+block MAIN_CONTENT
+    .content
+        .world
+            .sky
+                .sun
+                .stars
+                .stars2
+                .stars3
+
+            .earth
+                .real
+                    .mountains
+                        .m1
+                        .m1Shadow
+                        -   for (val = 2; val < 6; ++val)
+                                div(class="m"+val)
+                                div(class="m"+val+"Shadow")
+                    .lake
+                    .islandShadow1
+                    .islandShadow2
+                    .island
+                        .surface
+                            .part1
+                            .part2
+                            .part3
+                        .trees
+                            .tree1
+                                -    for (val = 1; val < 12; ++val)
+                                        div(class="leaf"+val)
+                            .tree2
+                                -    for (val = 1; val < 12; ++val)
+                                        div(class="leaf"+val)
+                    .boat
+                    .human
+                .reflection
+                    .boat
+                    .human
+                    .islandGlow
+                    .islandR
+                        .islandShadow1
+                        .islandShadow2
+                        .island
+                            .surface
+                                .part1
+                                .part2
+                                .part3
+                            .trees
+                                .tree1
+                                    -    for (val = 1; val < 12; ++val)
+                                            div(class="leaf"+val)
+                                .tree2
+                                    -    for (val = 1; val < 12; ++val)
+                                            div(class="leaf"+val)
+
+
+block LOAD_JS
+    script(src="../javascript/vendors/jquery.min.js")
+    script(src="../javascript/vendors/nicescroll.min.js")
+
+    script.
+       $(document).ready(function() {
+            $('html').niceScroll();
+       });

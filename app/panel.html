@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Amatica+SC" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700&subset=latin' rel='stylesheet' type='text/css'>
+<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 <link type="text/css" rel="stylesheet" href="public/css/main.css"></link>
 <link type="text/css" rel="stylesheet" href="public/css/pages/admin.css"></link>
 </head>
@@ -150,7 +151,6 @@
                         <a href="javascript:void(0);" title="Search">
                             <span><i class="glyphicon glyphicon-search" ></i></span>
                         </a>
-
                     </li>
                     <li>
                         <a href="" title="New post">
@@ -158,39 +158,84 @@
                         </a>
                     </li>
                 </ul>
-               
             </div>
-            <div id="main-content">
-               <!--  <ul id="cards-placeholder">
-                    <li>
-                    </li>
-                    <li>
-                    </li>
-                    <li>
-                    </li>
-                    <li>
-                    </li>
-                    <li>
-                    </li>
-                    <li>
-                    </li>
-                    <li>
-                    </li>
-                    <li>
-                    </li>
-                    <li>
-                    </li>
-                    <li>
-                    </li>
-                    <li>
-                    </li>
-                </ul> -->
+            <div id="main-content" class="row">
+                <div id="new-post">
+                    <form id="new-post-form">
+                        <h1 id="title">
+                            Article Status
+                        </h1>
+                        <!-- <div id="post-type">
+                            <input type="radio" name="type" value="img" id="img-radio" />
+                            <label for="img-radio">
+                                <span class="glyphicon glyphicon-picture"></span>
+                            </label>
+                            <input type="radio" name="type" value="video" id="video-radio" />
+                            <label for="video-radio">
+                                <span class="glyphicon glyphicon-facetime-video"></span>
+                            </label>
+                            <input type="radio" name="type" value="quote" id="quote-radio" />
+                            <label for="quote-radio">
+                                <span class="glyphicon glyphicon-font"></span>
+                            </label>
+                        </div> -->
+                        <!-- <div id="post-title">
+                         <p id="title-preview"></p>
+                            <input type="text" onkeyup="previewTitle(this);"/>
+                        </div> -->
+                        <!--  <div id="post-content">
+                            <div id="post-content-image">
+                                <input type="file" id="image-select" onchange="readURL(this);"/>
+                                <div id="image-preview">
+                                    <img class="img-responsive"/>
+                                </div>
+                            </div>
+                            <div id="post-content-video">
+                                <input type="text" id="video-select" placeholder="Input Youtube Url"/>
+                               
+                                <div id="video-preview" class="embed-responsive embed-responsive-4by3">
+                                   
+                                </div>
+                            </div>
+                            <div id="post-content-quote">
+                                <textarea id="quote-input" onkeyup="textAreaAdjust(this);" rows="2"></textarea>
+                            </div>
+                        </div> -->
+                        <!-- <div id="article-content">
+                            <div class="switch">
+                                <input id="has-article" class="cmn-toggle cmn-toggle-yes-no" type="checkbox">
+                                <label for="has-article" data-on="Yes" data-off="No"></label>
+                            </div>
+                            <textarea id="article-content-edit"></textarea>
+                            <div class="fr-view" id="preview"></div>
+                        </div> -->
+                        <div>
+                            <div class="switch">
+                                <input id="article-status" class="cmn-toggle cmn-toggle-yes-no" type="checkbox">
+                                <label for="article-status" data-on="Publish" data-off="Draft"></label>
+                            </div>
+                        </div>
+                        <button id="submit-btn" class="ripple-btn">
+                            <span>Submit</span>
+                        </button>
+                        <div id="action-buttons" class="clearfix">
+                            <a href="javascript:void(0);" id="previous-option" class="pull-left">
+                                <span class="glyphicon glyphicon-arrow-left"></span>
+                            </a>
+                            <a href="javascript:void(0);" id="next-option" class="pull-right">
+                                <span class="glyphicon glyphicon-arrow-right"></span>
+                            </a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
     <!--build:js javascript/single-post.min.js -->
     <script src="public/javascript/vendors/jquery.min.js"></script>
     <script src="public/javascript/vendors/nicescroll.min.js"></script>
+    <script src="public/javascript/vendors/scrollIntoView.min.js"></script>
+    <script type="text/javascript" src="public/javascript/vendors/froala_editor.pkgd.min.js"></script>
     <script src="public/javascript/pages/admin.js"></script>
     <!-- endbuild -->
 </body>

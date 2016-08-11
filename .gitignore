@@ -8,3 +8,6 @@ app/single-post.html
 
 #Other files
 app/npm-debug.json
+
+#Config directory
+app/config

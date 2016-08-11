@@ -14,8 +14,6 @@ $(document).ready(function() {
             url: '/get_more_posts',
             dataType: 'json',
             success: function(res) {
-                // do nothing as the content rendered on the server side
-                //$('#post-content').append(res.posts).masonry('appended', $(res.posts));
                 if (res.posts.length > 0) {
                     var $posts = $(res.posts);
                     $('#post-content').append($posts).masonry('appended', $posts);

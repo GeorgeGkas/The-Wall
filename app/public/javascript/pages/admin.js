@@ -3,6 +3,7 @@ $(document).ready(function() {
     //$('#posts-submenu').hide();
     $('.ripple-btn').on('click', rippleAnimation);
 
+
     $('html').niceScroll();
 
     $('#close-menu').click(function() {
@@ -96,10 +97,42 @@ $(document).ready(function() {
         }, 200);
     });
 
+    $('#video-select').keypress(function(e) {
+        if (e.which == 13) {
+            e.preventDefault();
+            var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            var match = $('#video-select').val().match(regExp);
+            var youtubeVideoId = '';
+
+            if (match && match[2].length == 11) {
+                youtubeVideoId = match[2];
+            }
+            $('#video-preview').html('<iframe class="embed-responsive-item" src="//www.youtube.com/embed/' + youtubeVideoId + '" frameborder="0" allowfullscreen></iframe>');
+
+        }
+    });
 
 });
 
 
+function previewTitle(input) {
+    $('#title-preview').text($(input).val());
+}
+
+
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#image-preview img')
+                .attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 function rippleAnimation(e) {
     $this = $(this);
@@ -143,6 +176,19 @@ function rippleAnimation(e) {
 
     //and append it
     $this.append($ripple);
-    return false;
 
 }
+
+function textAreaAdjust(o) {
+    o.rows = o.value.split('\n').length + 1;
+    $('#quote-input').scrollintoview({
+        duration: 0
+    });
+}
+
+$(function() {
+    $('#article-content-edit').froalaEditor()
+        .on('froalaEditor.contentChanged', function(e, editor) {
+            $('#preview').html(editor.html.get());
+        })
+});

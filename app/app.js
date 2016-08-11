@@ -6,6 +6,8 @@ var MYSQL_db = require('./models/database/MYSQL');
 var helper = require('./models/utils/functions');
 var util = require('util');
 
+var GLOBAL_VAR = require('./config/global');
+
 var last_received_id = 0;
 
 // not so safe indeed!
@@ -13,6 +15,19 @@ var last_received_id = 0;
     // handle the error safely
     console.log(err)
 });*/
+
+
+switch (process.env.NODE_ENV) {
+    case 'development':
+        var ENV_VAR = require('./config/dev');
+        break;
+    case 'production':
+        var ENV_VAR = require('./config/production');
+        break;
+    default:
+        console.error("Unrecognized NODE_ENV: " + process.env.NODE_ENV);
+        process.exit(1);
+}
 
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,10 +39,10 @@ app.use(express.static('public'));
 
 
 var mysql = new MYSQL_db({
-    host: 'localhost',
-    user: 'root',
-    password: 'thisisapassword',
-    database: 'NodeJSBlog'
+    host: ENV_VAR.MYSQL.host,
+    user: ENV_VAR.MYSQL.user,
+    password: ENV_VAR.MYSQL.password,
+    database: ENV_VAR.MYSQL.database
 });
 
 //Can't set headers after they are sent fix
@@ -42,7 +57,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/', function(req, res) {
+app.get(ENV_VAR.URL_PREFIX_PATH + '/', function(req, res) {
     mysql.select_post(
         'SELECT * FROM posts WHERE  post_feature_dynamic=(SELECT MAX(post_feature_dynamic) FROM posts) AND post_status=\'published\' ORDER BY post_date DESC',
         function(featured_post) {
@@ -56,7 +71,7 @@ app.get('/', function(req, res) {
                     last_received_id = posts[posts.length - 1].post_ID;
                 }
 
-                mysql.select_author('admin|georgegkas@gmail.com', function(author_res) {
+                mysql.select_author('admin|' + GLOBAL_VAR.ADMIN, function(author_res) {
                     res.render('index', {
                         _POST_LIST: posts,
                         _ADMIN_AVATAR: author_res[0].author_avatar
@@ -73,7 +88,7 @@ app.get('/post/:postTitle', function(req, res) {
         title: req.params.postTitle.split('-').join(' ')
     }, function(post_res) {
         if (helper.isEmpty(post_res)) {
-            res.status(404).end('Content not Found');
+            res.status(404).render('errors/404');
         } else {
             mysql.select_author('email|' + post_res[0].author_email, function(author_res) {
                 var dateFormat = String(post_res[0]['post_date']).substr(4, 11).split(' ');
@@ -81,7 +96,7 @@ app.get('/post/:postTitle', function(req, res) {
                     post_id: post_res[0].post_ID,
                     state: 'approved'
                 }, function(comment_res) {
-                    mysql.update_post('add-one-view|'+post_res[0].post_ID);
+                    mysql.update_post('add-one-view|' + post_res[0].post_ID);
                     res.render('single-post', {
                         _POST: {
                             post_type: post_res[0].post_type,
@@ -93,8 +108,7 @@ app.get('/post/:postTitle', function(req, res) {
                             post_title: post_res[0].post_title,
                             article_content: post_res[0].article_content,
                             post_ID: post_res[0].post_ID,
-                            alt: post_res[0].alt,
-                            post_datetime_tag: post_res[0].post_date, 
+                            post_datetime_tag: post_res[0].post_date,
                             number_of_views: post_res[0].number_of_views
                         },
                         _AUTHOR: author_res[0],
@@ -196,11 +210,8 @@ app.get('/500', function(req, res, next) {
 app.use(function(req, res, next) {
     res.status(404);
 
-    /*// respond with html page
-    if (req.accepts('html')) {
-      res.render('404', { url: req.url });
-      return;
-    }*/
+    // respond with html page
+    res.render('errors/404');
 
     /*// respond with json
     if (req.accepts('json')) {
@@ -209,7 +220,7 @@ app.use(function(req, res, next) {
     }*/
 
     // default to plain-text. send()
-    res.type('txt').send('Content not Found');
+    //res.type('txt').send('Content not Found');
 });
 
 

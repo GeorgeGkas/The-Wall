@@ -44,7 +44,6 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `post_content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_status` enum('draft','published','deleted') COLLATE utf8_bin NOT NULL DEFAULT 'draft',
   `post_type` enum('img','quote','video') COLLATE utf8_bin NOT NULL,
-  `alt` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'optional',
   `post_like_count` int(10) unsigned NOT NULL DEFAULT '0',
   `post_comment_count` int(10) unsigned NOT NULL DEFAULT '0',
   `post_has_article` tinyint(1) NOT NULL DEFAULT '0',

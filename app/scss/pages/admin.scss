@@ -1,3 +1,5 @@
+@import "../vendors/_froala_editor.pkgd.min.scss";
+@import "../vendors/_froala_style.min.scss";
 body {
     position: absolute;
     width: 100%;
@@ -222,7 +224,6 @@ nav ul ul li:hover {
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    background-image: url("");
     background-size: cover;
     background-repeat: no-repeat;
     display: block;
@@ -425,8 +426,8 @@ nav ul ul li:hover {
             position: absolute;
             padding-left: 50px;
             @media screen and (max-width: 360px) {
-            padding-left: 40px;
-        }
+                padding-left: 40px;
+            }
         }
     }
     #right-region {
@@ -443,5 +444,184 @@ nav ul ul li:hover {
             }
         }
     }
+}
 
+#new-post {
+    //border: 1px solid black;
+    margin: 0 auto;
+    float: none;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    &-form {
+        max-width: 750px;
+        margin: 0px auto;
+        #title {
+            text-align: center;
+            font-size: 25px;
+            padding-bottom: 10px;
+            font-family: 'Open Sans Condensed', 'Ubuntu', sans-serif;
+        }
+        #post-type {
+            width: 50%;
+            margin: 0px auto;
+            input[type="radio"] {
+                display: none;
+                &:checked + label {
+                    background-color: #56CE97;
+                    color: #fff;
+                    border-color: #fff;
+                }
+            }
+            label {
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                text-align: center;
+                font-size: 21px;
+                padding: 20px 20px 20px 35px;
+                cursor: pointer;
+                margin-right: 10px;
+                margin-bottom: 40px;
+                transition: .4s;
+                display: block;
+                margin: 0 auto 20px;
+            }
+        }
+        #action-buttons {
+            width: 50%;
+            margin: 0 auto;
+            padding-top: 10px;
+            #next-option {
+                span {
+                    margin-right: 0;
+                }
+            }
+        }
+        #post-title {
+            width: 50%;
+            margin: 0 auto 10px;
+            #title-preview {
+                text-align: center;
+                display: none;
+                word-wrap: break-word;
+                @media screen and (max-width: 768px) {
+                    display: block;
+                }
+            }
+            input {
+                width: 100%;
+                border: 0;
+                border-bottom: 1px solid #000;
+                background-color: inherit;
+                transition: .2s;
+                padding: 10px;
+                letter-spacing: 2px;
+                text-align: center;
+                &:focus {
+                    border-bottom: 3px solid rgba(66, 150, 177, 0.85);
+                }
+            }
+        }
+        #post-content {
+            padding-right: 20px;
+            padding-left: 20px;
+            &-image {
+                #image-select {
+                    margin: 0 auto;
+                }
+                #image-preview {
+                    padding: 10px;
+                    width: 100%;
+                }
+            }
+            &-video {
+                #video-select {
+                    border: 0;
+                    border-bottom: 1px solid #000;
+                    margin: 0 auto 10px;
+                    background-color: inherit;
+                    display: block;
+                    width: 100%;
+                    text-align: center;
+                }
+                #video-preview {
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-image: url('http://www.umoatitres.org/sites/all/themes/kyziah/img/picture-4x3.svg');
+                }
+            }
+            &-quote {
+                #quote-input {
+                    width: 100%;
+                    border: 1px solid black;
+                    background-color: inherit;
+                    padding: 10px;
+                    font-size: 16px;
+                    letter-spacing: 2px;
+                    resize: none;
+                }
+            }
+        }
+        #submit-btn {
+            margin: 0 auto;
+            display: block;
+            background-color: inherit;
+            border: 2px solid rgba(0, 0, 0, 0.8);
+            padding: 15px 60px;
+        }
+    }
+}
+
+.switch {
+    width: 120px;
+    height: 60px;
+    position: relative;
+    margin: 0px auto 20px;
+    input[type="checkbox"] {
+        position: absolute;
+        left: -1000px;
+    }
+}
+
+input.cmn-toggle-yes-no + label {
+    padding: 2px;
+    width: 120px;
+    height: 60px;
+    cursor: pointer;
+}
+
+input.cmn-toggle-yes-no + label:before,
+input.cmn-toggle-yes-no + label:after {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: #fff;
+    font-family: "Roboto Slab", serif;
+    font-size: 20px;
+    text-align: center;
+    line-height: 60px;
+}
+
+input.cmn-toggle-yes-no + label:before {
+    background-color: #c3c3c3;
+    content: attr(data-off);
+    transition: transform 0.5s;
+    backface-visibility: hidden;
+}
+
+input.cmn-toggle-yes-no + label:after {
+    background-color: #5ac5bd;
+    content: attr(data-on);
+    transition: transform 0.5s;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+}
+
+input.cmn-toggle-yes-no:checked + label:before {
+    transform: rotateY(180deg);
+}
+
+input.cmn-toggle-yes-no:checked + label:after {
+    transform: rotateY(0);
 }
