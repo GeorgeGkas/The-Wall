@@ -1,7 +1,6 @@
 module.exports = {
     select_post: function(select_details, callback) {
         if (typeof(callback) === 'undefined') callback = function() {};
-
         if (typeof select_details == undefined || select_details == null || select_details.length <= 0) {
             throw new Error('No parameter provided to select_post call.');
         } else if (typeof select_details === 'string') {

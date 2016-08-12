@@ -83,7 +83,7 @@ app.get(ENV_VAR.URL_PREFIX_PATH + '/', function(req, res) {
 
 });
 
-app.get('/post/:postTitle', function(req, res) {
+app.get(ENV_VAR.URL_PREFIX_PATH + '/post/:postTitle', function(req, res) {
     mysql.select_post({
         title: req.params.postTitle.split('-').join(' ')
     }, function(post_res) {
