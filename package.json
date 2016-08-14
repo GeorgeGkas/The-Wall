@@ -20,6 +20,7 @@
     "jasmine-node": "^1.14.5",
     "mysql": "^2.11.1",
     "pug-cli": "^1.0.0-alpha6",
+    "pug": "^2.0.0-beta5",
     "run-sequence": "^1.2.2"
   },
   "dependencies": {
@@ -28,6 +29,7 @@
     "express": "^4.14.0",
     "mysql": "^2.11.1",
     "sanitize-html": "^1.13.0",
-    "pug-cli": "^1.0.0-alpha6"
+    "pug-cli": "^1.0.0-alpha6",
+    "pug": "^2.0.0-beta5"
   }
 }

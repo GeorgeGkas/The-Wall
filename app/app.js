@@ -20,14 +20,18 @@ var last_received_id = 0;
 switch (process.env.NODE_ENV) {
     case 'development':
         var ENV_VAR = require('./config/dev');
+        app.locals.url_prefix = ENV_VAR.URL_PREFIX_PATH;
         break;
     case 'production':
         var ENV_VAR = require('./config/production');
+        app.locals.url_prefix = ENV_VAR.URL_PREFIX_PATH;
         break;
     default:
         console.error("Unrecognized NODE_ENV: " + process.env.NODE_ENV);
         process.exit(1);
 }
+
+
 
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended: false }));

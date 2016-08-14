@@ -9,7 +9,8 @@ block PAGE_TITLE
     title THE WALL | George G. Gkasdrogkas
 
 block LOAD_CSS
-    link(rel='stylesheet', type='text/css', href='css/pages/index.css')
+    link(rel='stylesheet', type='text/css', href='../../css/main.css')
+    link(rel='stylesheet', type='text/css', href='../../css/pages/index.css')
 
 block HEADER_P
     p ... My.prototype.Blog(); ...
@@ -98,4 +99,4 @@ block LOAD_JS
                   'vendors/nicescroll.min.js',
                   'pages/index.js']
     each js in jsList
-        script(src="javascript/" + js)
+        script(src="../../javascript/" + js)
