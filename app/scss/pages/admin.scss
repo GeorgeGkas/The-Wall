@@ -1,5 +1,6 @@
 @import "../vendors/_froala_editor.pkgd.min.scss";
 @import "../vendors/_froala_style.min.scss";
+@import "../utils/_row-eq-height.scss";
 body {
     position: absolute;
     width: 100%;
@@ -624,4 +625,140 @@ input.cmn-toggle-yes-no:checked + label:before {
 
 input.cmn-toggle-yes-no:checked + label:after {
     transform: rotateY(0);
+}
+
+.single-post {
+    &-wrapper {
+        //border: 1px solid black;
+    }
+    &-container {
+        height: 160px;
+        border: 1px solid #363636;
+        margin: 2%;
+        .post-content-holder {
+            @media screen and (max-width: 360px) {
+                width: 50%;
+            }
+            padding: 0;
+            float: left;
+            height: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+            //border: 1px solid red;
+            .video-res {
+                width: 100%;
+                height: 100%;
+                padding-bottom: 0;
+            }
+            img {
+                position: relative;
+                float: left;
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                cursor: default;
+            }
+        }
+        .post-statistics-holder {
+            @media screen and (max-width: 360px) {
+                width: 50%;
+            }
+            padding: 0;
+            height: 100%;
+            display: inline-block;
+            float: right;
+            background-color: #363636;
+            .post-type {
+                width: 12%;
+                font-size: 25px;
+                text-align: center;
+                color: #fff;
+                //border-right: 1px solid #fff;
+                height: 100%;
+                display: inline-block;
+                position: absolute;
+                .glyphicon {
+                    margin-right: 0;
+                    margin-top: -1px;
+                    padding: 7px 0;
+                    background-color: #363636;
+                    width: 50px;
+                }
+                @media screen and (max-width: 600px) {
+                    display: none;
+                }
+                @media screen and (min-width: 992px) and (max-width: 1100px) {
+                    display: none;
+                }
+            }
+            .post-details {
+                color: #fff;
+                display: inline-block;
+                width: 65%;
+                margin-left: 13%;
+                margin-top: 5px;
+                 @media screen and (max-width: 600px) {
+                 width: 80%;
+                 margin-left: 5%;
+                }
+                @media screen and (min-width: 992px) and (max-width: 1100px) {
+                    width: 80%;
+                    margin-left: 5%;
+                }
+                p {
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    margin-bottom: 0;
+                }
+                .post-title {
+                    font-size: 19px;
+                }
+                .post-date {
+                    display: inline-table;
+                    font-size: 12px;
+                }
+                .post-author {
+                    font-size: 12px;
+                }
+            }
+            .post-statistics {
+                color: rgb(255, 255, 255);
+                width: 20%;
+                font-size: 14px;
+                float: right;
+                margin-top: 10px;
+                @media screen and (max-width: 600px) {
+                    float: left;
+                    margin-top: 0;
+                    width: auto;
+                    margin-left: 5%;
+                }
+                @media screen and (min-width: 992px) and (max-width: 1100px) {
+                    float: left;
+                    margin-top: 0;
+                    width: auto;
+                    margin-left: 5%;
+                }
+                .glyphicon {
+                    margin-right: 0;
+                    @media screen and (max-width: 600px) {
+                        padding-right: 5px;
+                    }
+                    @media screen and (min-width: 992px) and (max-width: 1100px) {
+                        padding-right: 5px;
+                    }
+                }
+                .block {
+                    @media screen and (max-width: 600px) {
+                        display: inline-block;
+                        padding-right: 10px;
+                    }
+                    @media screen and (min-width: 992px) and (max-width: 1100px) {
+                        display: inline-block;
+                        padding-right: 10px;
+                    }
+                }
+            }
+        }
+    }
 }

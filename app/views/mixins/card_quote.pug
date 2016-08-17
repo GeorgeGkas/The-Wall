@@ -2,9 +2,9 @@ mixin quote-card(post)
     .card.quote-card
         h4.post-title #{post.post_title}
         blockquote
-            p #{post.post_content}
+            p !{post.post_content}
         - var post_href = String(post.post_title).split(' ').join('-');
-        a(href="post/" + post_href)
+        a(href=url_prefix+"/post/" + post_href)
 
             -   var with_pencil = ''
             if post.post_has_article == 1

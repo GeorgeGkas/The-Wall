@@ -10,8 +10,8 @@ block PAGE_TITLE
     title The Wall | #{_POST.post_title}
 
 block LOAD_CSS
-    link(rel='stylesheet', type='text/css', href='../css/main.css')
-    link(rel='stylesheet', type='text/css', href='../css/pages/single-post.css')
+    link(rel='stylesheet', type='text/css', href='../../../css/main.css')
+    link(rel='stylesheet', type='text/css', href='../../../css/pages/single-post.css')
 
 block HEADER_P
     p ... My.prototype.Blog(); ...
@@ -27,7 +27,7 @@ block MAIN_CONTENT
                         if _POST.post_type == 'quote' 
                             .single-quote-card
                                 blockquote
-                                    p #{_POST.post_content}
+                                    p !{_POST.post_content}
                         else if _POST.post_type == 'img' 
                             img(src=_POST.post_content, class="center-block", alt=_POST.post_title)
                         else 
@@ -138,4 +138,4 @@ block LOAD_JS
                   'vendors/prism.min.js'
                   ]
     each js in jsList
-        script(src="../javascript/" + js)
+        script(src="../../../javascript/" + js)

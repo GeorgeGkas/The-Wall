@@ -22,9 +22,6 @@ main#main-view {
     margin: 0 auto;
     border-top: 1px solid RGBA(0, 0, 0, 0.15);
     font-weight: 400;
-    @media screen and (min-width: 768px) {
-        background-color: #f6f6f6;
-    }
 }
 
 #comments {
