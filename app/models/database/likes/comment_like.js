@@ -4,19 +4,23 @@ module.exports = {
 
         if (comment_id != null || comment_id != undefined) {
             this.pool.getConnection(function(err, connection) {
+                if (err) callback(err);
                 connection.query(
                     'UPDATE comments SET `comment_like_count` = `comment_like_count` + 1 WHERE comment_ID = ?', 
                     [comment_id],
                     function(err, result) {
-                        if (err) throw err;
                         connection.release();
-                        callback(result);
+                        if (err) {
+                            callback(err);
+                        } else {
+                            callback(null, result);
+                        }
 
                     });
             });
 
         } else {
-            throw new Error('Wrong comment_id provided to comment_like call.');
+            callback(new Error('Wrong comment_id provided to comment_like call.'));
         }
 
     }

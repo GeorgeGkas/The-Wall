@@ -1,3 +1,9 @@
+/*
+ * MYSQL Module.
+ * Here we required all the methods we'll need to run our blog.
+ * We use a mysql pool connection instance to handle the requests.
+ */
+
 'use strict';
 var mysql = require('mysql');
 

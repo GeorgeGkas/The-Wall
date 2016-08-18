@@ -1,15 +1,13 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var uglify = require('gulp-uglify');
-var del = require('del');
-var runSequence = require('run-sequence');
 
 require('es6-promise').polyfill();
 var cssnano = require('gulp-cssnano');
 var csso = require('gulp-csso');
 var autoprefixer = require('gulp-autoprefixer');
 
-
+/*  scss task used to complile and minify .scss files
+ */
 gulp.task('scss', function() {
     return gulp.src('app/scss/**/*.scss')
         .pipe(sass().on('error', sass.logError))

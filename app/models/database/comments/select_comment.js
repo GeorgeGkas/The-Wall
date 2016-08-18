@@ -3,21 +3,25 @@ module.exports = {
         if (typeof(callback) === 'undefined') callback = function() {};
 
         if (typeof select_details == undefined || select_details == null || select_details.length <= 0) {
-            throw new Error('No parameter provided to select_comment call.');
+            callback(new Error('No parameter provided to select_comment call.'));
         } else if (typeof select_details === 'string') {
             this.pool.getConnection(function(err, connection) {
+                if (err) callback(err);
                 connection.query(
                     select_details,
                     function(err, result) {
-                        if (err) throw err;
                         connection.release();
-                        callback(result);
+                        if (err) {
+                            callback(err);
+                        } else {
+                            callback(null, result);
+                        }
 
                     });
             });
 
         } else if (typeof select_details !== 'object') {
-            throw new Error('Non Object. Wrong parameter provided to select_comment call.');
+            callback(new Error('Non Object. Wrong parameter provided to select_comment call.'));
         } else {
             var params = ['post_id', 'state'];
             var provided = [];
@@ -32,12 +36,16 @@ module.exports = {
 
             var query = 'SELECT * FROM comments WHERE ' + provided.join(' AND ') + ' ORDER BY comment_date DESC';
             this.pool.getConnection(function(err, connection) {
+                if (err) callback(err);
                 connection.query(
                     query,
                     function(err, result) {
-                        if (err) throw err;
                         connection.release();
-                        callback(result);
+                        if (err) {
+                            callback(err);
+                        } else {
+                            callback(null, result);
+                        }
                     });
             });
         }

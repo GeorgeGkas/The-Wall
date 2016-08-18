@@ -1,22 +1,43 @@
 module.exports = {
     select_post: function(select_details, callback) {
         if (typeof(callback) === 'undefined') callback = function() {};
+
         if (typeof select_details == undefined || select_details == null || select_details.length <= 0) {
-            throw new Error('No parameter provided to select_post call.');
+            callback(new Error('No parameter provided to select_post call.'));
         } else if (typeof select_details === 'string') {
-            this.pool.getConnection(function(err, connection) {
-                connection.query(
-                    select_details,
-                    function(err, result) {
-                        if (err) throw err;
-                        connection.release();
-                        callback(result);
+            if (select_details == 'featured') {
+                this.pool.getConnection(function(err, connection) {
+                    if (err) callback(err);
+                    connection.query(
+                        'SELECT * FROM posts WHERE  post_feature_dynamic=(SELECT MAX(post_feature_dynamic) FROM posts) AND post_status=\'published\' ORDER BY post_date DESC LIMIT 1',
+                        function(err, result) {
+                            connection.release();
+                            if (err) {
+                                callback(err);
+                            } else {
+                                callback(null, result);
+                            }
 
-                    });
-            });
+                        });
+                });
+            } else {
+                this.pool.getConnection(function(err, connection) {
+                    if (err) callback(err);
+                    connection.query(
+                        select_details,
+                        function(err, result) {
+                            connection.release();
+                            if (err) {
+                                callback(err);
+                            } else {
+                                callback(null, result);
+                            }
 
+                        });
+                });
+            }
         } else if (typeof select_details !== 'object') {
-            throw new Error('Non Object. Wrong parameter provided to select_post call.');
+            callback(new Error('Non Object. Wrong parameter provided to select_post call.'));
         } else {
             var params = ['type', 'status', 'author', 'title'];
             var provided = [];
@@ -34,12 +55,16 @@ module.exports = {
 
             var query = 'SELECT * FROM posts WHERE ' + provided.join(' AND ') + ' ORDER BY post_date DESC ' + limit;
             this.pool.getConnection(function(err, connection) {
+                if (err) callback(err);
                 connection.query(
                     query,
                     function(err, result) {
-                        if (err) throw err;
                         connection.release();
-                        callback(result);
+                        if (err) {
+                            callback(err);
+                        } else {
+                            callback(null, result);
+                        }
                     });
             });
         }

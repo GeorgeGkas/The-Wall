@@ -4,17 +4,21 @@ module.exports = {
 
         if (sub_details.email.trim() != '') {
             this.pool.getConnection(function(err, connection) {
+                if (err) callback(err);
                 connection.query(
-                    'INSERT INTO email_subscriptions (subscription_email, subscription_date) VALUES(?, ?);', [sub_details.email, sub_details.date],
+                    'INSERT INTO email_subscriptions (subscription_email, subscription_date) VALUES(?, ?) ON DUPLICATE KEY UPDATE subscription_active = 1;', [sub_details.email, sub_details.date],
                     function(err, result) {
-                        if (err) throw err;
                         connection.release();
-                        callback(result);
+                        if (err) {
+                            callback(err);
+                        } else {
+                            callback(null, result);
+                        }
                     }
                 );
             });
         } else {
-            callback({err: true, msg: 'Please fill out the email input.'});
+            callback(new Error('Please fill out the email input.'));
         }
 
     }

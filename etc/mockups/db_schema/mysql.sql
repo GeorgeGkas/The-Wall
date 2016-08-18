@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 
 CREATE TABLE IF NOT EXISTS `email_subscriptions` (
   `subscription_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `subscription_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `subscription_email` varchar(255)  CHARACTER SET utf8 COLLATE utf8_bin NOT NULL UNIQUE,
   `subscription_date` datetime NOT NULL,
   `subscription_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`subscription_ID`)
