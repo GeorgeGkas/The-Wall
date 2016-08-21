@@ -5,7 +5,9 @@ module.exports = {
 
         if (post_id != null || post_id != undefined) {
             this.pool.getConnection(function(err, connection) {
-                if (err) callback(err);
+                if (err) {
+                    return callback(err);
+                }
                 conenction.query(
                     'DELETE FROM posts WHERE post_ID = ?', [post_id],
                     function(err, result) {

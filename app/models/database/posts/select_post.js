@@ -7,7 +7,9 @@ module.exports = {
         } else if (typeof select_details === 'string') {
             if (select_details == 'featured') {
                 this.pool.getConnection(function(err, connection) {
-                    if (err) callback(err);
+                    if (err) {
+                        return callback(err);
+                    }
                     connection.query(
                         'SELECT * FROM posts WHERE  post_feature_dynamic=(SELECT MAX(post_feature_dynamic) FROM posts) AND post_status=\'published\' ORDER BY post_date DESC LIMIT 1',
                         function(err, result) {
@@ -22,7 +24,9 @@ module.exports = {
                 });
             } else {
                 this.pool.getConnection(function(err, connection) {
-                    if (err) callback(err);
+                    if (err) {
+                        return callback(err);
+                    }
                     connection.query(
                         select_details,
                         function(err, result) {
@@ -55,7 +59,9 @@ module.exports = {
 
             var query = 'SELECT * FROM posts WHERE ' + provided.join(' AND ') + ' ORDER BY post_date DESC ' + limit;
             this.pool.getConnection(function(err, connection) {
-                if (err) callback(err);
+                if (err) {
+                    return callback(err);
+                }
                 connection.query(
                     query,
                     function(err, result) {

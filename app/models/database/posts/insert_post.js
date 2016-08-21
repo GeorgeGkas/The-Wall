@@ -6,12 +6,14 @@ module.exports = {
         if (!('has_article' in post_details)) post_details.has_article = 0;
         if (!('article_content' in post_details)) post_details.article_content = '';
 
-        if ('author' in post_details && 'date' in post_details && 'post_content' in post_details && 'type' in post_details && 'title' in post_details) {
+        if ('author' in post_details && 'post_content' in post_details && 'type' in post_details && 'title' in post_details) {
             this.pool.getConnection(function(err, connection) {
-                if (err) callback(err);
+                if (err) {
+                    return callback(err);
+                }
                 connection.query(
-                    'INSERT INTO posts (author_email, post_date, post_content, post_type, post_title, post_status, post_has_article, article_content) VALUES(?, ?, ?, ?, ?, ?, ?, ?);', 
-                    [post_details.author, post_details.date, post_details.post_content, post_details.type, post_details.title, post_details.status, post_details.has_article, post_details.article_content],
+                    'INSERT INTO posts (author_email, post_date, post_content, post_type, post_title, post_status, post_has_article, article_content) VALUES(?, NOW(), ?, ?, ?, ?, ?, ?);', 
+                    [post_details.author, post_details.post_content, post_details.type, post_details.title, post_details.status, post_details.has_article, post_details.article_content],
                     function(err, result) {
                          connection.release();
                         if (err) {

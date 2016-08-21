@@ -4,9 +4,11 @@ module.exports = {
 
         if (sub_details.email.trim() != '') {
             this.pool.getConnection(function(err, connection) {
-                if (err) callback(err);
+                if (err) {
+                    return callback(err);
+                }
                 connection.query(
-                    'INSERT INTO email_subscriptions (subscription_email, subscription_date) VALUES(?, ?) ON DUPLICATE KEY UPDATE subscription_active = 1;', [sub_details.email, sub_details.date],
+                    'INSERT INTO email_subscriptions (subscription_email, subscription_date) VALUES(?, NOW()) ON DUPLICATE KEY UPDATE subscription_active = 1;', [sub_details.email],
                     function(err, result) {
                         connection.release();
                         if (err) {

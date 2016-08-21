@@ -68,7 +68,7 @@ $(document).ready(function() {
         });
     });
 
-    $('#email-subscription-form, #comment-post-form').submit(function(event) {
+    $('#email-subscription-form').submit(function(event) {
         event.preventDefault();
         $.ajax({
             type: 'POST',
@@ -87,7 +87,8 @@ $(document).ready(function() {
     });
 
 
-    $('#comment-submit-section button').click(function() {
+    $('#comment-submit-section button').click(function(event) {
+        event.preventDefault();
         $.ajax({
             type: 'POST',
             url: '/post/comment',

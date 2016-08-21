@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var MYSQL_db = require('./models/database/MYSQL');
 var helper = require('./models/utils/functions');
 var util = require('util');
+require('./models/utils/extend_prototype');
 
 // Include global configure file
 var GLOBAL_VAR = require('./config/global');
@@ -110,8 +111,12 @@ app.get(ENV_VAR.URL_PREFIX_PATH + '/post/:postTitle', function(req, res) {
             var author_email = post_res[0].author_email
             mysql.select_author('email|' + author_email, function(err, author_res) {
                 if (err) throw err;
-                var dateFormat = String(post_res[0]['post_date']).substr(4, 11).split(' ');
+
+                post_res[0]['post_datetime_tag'] =  post_res[0]['post_date'];
+                post_res[0]['post_date'] = String(post_res[0]['post_date']).substr(4, 11).split(' ').swap(0, 1).join(' ');
+
                 var post_id = post_res[0].post_ID;
+
                 mysql.select_comment({
                     post_id: post_id,
                     state: 'approved'
@@ -119,19 +124,7 @@ app.get(ENV_VAR.URL_PREFIX_PATH + '/post/:postTitle', function(req, res) {
                     if (err) throw err;
                     mysql.update_post('add-one-view|' + post_res[0].post_ID);
                     res.render('single-post', {
-                        _POST: {
-                            post_type: post_res[0].post_type,
-                            post_content: post_res[0].post_content,
-                            post_date: dateFormat[1] + ' ' + dateFormat[0] + ' ' + dateFormat[2],
-                            post_like_count: post_res[0].post_like_count,
-                            post_comment_count: post_res[0].post_comment_count,
-                            post_has_article: post_res[0].post_has_article,
-                            post_title: post_res[0].post_title,
-                            article_content: post_res[0].article_content,
-                            post_ID: post_res[0].post_ID,
-                            post_datetime_tag: post_res[0].post_date,
-                            number_of_views: post_res[0].number_of_views
-                        },
+                        _POST: post_res[0],
                         _AUTHOR: author_res[0],
                         _COMMENT_LIST: helper.prepare_comments_data(comment_res)
                     });
@@ -191,8 +184,7 @@ app.post('/post/comment/like', function(req, res) {
 // Return success or a failure
 app.post('/post/subscribe', function(req, res) {
     mysql.insert_subscription({
-        email: req.body.email,
-        date: helper.get_curr_date()
+        email: req.body.email
     }, function(err, result) {
         if (err) {
             res.status(400).send({ error: err.message });
@@ -208,7 +200,6 @@ app.post('/post/subscribe', function(req, res) {
 app.post('/post/comment', function(req, res) {
     mysql.insert_comment({
         author_email: req.body.email,
-        date: helper.get_curr_date(),
         post_id: req.body.post_id,
         author_name: req.body.name,
         content: req.body.content,

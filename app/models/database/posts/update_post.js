@@ -7,7 +7,9 @@ module.exports = {
         } else if (typeof update_details === 'string') {
             if (update_details.split('|')[0] == 'add-one-view') {
                 this.pool.getConnection(function(err, connection) {
-                    if (err) callback(err);
+                    if (err) {
+                    return callback(err);
+                }
                     connection.query(
                         'UPDATE posts SET `number_of_views` = `number_of_views` + 1 WHERE post_ID = ?', [update_details.split('|')[1]],
                         function(err, result) {
@@ -21,7 +23,9 @@ module.exports = {
                 });
             } else {
                 this.pool.getConnection(function(err, connection) {
-                    if (err) callback(err);
+                    if (err) {
+                    return callback(err);
+                }
                     connection.query(
                         update_details,
                         function(err, result) {
@@ -38,7 +42,7 @@ module.exports = {
             callback(new Error('Non Object. Wrong parameter provided to update_post call.'));
         } else {
             if (!('id' in update_details)) {
-                callback(new Error('Please provide the post id to update.'));
+                return callback(new Error('Please provide the post id to update.'));
             }
 
             var params = ['date', 'status', 'title', 'has_article', 'article_content', 'post_content'];
@@ -54,7 +58,9 @@ module.exports = {
 
             var query = 'UPDATE posts SET ' + provided.join(' , ') + ' WHERE post_ID = ' + update_details.id;
             this.pool.getConnection(function(err, connection) {
-                if (err) callback(err);
+                if (err) {
+                    return callback(err);
+                }
                 connection.query(
                     query,
                     function(err, result) {

@@ -4,7 +4,9 @@ module.exports = {
 
         if (post_id != null || post_id != undefined) {
             this.pool.getConnection(function(err, connection) {
-                if (err) callback(err);
+                if (err) {
+                    return callback(err);
+                }
                 connection.query(
                     'UPDATE posts SET `post_like_count` = `post_like_count` + 1, `post_feature_dynamic` = `post_feature_dynamic` + 1 WHERE post_ID = ?', [post_id],
                     function(err, result) {

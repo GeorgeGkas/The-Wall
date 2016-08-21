@@ -4,7 +4,9 @@ module.exports = {
 
         if (comment_id != null || comment_id != undefined) {
             this.pool.getConnection(function(err, connection) {
-                if (err) callback(err);
+                if (err) {
+                    return callback(err);
+                }
                 connection.query(
                     'UPDATE comments SET `comment_like_count` = `comment_like_count` + 1 WHERE comment_ID = ?', 
                     [comment_id],
