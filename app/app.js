@@ -183,9 +183,7 @@ app.post('/post/comment/like', function(req, res) {
 // -- Subscribe to newsletter Midleware --
 // Return success or a failure
 app.post('/post/subscribe', function(req, res) {
-    mysql.insert_subscription({
-        email: req.body.email
-    }, function(err, result) {
+    mysql.insert_subscription(req.body.email, function(err, result) {
         if (err) {
             res.status(400).send({ error: err.message });
         } else {

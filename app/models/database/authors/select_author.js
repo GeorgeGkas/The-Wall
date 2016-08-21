@@ -3,8 +3,8 @@ module.exports = {
      * Select an author entry.
      * @method select_author
      * @memberof MYSQL#
-     * @param {string} param - The required properties to select a user.
-     * @param {HandleCallback} callback - The callback that handles the response.
+     * @param {!string} param - The required properties to select a user.
+     * @param {?HandleCallback} callback - The callback that handles the response.
      * @example
      * // gets all authors.
      * mysql.select_author('*');

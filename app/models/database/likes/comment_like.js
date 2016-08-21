@@ -1,4 +1,12 @@
 module.exports = {
+    /** 
+     * Add one like to a specific comment.
+     * @method comment_like
+     * @memberof MYSQL#
+     * @param {!string} comment_id - The id of the comment to place the like.
+     * @param {?HandleCallback} callback - The callback that handles the response.
+     *
+     */
     comment_like: function(comment_id, callback) {
         if (typeof(callback) === 'undefined') callback = function() {};
 

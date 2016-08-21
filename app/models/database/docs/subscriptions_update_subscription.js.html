@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: authors/delete_author.js</title>
+    <title>JSDoc: Source: subscriptions/update_subscription.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: authors/delete_author.js</h1>
+    <h1 class="page-title">Source: subscriptions/update_subscription.js</h1>
 
     
 
@@ -28,40 +28,36 @@
         <article>
             <pre class="prettyprint source linenums"><code>module.exports = {
     /** 
-     * Delete an author entry.
-     * @method delete_author
+     * Update a subscription.
+     * @method update_subscription
      * @memberof MYSQL#
-     * @param {!string} author_email - The email of the specific author we want to delete.
+     * @param {!Object} sub_details - The required details.
+     * @param {number} sub_details.active - 0 or 1.
+     * @param {string} sub_details.email - The subscription email.
      * @param {?HandleCallback} callback - The callback that handles the response.
      *
      */
-    delete_author: function(author_email, callback) {
+    update_subscription: function(sub_details, callback) {
         if (typeof(callback) === 'undefined') callback = function() {};
-
-        if (author_email != null || author_email != undefined) {
-            this.pool.getConnection(function(err, connection) {
-                if (err) {
-                    return callback(err);
-                }
-                connection.query(
-                    'DELETE FROM authors WHERE author_email = ?', [author_email],
-                    function(err, result) {
-                        connection.release();
-                        if (err) {
-                            callback(err);
-                        } else {
-                            callback(null, result);
-                        }
+        this.pool.getConnection(function(err, connection) {
+            if (err) {
+                return callback(err);
+            }
+            connection.query(
+                'UPDATE email_subscriptions SET subscription_date = NOW(), subscription_active = ?  WHERE subscription_email = ?;', [sub_details.active, sub_details.email],
+                function(err, result) {
+                    connection.release();
+                    if (err) {
+                        callback(err);
+                    } else {
+                        callback(null, result);
                     }
-                );
-            });
-        } else {
-           callback(new Error('No parameter provided to delete_author call.'));
-        }
+                }
+            );
+        });
+
     }
 }
-
-
 </code></pre>
         </article>
     </section>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: authors/insert_author.js</title>
+    <title>JSDoc: Source: posts/delete_post.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: authors/insert_author.js</h1>
+    <h1 class="page-title">Source: posts/delete_post.js</h1>
 
     
 
@@ -27,34 +27,27 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>module.exports = {
-     /** 
-     * Insert an author entry.
-     * @method insert_author
+    /** 
+     * Delete a post.
+     * @method delete_post
      * @memberof MYSQL#
-     * @param {!Object} author_details - The required properties to register an new author.
-     * @param {string} author_details.name - The author's name.
-     * @param {string} author_details.avatar - The URL of an image to use as profile avatar.
-     * @param {string} author_details.description - A small description about the author.
-     * @param {string} author_details.email - The author's email.
-     * @param {('writer'|'admin')} author_details.role [writer] - The role of the new author.
+     * @param {!string} post_id - The id of the post we want to delete.
      * @param {?HandleCallback} callback - The callback that handles the response.
      *
      */
-    insert_author: function(author_details, callback) {
+    delete_post: function(post_id, callback) {
+
         if (typeof(callback) === 'undefined') callback = function() {};
 
-        if (!('role' in author_details)) author_details.role = 'writer';
-
-        if ('name' in author_details &amp;&amp; 'avatar' in author_details &amp;&amp; 'description' in author_details &amp;&amp; 'email' in author_details) {
+        if (post_id != null || post_id != undefined) {
             this.pool.getConnection(function(err, connection) {
                 if (err) {
                     return callback(err);
                 }
-                connection.query(
-                    'INSERT INTO authors (author_avatar, author_description, author_name, author_email, author_role) VALUES(?, ?, ?, ?, ?);', 
-                    [author_details.avatar, author_details.description, author_details.name, author_details.email, author_details.role],
+                conenction.query(
+                    'DELETE FROM posts WHERE post_ID = ?', [post_id],
                     function(err, result) {
-                        connection.release();
+                         connection.release();
                         if (err) {
                             callback(err);
                         } else {
@@ -64,10 +57,11 @@
                 );
             });
         } else {
-            callback(new Error('You need to provide all the parameters to insert_author call.'));
+            callback(new Error('No parameter provided to delete_post call.'));
         }
     }
-}</code></pre>
+}
+</code></pre>
         </article>
     </section>
 

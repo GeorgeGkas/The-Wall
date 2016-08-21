@@ -3,10 +3,10 @@ module.exports = {
      * Select a comment entry.
      * @method select_comment
      * @memberof MYSQL#
-     * @param {Object|string} comment_details - The required properties to select a comment or the query to run.
+     * @param {!(Object|string)} comment_details - The required properties to select a comment or the query to run or query string.
      * @param {string} comment_details.post_id - Select all comments from a specific post.
      * @param {('pending'|'approved')} comment_details.state - Select all comments byt their state.
-     * @param {HandleCallback} callback - The callback that handles the response.
+     * @param {?HandleCallback} callback - The callback that handles the response.
      *
      */
     select_comment: function(select_details, callback) {

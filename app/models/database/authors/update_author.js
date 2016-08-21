@@ -3,13 +3,13 @@ module.exports = {
      * Update an author entry. 
      * @method update_author
      * @memberof MYSQL#
-     * @param {Object} author_details - The object that holds the properties to look for in an entry.
+     * @param {!Object} author_details - The object that holds the properties to look for in an entry.
      * @param {string} author_details.email - The author's email.
      * @param {string} author_details.newAvatar - The new URL of an image to use as profile avatar.
      * @param {string} author_details.newDescription - A small description about the author.
      * @param {string} author_details.newName - The author's name.
      * @param {('writer'|'admin')} author_details.newRole [writer] - The new role of the author.
-     * @param {HandleCallback} callback - The callback that handles the response.
+     * @param {?HandleCallback} callback - The callback that handles the response.
      *
      */
     update_author: function(author_details, callback) {

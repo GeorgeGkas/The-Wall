@@ -3,8 +3,8 @@ module.exports = {
      * Delete a comment entry.
      * @method delete_comment
      * @memberof MYSQL#
-     * @param {string} comment_id - The id of the comment we want to delete.
-     * @param {HandleCallback} callback - The callback that handles the response.
+     * @param {!string} comment_id - The id of the comment we want to delete.
+     * @param {?HandleCallback} callback - The callback that handles the response.
      *
      */
     delete_comment: function(comment_id, callback) {

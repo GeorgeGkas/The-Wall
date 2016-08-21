@@ -3,13 +3,13 @@ module.exports = {
      * Insert an author entry.
      * @method insert_author
      * @memberof MYSQL#
-     * @param {Object} author_details - The required properties to register an new author.
+     * @param {!Object} author_details - The required properties to register an new author.
      * @param {string} author_details.name - The author's name.
      * @param {string} author_details.avatar - The URL of an image to use as profile avatar.
      * @param {string} author_details.description - A small description about the author.
      * @param {string} author_details.email - The author's email.
      * @param {('writer'|'admin')} author_details.role [writer] - The role of the new author.
-     * @param {HandleCallback} callback - The callback that handles the response.
+     * @param {?HandleCallback} callback - The callback that handles the response.
      *
      */
     insert_author: function(author_details, callback) {

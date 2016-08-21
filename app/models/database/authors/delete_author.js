@@ -3,8 +3,8 @@ module.exports = {
      * Delete an author entry.
      * @method delete_author
      * @memberof MYSQL#
-     * @param {string} author_email - The email of the specific author we want to delete.
-     * @param {HandleCallback} callback - The callback that handles the response.
+     * @param {!string} author_email - The email of the specific author we want to delete.
+     * @param {?HandleCallback} callback - The callback that handles the response.
      *
      */
     delete_author: function(author_email, callback) {

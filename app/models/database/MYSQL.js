@@ -85,7 +85,7 @@ module.exports = MYSQL;
 /** 
  * Callback for handling delete_author method.
  * @callback HandleCallback
- * @param {#Error} err - Error instance if error occurs.
+ * @param {?Error} err - Error instance if error occurs.
  * @param {Object} result - The query response.
  *
  */

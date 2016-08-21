@@ -3,11 +3,11 @@ module.exports = {
      * Update a comment entry state.
      * @method update_comment
      * @memberof MYSQL#
-     * @param {Object} comment_details - The required properties to select a comment or the query to run.
+     * @param {!Object} comment_details - The required properties to select a comment or the query to run.
      * @param {string} comment_details.post_id - The post id of the comment.
      * @param {string} comment_details.id - The comment id.
      * @param {('approved'|'pending')} comment_details.state - The state of the comment.
-     * @param {HandleCallback} callback - The callback that handles the response.
+     * @param {?HandleCallback} callback - The callback that handles the response.
      *
      */
     update_comment: function(comment_details, callback) {
