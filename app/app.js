@@ -81,7 +81,10 @@ app.get(ENV_VAR.URL_PREFIX_PATH + '/', function(req, res) {
                 posts = helper.prepare_index_post_data(posts_res, featured_post[0]);
                 LAST_RECEIVED_POST_ID = posts[posts.length - 1].post_ID;
             }
-            mysql.select_author('admin|' + GLOBAL_VAR.ADMIN, function(err, author_res) {
+            mysql.select_author({
+                role: 'admin',
+                email: GLOBAL_VAR.ADMIN
+            }, function(err, author_res) {
                 if (err) throw err;
                 res.render('index', {
                     _POST_LIST: posts,
@@ -109,7 +112,9 @@ app.get(ENV_VAR.URL_PREFIX_PATH + '/post/:postTitle', function(req, res) {
             res.status(404).render('errors/404');
         } else {
             var author_email = post_res[0].author_email
-            mysql.select_author('email|' + author_email, function(err, author_res) {
+            mysql.select_author({
+                email: author_email
+            }, function(err, author_res) {
                 if (err) throw err;
 
                 post_res[0]['post_datetime_tag'] =  post_res[0]['post_date'];
@@ -139,7 +144,7 @@ app.get(ENV_VAR.URL_PREFIX_PATH + '/post/:postTitle', function(req, res) {
 // 2. Update LAST_RECEIVED_POST_ID
 // 3. Return the rendered result or a failure
 app.post('/get_more_posts', function(req, res) {
-    mysql.select_post(
+    mysql.query(
         'SELECT * FROM posts WHERE post_ID < ' + LAST_RECEIVED_POST_ID + ' AND post_status=\'published\' ORDER BY post_date DESC LIMIT 10',
         function(err, query_res) {
             if (err) throw err;

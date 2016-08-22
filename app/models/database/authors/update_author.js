@@ -50,10 +50,3 @@ module.exports = {
         }
     }
 }
-
-/* Callback for handling delete_author method.
- * @name HandleCallback
- * @param {null|Error} err - Error instance if error occurs.
- * @param {Object} result - The query response.
- *
- */

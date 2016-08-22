@@ -5,6 +5,12 @@ module.exports = {
      * @memberof MYSQL#
      * @param {!string} query - Select subscription.
      * @param {?HandleCallback} callback - The callback that handles the response.
+     * @example
+     * // gets all subscriptions.
+     * mysql.select_subscription('*');
+     * @example
+     * // gets subscription by email.
+     * mysql.select_subscription('email|some@email.com');
      *
      */
     select_subscription: function(query, callback) {
@@ -45,25 +51,7 @@ module.exports = {
                         }
                     );
                 });
-            } else {
-                this.pool.getConnection(function(err, connection) {
-                    if (err) {
-                        return callback(err);
-                    }
-                    connection.query(
-                        query,
-                        function(err, result) {
-                            connection.release();
-                            if (err) {
-                                callback(err);
-                            } else {
-                                callback(null, result);
-                            }
-                        }
-                    );
-                });
             }
-
         } else {
             callback(new Error('No parameter provided to select_subscription call.'));
         }

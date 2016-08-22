@@ -11,6 +11,9 @@ module.exports = {
      * @param {?number} update_details.article_content - The article's content.
      * @param {?string} update_details.post_content - Change the content of the post.
      * @param {?HandleCallback} callback - The callback that handles the response.
+     * @example
+     * // add one view to post with id 854.
+     * mysql.select_comment('add-one-view|854');
      *
      */
     update_post: function(update_details, callback) {
@@ -26,22 +29,6 @@ module.exports = {
                 }
                     connection.query(
                         'UPDATE posts SET `number_of_views` = `number_of_views` + 1 WHERE post_ID = ?', [update_details.split('|')[1]],
-                        function(err, result) {
-                            connection.release();
-                            if (err) {
-                                callback(err);
-                            } else {
-                                callback(null, result);
-                            }
-                        });
-                });
-            } else {
-                this.pool.getConnection(function(err, connection) {
-                    if (err) {
-                    return callback(err);
-                }
-                    connection.query(
-                        update_details,
                         function(err, result) {
                             connection.release();
                             if (err) {

@@ -1,14 +1,14 @@
 module.exports = {
     /** 
-     * Insert a post.
+     * Insert a new post entry.
      * @method insert_post
      * @memberof MYSQL#
-     * @param {!Object} post_details - The properties required to insert a new post.
+     * @param {!Object} post_details - The required properties to insert a new post.
      * @param {('draft'|'published'|'deleted')} [post_details.status=draft] - The public state of the generated post.
      * @param {number} [post_details.has_article=0] - Post comes with article?
      * @param {string} [post_details.article_content=(empty)] - Article's content of the post.
      * @param {string} post_details.author - The author's email (should be registered).
-     * @param {string} post_details.post_content - Post content/
+     * @param {string} post_details.post_content - Post content.
      * @param {('img'|'quote'|'video')} post_details.type - The type of the new post.
      * @param {string} post_details.title - The title of the post. (Used as alt in images)
      * @param {?HandleCallback} callback - The callback that handles the response.

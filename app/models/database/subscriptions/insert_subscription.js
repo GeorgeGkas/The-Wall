@@ -1,6 +1,6 @@
 module.exports = {
     /** 
-     * Insert a subscription.
+     * Insert a new subscription entry.
      * @method insert_subscription
      * @memberof MYSQL#
      * @param {!string} sub_email - The email of the subscription.

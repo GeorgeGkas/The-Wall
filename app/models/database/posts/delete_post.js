@@ -1,6 +1,6 @@
 module.exports = {
     /** 
-     * Delete a post.
+     * Delete a post entry.
      * @method delete_post
      * @memberof MYSQL#
      * @param {!string} post_id - The id of the post we want to delete.

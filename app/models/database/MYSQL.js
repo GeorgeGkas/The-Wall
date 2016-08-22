@@ -1,4 +1,4 @@
-/**
+/*
  * MYSQL Module.
  * Here we required all the modules we need to run our blog.
  */
@@ -29,6 +29,8 @@ var delete_comment = require('./comments/delete_comment');
 var post_like = require('./likes/post_like');
 var comment_like = require('./likes/comment_like');
 
+var query = require('./MYSQL.query');
+
 
 /**
  * Class to handle MYSQL basic procedures.
@@ -38,7 +40,7 @@ class MYSQL {
     /**
      * Create a new pool connection with the database.
      * @constructs MYSQL
-     * @param {Object} connection_details - The details to create a new pool connection.
+     * @param {Object} connection_details
      * @param {string} connection_details.host - The host name of the database to connect with.
      * @param {string} connection_details.user - The username of user who wants to connect.
      * @param {string} connection_details.password - The user's password.
@@ -54,6 +56,7 @@ class MYSQL {
         });
     }
 }
+
 
 // Assign the methods to MYSQL class
 Object.assign(MYSQL.prototype,
@@ -77,7 +80,9 @@ Object.assign(MYSQL.prototype,
     delete_comment,
 
     post_like,
-    comment_like
+    comment_like,
+
+    query
 );
 
 module.exports = MYSQL;

@@ -53,3 +53,5 @@ Run the project with:
 `export NODE_ENV=(mode) node app.js`
 
 where ***mode*** either *production* or *development*.
+
+Also check `etc/README.md` folder for more details.

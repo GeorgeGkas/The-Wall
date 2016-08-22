@@ -3,7 +3,7 @@ module.exports = {
      * Insert a new comment entry.
      * @method insert_comment
      * @memberof MYSQL#
-     * @param {!Object} comment_details - The required properties to register an new comment.
+     * @param {!Object} comment_details - The required properties to register a new comment.
      * @param {string} comment_details.post_id - The id of the post to place the comment.
      * @param {string} comment_details.author_name - The name of the user who add the comment.
      * @param {string} comment_details.content - The body of the comment.

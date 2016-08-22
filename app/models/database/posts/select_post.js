@@ -10,6 +10,17 @@ module.exports = {
      * @param {?string} select_details.title - The title of the post.
      * @param {?number} select_details.limit - get a limit number of posts.
      * @param {?HandleCallback} callback - The callback that handles the response.
+     * @example
+     * // gets featured post.
+     * mysql.select_comment('featured');
+     * @example
+     * // gets post with specific properties.
+     * mysql.select_comment({
+     *      type: 'img/quote/video',
+     *      status: 'draft/published/deleted',
+     *      author: 'author@email.com',
+     *      title: 'Post title'
+     * });
      *
      */
     select_post: function(select_details, callback) {
@@ -35,24 +46,7 @@ module.exports = {
 
                         });
                 });
-            } else {
-                this.pool.getConnection(function(err, connection) {
-                    if (err) {
-                        return callback(err);
-                    }
-                    connection.query(
-                        select_details,
-                        function(err, result) {
-                            connection.release();
-                            if (err) {
-                                callback(err);
-                            } else {
-                                callback(null, result);
-                            }
-
-                        });
-                });
-            }
+            } 
         } else if (typeof select_details !== 'object') {
             callback(new Error('Non Object. Wrong parameter provided to select_post call.'));
         } else {
