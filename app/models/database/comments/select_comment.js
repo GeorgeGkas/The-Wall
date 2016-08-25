@@ -16,11 +16,11 @@ module.exports = {
      *
      */
     select_comment: function(select_details, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
-        if (typeof select_details == undefined || select_details == null || select_details.length <= 0) {
+        if (typeof select_details == 'undefined' || select_details == null || select_details.length <= 0) {
             callback(new Error('No parameter provided to select_comment call.'));
-        } else if (typeof select_details !== 'object') {
+        } else if (typeof select_details != 'object') {
             callback(new Error('Non Object. Wrong parameter provided to select_comment call.'));
         } else {
             var params = ['post_id', 'state'];

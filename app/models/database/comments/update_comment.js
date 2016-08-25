@@ -11,9 +11,9 @@ module.exports = {
      *
      */
     update_comment: function(comment_details, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
-        if (comment_details == undefined || !('state' in comment_details)) {
+        if (typeof comment_details == 'undefined' || !('state' in comment_details)) {
             callback(new Error('Empty parameter provided. Can not change anything.'));
         } else if (!('id' in comment_details)) {
             callback(new Error("Please provide the comments's id which state will be change."));

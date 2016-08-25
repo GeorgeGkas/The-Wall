@@ -17,11 +17,11 @@ module.exports = {
      *
      */
     update_post: function(update_details, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
-        if (typeof update_details == undefined || update_details == null || update_details.length <= 0) {
+        if (typeof update_details == 'undefined' || update_details == null || update_details.length <= 0) {
             callback(new Error('No parameter provided to update_post call.'));
-        } else if (typeof update_details === 'string') {
+        } else if (typeof update_details == 'string') {
             if (update_details.split('|')[0] == 'add-one-view') {
                 this.pool.getConnection(function(err, connection) {
                     if (err) {
@@ -39,7 +39,7 @@ module.exports = {
                         });
                 });
             }
-        } else if (typeof update_details !== 'object') {
+        } else if (typeof update_details != 'object') {
             callback(new Error('Non Object. Wrong parameter provided to update_post call.'));
         } else {
             if (!('id' in update_details)) {

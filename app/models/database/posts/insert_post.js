@@ -15,7 +15,7 @@ module.exports = {
      *
      */
     insert_post: function(post_details, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
         if (!('status' in post_details)) post_details.status = 'draft';
         if (!('has_article' in post_details)) post_details.has_article = 0;

@@ -8,9 +8,9 @@ module.exports = {
      *
      */
     delete_author: function(author_email, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
-        if (author_email != null || author_email != undefined) {
+        if (author_email != null || typeof author_email != 'undefined') {
             this.pool.getConnection(function(err, connection) {
                 if (err) {
                     return callback(err);

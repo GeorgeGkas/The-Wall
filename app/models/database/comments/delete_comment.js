@@ -8,9 +8,9 @@ module.exports = {
      *
      */
     delete_comment: function(comment_id, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
-        if (comment_id != null || comment_id != undefined) {
+        if (comment_id != null || typeof comment_id != 'undefined') {
             this.pool.getConnection(function(err, connection) {
                 if (err) {
                     return callback(err);

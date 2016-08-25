@@ -8,7 +8,7 @@ module.exports = {
      *
      */
     insert_subscription: function(sub_email, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
         if (sub_email.trim() != '') {
             this.pool.getConnection(function(err, connection) {

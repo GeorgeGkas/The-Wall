@@ -13,7 +13,7 @@ module.exports = {
      *
      */
     insert_author: function(author_details, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
         if (!('role' in author_details)) author_details.role = 'writer';
 

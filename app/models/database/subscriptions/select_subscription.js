@@ -14,7 +14,7 @@ module.exports = {
      *
      */
     select_subscription: function(query, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
         if (query == '*') {
             this.pool.getConnection(function(err, connection) {
@@ -33,7 +33,7 @@ module.exports = {
                     }
                 );
             });
-        } else if (query != undefined) {
+        } else if (typeof query != 'undefined') {
             if (query.split('|')[0] == 'email') {
                 this.pool.getConnection(function(err, connection) {
                     if (err) {

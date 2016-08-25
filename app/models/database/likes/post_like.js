@@ -8,9 +8,9 @@ module.exports = {
      *
      */
     post_like: function(post_id, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
-        if (post_id != null || post_id != undefined) {
+        if (post_id != null || typeof post_id != 'undefined') {
             this.pool.getConnection(function(err, connection) {
                 if (err) {
                     return callback(err);

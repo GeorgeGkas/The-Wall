@@ -24,11 +24,11 @@ module.exports = {
      *
      */
     select_post: function(select_details, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
-        if (typeof select_details == undefined || select_details == null || select_details.length <= 0) {
+        if (typeof select_details == 'undefined' || select_details == null || select_details.length <= 0) {
             callback(new Error('No parameter provided to select_post call.'));
-        } else if (typeof select_details === 'string') {
+        } else if (typeof select_details == 'string') {
             if (select_details == 'featured') {
                 this.pool.getConnection(function(err, connection) {
                     if (err) {
@@ -47,7 +47,7 @@ module.exports = {
                         });
                 });
             } 
-        } else if (typeof select_details !== 'object') {
+        } else if (typeof select_details != 'object') {
             callback(new Error('Non Object. Wrong parameter provided to select_post call.'));
         } else {
             var params = ['type', 'status', 'author', 'title'];

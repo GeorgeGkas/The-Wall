@@ -12,7 +12,7 @@ module.exports = {
      *
      */
     insert_comment: function(comment_details, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
         if (comment_details.post_id.trim() != '' && comment_details.author_name.trim() != '' && comment_details.content.trim() != '' && comment_details.author_email.trim() != '') {
             this.pool.getConnection(function(err, connection) {

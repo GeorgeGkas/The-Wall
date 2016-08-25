@@ -8,7 +8,7 @@ module.exports = {
      *
      */
     query: function(query, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
         this.pool.getConnection(function(err, connection) {
             if (err) {

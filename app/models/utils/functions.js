@@ -2,7 +2,7 @@ module.exports = {
     prepare_index_post_data: function(res, featured) {
         var data = [];
 
-        if (featured !== undefined) {
+        if (typeof featured != 'undefined') {
             featured.post_datetime_tag = featured.post_date;
             featured.post_date = String(featured.post_date).substr(4, 11).split(' ').swap(0, 1).join(' ')
             data.push(featured);

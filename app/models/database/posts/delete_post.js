@@ -8,10 +8,9 @@ module.exports = {
      *
      */
     delete_post: function(post_id, callback) {
+        if (!(callback instanceof Function)) callback = function() {};
 
-        if (typeof(callback) === 'undefined') callback = function() {};
-
-        if (post_id != null || post_id != undefined) {
+        if (post_id != null || typeof post_id != 'undefined') {
             this.pool.getConnection(function(err, connection) {
                 if (err) {
                     return callback(err);

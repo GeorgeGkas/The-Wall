@@ -2,9 +2,7 @@
 node_modules
 
 #Exclude drafts
-app/index.html
-app/sample.html
-app/single-post.html
+# nothing to exclude right now
 
 #Other files
 app/npm-debug.json

@@ -17,7 +17,7 @@ module.exports = {
      *
      */
     select_author: function(select_details, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
         if (select_details == '*') {
             this.pool.getConnection(function(err, connection) {
@@ -36,7 +36,7 @@ module.exports = {
                     }
                 );
             });
-        } else if (typeof select_details === 'object') {
+        } else if (typeof select_details == 'object') {
             var params = ['email', 'role'];
             var provided = [];
             var db_params = ['author_email', 'author_role']

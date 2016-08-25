@@ -13,9 +13,9 @@ module.exports = {
      *
      */
     update_author: function(author_details, callback) {
-        if (typeof(callback) === 'undefined') callback = function() {};
+        if (!(callback instanceof Function)) callback = function() {};
 
-        if (author_details == undefined || !('newName' in author_details) && !('newDescription' in author_details) && !('newAvatar' in author_details) && !('newRole' in author_details)) {
+        if (typeof author_details == 'undefined' || !('newName' in author_details) && !('newDescription' in author_details) && !('newAvatar' in author_details) && !('newRole' in author_details)) {
             callback(new Error('Empty parameter provided. Can not change anything.'));
         } else if (!('email' in author_details)) {
             callback(new Error("Please provide the author's email whose informations will be change."));
