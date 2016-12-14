@@ -42,7 +42,8 @@ For `global.js` file:
 
 ```javascript
 module.exports = {
-    ADMIN: 'admin@email.com'
+    ADMIN: 'admin@email.com',
+    PORT: /* some port eg. 8080 */
 }
 ```
 
