@@ -18,7 +18,12 @@ block HEADER_P
 block MAIN_CONTENT
     section#post-content
         //- First load the admin's profile card
-        article(class='col-sm-4', id='webmaster-banner')
+
+        - var no_posts_published = ''
+        if Object.keys(_POST_LIST).length == 0
+            - no_posts_published = 'no-posts-published'
+
+        article(class='col-sm-4 '+no_posts_published, id='webmaster-banner')
             div(itemscope, itemtype="http://schema.org/Person", id="webmaster-profile")
                 div(id="webmaster-avatar", style="background-image: url(" + _ADMIN_AVATAR + ")", itemprop="image")
                 h2#webmaster-name GeorgeGkas
