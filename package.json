@@ -9,6 +9,7 @@
   "author": "GeorgeGkas",
   "license": "ISC",
   "devDependencies": {
+    "bootstrap-sass": "^3.3.7",
     "es6-promise": "^4.0.5",
     "express": "^4.14.0",
     "gulp": "^3.9.1",

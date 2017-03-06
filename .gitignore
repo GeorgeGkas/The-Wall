@@ -9,3 +9,7 @@ app/npm-debug.json
 
 #Config directory
 app/config
+
+# Files generated automatically with scss build
+app/public/css
+app/public/fonts
