@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     $('html').niceScroll();
     $('#no-more-posts').hide();
 
@@ -26,11 +25,9 @@ $(document).ready(function() {
             error: function(err) {
                 console.log(err.responseJSON.error);
             }
-
         });
     });
 });
-
 
 $(window).on('load', function() {
     $('#post-content').masonry({
@@ -38,8 +35,6 @@ $(window).on('load', function() {
         transitionDuration: '0.2s'
     });
 });
-
-
 
 $(window).resize(function() {
     if (jQuery(window).innerWidth() < 768) {

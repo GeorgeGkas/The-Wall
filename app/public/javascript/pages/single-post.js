@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     $('html').niceScroll();
     $('#be-nice-alert').hide();
     $('#fav-added').hide();
@@ -10,7 +9,6 @@ $(document).ready(function() {
 
     $('#comment-user-body').click(function(event) {
         event.stopPropagation();
-
         $('#comment-info').text('Remember to be nice!').fadeIn();
     });
 
@@ -24,7 +22,6 @@ $(document).ready(function() {
         var cs = $(this).val().length;
         $('#comment-info').text(cs + ' / 25 characters.').fadeIn();
     });
-
 
     $('#comment-user-name').keyup(updateCount);
     $('#comment-user-name').keydown(updateCount);
@@ -43,9 +40,7 @@ $(document).ready(function() {
                     $('#post-favorite-button-after, #fav-added').fadeIn();
                 });
             }
-
         });
-
     });
 
     $('.comment-favorite-button').click(function() {
@@ -82,7 +77,6 @@ $(document).ready(function() {
                     $('#got-email-subscription').fadeIn();
                 });
             }
-
         });
     });
 
@@ -108,10 +102,7 @@ $(document).ready(function() {
                 $('#comment-info').text(err.responseJSON.error).fadeIn();
             }
         });
-
     });
-
-
 });
 
 function updateCount() {
