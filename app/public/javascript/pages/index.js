@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    $('html').niceScroll();
     $('#no-more-posts').hide();
 
     $('.post-title').each(function() {

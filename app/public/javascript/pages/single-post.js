@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    $('html').niceScroll();
     $('#be-nice-alert').hide();
     $('#fav-added').hide();
     $('#post-favorite-button-after').hide();
