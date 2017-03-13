@@ -18,6 +18,13 @@ html
         each font in fontList
             link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=" + font)
 
+        //- Load CSS
+        -
+            cssList = ['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css']
+
+        each css in cssList
+            link(rel="stylesheet" href=css)
+
         //- Load stylesheets
         block LOAD_CSS
 
@@ -36,6 +43,6 @@ html
 
 
             footer#page-footer
-                small Copyright  &copy;  2017 George G. Gkasdrogkas
+                small Copyright  &copy; 2017 George G. Gkasdrogkas
 
         block LOAD_JS

@@ -1,4 +1,3 @@
-@import "vendors/_bootstrap.scss";
 @import "vendors_extensions/_bootstrap.scss";
 
 @import "base/_typography.scss";
@@ -6,3 +5,6 @@
 
 @import "layout/_header.scss";
 @import "layout/_footer.scss";
+
+@import "pages/_index.scss";
+@import "pages/_single-post.scss";
