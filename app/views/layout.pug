@@ -8,20 +8,10 @@ html
         meta(charset='UTF-8')
         block META
 
-        //- Load Fonts
-        -
-            fontList = ['Ubuntu:300,400,700', 
-                        'Amatica+SC', 
-                        'Dancing+Script', 
-                        'Open+Sans+Condensed:300,700&subset=latin,greek']
-
-        each font in fontList
-            link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=" + font)
-
-        //- Load CSS
+        //- Load main CSS
         link(rel="stylesheet" href='../../css/main.css')
 
-        //- Load stylesheets
+        //- Load additional stylesheets
         block LOAD_CSS
 
     body

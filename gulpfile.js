@@ -2,7 +2,7 @@
 var bootstrapSass = { in : './node_modules/bootstrap-sass/' };
 
 // Bootstrap fonts source
-var fonts = { in : [bootstrapSass.in + 'assets/fonts/**/*'],
+var fonts = { in : [bootstrapSass.in + 'assets/fonts/**/*', './app/fonts-typo/*'],
   out: './app/public/fonts/'
 };
 

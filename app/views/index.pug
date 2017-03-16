@@ -90,7 +90,7 @@ block MAIN_CONTENT
                             else
                                 +video-card(post)
 
-    p#no-more-posts Blog first launched at Aug 2016
+    p#no-more-posts Blog launched at Mar 2017
     #load-more
         a(href="javascript:void(0);") 
             span(class="glyphicon glyphicon-chevron-down")
@@ -98,7 +98,7 @@ block MAIN_CONTENT
 
 block LOAD_JS
     -
-        jsList = ['https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js',
+        jsList = ['https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js',
                   'https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.1/masonry.pkgd.min.js',
                   '../../javascript/pages/index.min.js']
     each js in jsList
