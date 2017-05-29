@@ -1,5 +1,5 @@
 # The Wall
-###My personal Bloggin platform.
+### My personal Bloggin platform.
 
 This is my personal blogging platform created **completely** from scratch. This happened, both because I didn't like any of the current available platforms on the market and because I wanted to create a unique blog to serve me in the upcoming years. 
 
