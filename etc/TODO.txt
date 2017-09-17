@@ -1,3 +1,9 @@
-- USERS
+- USERS database functionality
     Add subscription delete functionality
     Add email send functionality
+
+- Change js syntact to es6
+- Add gulp task to compile javascript files
+- Replace vendors/_bootstrap.scss with bootstrap npm package
+- Document scss files.
+- Replace error-first callbacks with promises

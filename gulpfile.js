@@ -19,7 +19,7 @@ var scss = { in : './app/scss/**/*.scss',
 /***********************************************************************************/
 
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var sass = require('sass');
 
 require('es6-promise').polyfill();
 var cssnano = require('gulp-cssnano');

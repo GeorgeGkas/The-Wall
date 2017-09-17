@@ -4,7 +4,8 @@
   "description": "My blog site",
   "main": "app/app.js",
   "scripts": {
-    "test": "jasmine-node tests"
+    "test": "jasmine-node tests",
+    "gulp": "./node_modules/.bin/gulp"
   },
   "author": "GeorgeGkas",
   "license": "ISC",
