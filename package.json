@@ -4,6 +4,8 @@
   "description": "My blog site",
   "main": "app/app.js",
   "scripts": {
+    "babel": "babel --no-comments  --compact --minified app/ -d dist/",
+    "serve": "node dist/app.js",
     "test": "jasmine-node tests",
     "gulp": "./node_modules/.bin/gulp",
     "eslint": "eslint --ext js gulpfile.babel.js"
@@ -11,6 +13,7 @@
   "author": "GeorgeGkas",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.0",
     "babel-preset-env": "^1.6.0",

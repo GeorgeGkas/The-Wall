@@ -1,15 +1,13 @@
-# Dependency directories
+# Dependencies
 node_modules
 
-#Exclude drafts
-# nothing to exclude right now
-
-#Other files
+# Other files
 app/npm-debug.json
 
-#Config directory
+# Config directory
 app/config
 
-# Files generated automatically with scss build
+# Files generated automatically with gulp
 app/public/css
 app/public/fonts
+dist/

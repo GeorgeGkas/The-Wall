@@ -1,5 +1,12 @@
 /********************** APP DEPENDENCES AND CONFIGURES ************************/
 // Include required modules
+/*import compression from 'compression';
+import express from 'express';
+import bodyParser from 'body-parser';
+import util from 'util';
+import MYSQL_db from './models/database/MYSQL';
+import './models/utils/extend_prototype';*/
+
 var compression = require('compression');
 var express = require('express');
 var app = express();
@@ -30,7 +37,7 @@ switch (process.env.NODE_ENV) {
 // Configure express static files and template language to use
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
-app.use(express.static('public'));
+app.use('/', express.static(__dirname + '/public'));
 
 // Configure the middlewares
 app.use(compression());

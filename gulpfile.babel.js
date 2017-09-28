@@ -19,7 +19,7 @@ const bootstrapSass = {
  */
 const fonts = {
   in: [`${bootstrapSass.in}assets/fonts/**/*`, './app/fonts-typo/*'],
-  out: './app/public/fonts/',
+  out: './dist/public/fonts/',
 };
 
 /**
@@ -27,7 +27,7 @@ const fonts = {
  */
 const scss = {
   in: './app/scss/**/*.scss',
-  out: './app/public/css/',
+  out: './dist/public/css/',
   watch: './app/scss/**/*.scss',
   sassOpts: {
     outputStyle: 'nested',
@@ -36,6 +36,16 @@ const scss = {
     includePaths: [`${bootstrapSass.in}assets/stylesheets`],
   },
 };
+
+const pug = {
+  in: './app/views/**/*.pug',
+  out: './dist/views/',
+}
+
+const img = {
+  in: './app/public/img/**/*',
+  out: './dist/public/img/',
+}
 
 /**
  * Copy bootstrap required fonts to public folder.
@@ -75,3 +85,17 @@ gulp.task('scss', ['fonts'], () => (
 gulp.task('scss:watch', ['scss'], () => {
   gulp.watch(scss.watch, ['scss']);
 });
+
+/**
+ * Copy views to dist
+ */
+gulp.task('pug', () => (
+  gulp.src(pug.in).pipe(gulp.dest(pug.out))
+));
+
+/**
+ * Copy images to dist
+ */
+gulp.task('img', () => (
+  gulp.src(img.in).pipe(gulp.dest(img.out))
+));
