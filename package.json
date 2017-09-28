@@ -1,14 +1,15 @@
 {
   "name": "thewall",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "My blog site",
-  "main": "app/app.js",
+  "main": "dist/app.js",
   "scripts": {
-    "babel": "babel --no-comments  --compact --minified app/ -d dist/",
+    "babel": "babel app/ -d dist/ --ignore app/public/",
+    "build": "npm run babel && npm run gulp",
     "serve": "node dist/app.js",
     "test": "jasmine-node tests",
     "gulp": "./node_modules/.bin/gulp",
-    "eslint": "eslint --ext js gulpfile.babel.js"
+    "eslint": "eslint --ext js gulpfile.babel.js app/ "
   },
   "author": "GeorgeGkas",
   "license": "ISC",

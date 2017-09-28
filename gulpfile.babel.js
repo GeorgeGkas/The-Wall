@@ -33,7 +33,6 @@ const JQuery = {
   out: './dist/public/javascript/vendors/'
 };
 
-
 /**
  * App paths.
  */
@@ -112,7 +111,6 @@ gulp.task('img', () => (
   gulp.src(img.in).pipe(gulp.dest(img.out))
 ));
 
-
 /**
  * Copy javascript vendors to dist
  */
@@ -134,3 +132,8 @@ gulp.task('jsclosure', () => (
     )))
     .pipe(gulp.dest('./dist/public/javascript/pages/'))
 ));
+
+/**
+ * Default
+ */
+ gulp.task('default', ['scss', 'pug', 'img', 'jsvendors', 'jsclosure']);
