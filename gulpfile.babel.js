@@ -6,6 +6,9 @@ import sass from 'gulp-sass';
 import cssnano from 'gulp-cssnano';
 import csso from 'gulp-csso';
 import autoprefixer from 'gulp-autoprefixer';
+import closureCompiler from 'google-closure-compiler-js';
+import path from 'path';
+import flatmap from 'gulp-flatmap';
 
 /**
  * Bootstrap sass source.
@@ -21,6 +24,15 @@ const fonts = {
   in: [`${bootstrapSass.in}assets/fonts/**/*`, './app/fonts-typo/*'],
   out: './dist/public/fonts/',
 };
+
+/**
+ * JQuery 3.2.0
+ */
+const JQuery = {
+  in: './node_modules/jquery/dist/jquery.min.js',
+  out: './dist/public/javascript/vendors/'
+};
+
 
 /**
  * App paths.
@@ -98,4 +110,27 @@ gulp.task('pug', () => (
  */
 gulp.task('img', () => (
   gulp.src(img.in).pipe(gulp.dest(img.out))
+));
+
+
+/**
+ * Copy javascript vendors to dist
+ */
+gulp.task('jsvendors', () => {
+  gulp.src(JQuery.in).pipe(gulp.dest(JQuery.out));
+  gulp.src('./app/public/javascript/vendors/**/*').pipe(gulp.dest('./dist/public/javascript/vendors'));
+});
+
+/**
+ * Compile js front end files with closure compiler
+ */
+gulp.task('jsclosure', () => (
+  gulp.src('./app/public/javascript/pages/*.js', {base: './'})
+    .pipe(flatmap((stream, file) => (
+      stream.pipe(closureCompiler.gulp()({
+        compilation_level: 'SIMPLE',
+        js_output_file: path.basename(file.path).replace(/js$/, 'min.js')
+      }))
+    )))
+    .pipe(gulp.dest('./dist/public/javascript/pages/'))
 ));
