@@ -25,19 +25,42 @@ Documentation support was provided for the database models located under (`app/m
 
 **Caution: This project was not designed for publication.**
 
- However, you are able to run the project locally from npm. If you find any issues you can make a **PR** *(pull request)* or write a new issue. The Database schema is under `etc/mockups/db_schema/` path. To run the app you have to create a `.env` file under `app/config` folder. The structure of the file is given bellow:
+ However, you are able to run the project locally from npm. If you find any issues you can make a **PR** *(pull request)* or write a new issue. The Database schema is under `etc/mockups/db_schema/` path. To run the app you have to create a `config.js` file under `app/config` folder. The structure of the file is given bellow:
 
- ```
-BLOG_ADMIN=
-APP_PORT=
-DB_HOST=
-DB_USER=
-DB_PASSWORD=
-DB_NAME=
-URL_PREFIX_PATH=
+ ```js
+export default {
+  development: {
+    app: {
+      admin_email: '',
+    },
+    db: {
+      host: '',
+      user: '',
+      password: '',
+      database: '',
+    },
+    server: {
+      port: '',
+    }
+  },
+  testing: {
+    app: {
+      admin_email: '',
+    },
+    db: {
+      host: '',
+      user: '',
+      password: '',
+      database: '',
+    },
+    server: {
+      port: '',
+    }
+  }
+}
 ```
 
-The `BLOG_ADMIN` variable is used to indicate which author profile to use as the main admin of the blog. The email needs to be registered in the database. Feel free to update the `app.js` file as you like. 
+The `admin_email` property is used to indicate which author profile to use as the main admin of the blog. The email needs to be registered in the database. Feel free to update the `app.js` file as you like. 
 
 Run the app with:
 

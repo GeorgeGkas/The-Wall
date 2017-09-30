@@ -4,18 +4,13 @@ import compression from 'compression';
 import express from 'express';
 import bodyParser from 'body-parser';
 import util from 'util';
-import dotenv from 'dotenv';
 import MYSQL_db from './models/database/MYSQL';
 import helper from './models/utils/functions';
 import './models/utils/extend_prototype';
+import CONFIG from './config/config';
 
-const result = dotenv.config({
-    path: __dirname + '/config/.env'
-});
-
-if (result.error) {
-  throw result.error
-}
+const ENV = process.env.NODE_ENV || 'development';
+const ENV_VARS = CONFIG[ENV];
 
 var app = express();
 
@@ -34,10 +29,10 @@ var LAST_RECEIVED_POST_ID = 0;
 
 // Database connection
 var mysql = new MYSQL_db({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    host: ENV_VARS.db.host,
+    user: ENV_VARS.db.user,
+    password: ENV_VARS.db.password,
+    database: ENV_VARS.db.database,
 });
 
 // 'Can't set headers after they are sent', fix
@@ -60,7 +55,7 @@ app.use(function(req, res, next) {
 // 3. Update LAST_RECEIVED_POST_ID
 // 4. Request blog admin profile
 // 5. Render the index page
-app.get(process.env.URL_PREFIX_PATH + '/', function(req, res) {
+app.get('/', function(req, res) {
     mysql.select_post('featured', function(err, featured_post) {
         if (err) throw err;
         mysql.select_post({
@@ -75,7 +70,7 @@ app.get(process.env.URL_PREFIX_PATH + '/', function(req, res) {
             }
             mysql.select_author({
                 role: 'admin',
-                email: process.env.BLOG_ADMIN
+                email: ENV_VARS.app.admin_email
             }, function(err, author_res) {
                 if (err) throw err;
                 res.render('index', {
@@ -93,7 +88,7 @@ app.get(process.env.URL_PREFIX_PATH + '/', function(req, res) {
 // 3. Get post comment list
 // 4. Add one view to post
 // 5. Render the post
-app.get(process.env.URL_PREFIX_PATH + '/post/:postTitle', function(req, res) {
+app.get('/post/:postTitle', function(req, res) {
     var post_title = req.params.postTitle.split('-').join(' ')
     mysql.select_post({
         title: post_title
@@ -229,7 +224,7 @@ app.use(function(req, res, next) {
 });
 
 /***********************  START THE APP  **************************************/
-app.listen(process.env.APP_PORT, function() {
+app.listen(ENV_VARS.server.port, function() {
     console.log('The Wall personal blog by George G. Gkasdrogkas.');
-    console.log('Listening on port ' + process.env.APP_PORT + '!');
+    console.log('Listening on port ' + ENV_VARS.server.port + '!');
 });

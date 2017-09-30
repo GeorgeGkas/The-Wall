@@ -4,7 +4,7 @@ mixin quote-card(post)
         blockquote
             p !{post.post_content}
         - var post_href = String(post.post_title).split(' ').join('-');
-        a(href=url_prefix+"/post/" + post_href)
+        a(href="/post/" + post_href)
 
             -   var with_pencil = ''
             if post.post_has_article == 1
