@@ -1,38 +1,23 @@
 /********************** APP DEPENDENCES AND CONFIGURES ************************/
 // Include required modules
-/*import compression from 'compression';
+import compression from 'compression';
 import express from 'express';
 import bodyParser from 'body-parser';
 import util from 'util';
+import dotenv from 'dotenv';
 import MYSQL_db from './models/database/MYSQL';
-import './models/utils/extend_prototype';*/
+import helper from './models/utils/functions';
+import './models/utils/extend_prototype';
 
-var compression = require('compression');
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var MYSQL_db = require('./models/database/MYSQL');
-var helper = require('./models/utils/functions');
-var util = require('util');
-require('./models/utils/extend_prototype');
+const result = dotenv.config({
+    path: __dirname + '/config/.env'
+});
 
-// Include global configure file
-var GLOBAL_VAR = require('./config/global');
-
-// Include environmental specific configure file
-switch (process.env.NODE_ENV) {
-    case 'development':
-        var ENV_VAR = require('./config/dev');
-        app.locals.url_prefix = ENV_VAR.URL_PREFIX_PATH;
-        break;
-    case 'production':
-        var ENV_VAR = require('./config/production');
-        app.locals.url_prefix = ENV_VAR.URL_PREFIX_PATH;
-        break;
-    default:
-        console.error("Unrecognized NODE_ENV: " + process.env.NODE_ENV);
-        process.exit(1);
+if (result.error) {
+  throw result.error
 }
+
+var app = express();
 
 // Configure express static files and template language to use
 app.set('views', __dirname + '/views');
@@ -49,10 +34,10 @@ var LAST_RECEIVED_POST_ID = 0;
 
 // Database connection
 var mysql = new MYSQL_db({
-    host: ENV_VAR.MYSQL.host,
-    user: ENV_VAR.MYSQL.user,
-    password: ENV_VAR.MYSQL.password,
-    database: ENV_VAR.MYSQL.database
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 });
 
 // 'Can't set headers after they are sent', fix
@@ -75,7 +60,7 @@ app.use(function(req, res, next) {
 // 3. Update LAST_RECEIVED_POST_ID
 // 4. Request blog admin profile
 // 5. Render the index page
-app.get(ENV_VAR.URL_PREFIX_PATH + '/', function(req, res) {
+app.get(process.env.URL_PREFIX_PATH + '/', function(req, res) {
     mysql.select_post('featured', function(err, featured_post) {
         if (err) throw err;
         mysql.select_post({
@@ -90,7 +75,7 @@ app.get(ENV_VAR.URL_PREFIX_PATH + '/', function(req, res) {
             }
             mysql.select_author({
                 role: 'admin',
-                email: GLOBAL_VAR.ADMIN
+                email: process.env.BLOG_ADMIN
             }, function(err, author_res) {
                 if (err) throw err;
                 res.render('index', {
@@ -108,7 +93,7 @@ app.get(ENV_VAR.URL_PREFIX_PATH + '/', function(req, res) {
 // 3. Get post comment list
 // 4. Add one view to post
 // 5. Render the post
-app.get(ENV_VAR.URL_PREFIX_PATH + '/post/:postTitle', function(req, res) {
+app.get(process.env.URL_PREFIX_PATH + '/post/:postTitle', function(req, res) {
     var post_title = req.params.postTitle.split('-').join(' ')
     mysql.select_post({
         title: post_title
@@ -244,7 +229,7 @@ app.use(function(req, res, next) {
 });
 
 /***********************  START THE APP  **************************************/
-app.listen(GLOBAL_VAR.PORT, function() {
+app.listen(process.env.APP_PORT, function() {
     console.log('The Wall personal blog by George G. Gkasdrogkas.');
-    console.log('Listening on port ' + GLOBAL_VAR.PORT + '!');
+    console.log('Listening on port ' + process.env.APP_PORT + '!');
 });
