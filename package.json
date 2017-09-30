@@ -17,9 +17,11 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.0",
+    "babel-istanbul": "^0.12.2",
     "babel-preset-env": "^1.6.0",
     "babel-register": "^6.26.0",
     "bootstrap-sass": "^3.3.7",
+    "chai": "^4.1.2",
     "eslint": "^4.7.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
@@ -30,7 +32,7 @@
     "gulp-csso": "^2.0.0",
     "gulp-flatmap": "^1.0.0",
     "gulp-sass": "^2.3.2",
-    "jasmine-node": "^1.14.5"
+    "mocha": "^3.5.3"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
