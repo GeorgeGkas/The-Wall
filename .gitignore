@@ -11,3 +11,6 @@ app/config
 app/public/css
 app/public/fonts
 dist/
+
+# coverage reports
+coverage/

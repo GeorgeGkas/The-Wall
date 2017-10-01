@@ -134,13 +134,6 @@ gulp.task('jsclosure', () => (
 ));
 
 /**
- * Copy enviroment variables
- */
-gulp.task('envcopy', () => (
-  gulp.src('./app/config/.env').pipe(gulp.dest('./dist/config/'))
-));
-
-/**
  * Default
  */
- gulp.task('default', ['scss', 'pug', 'img', 'jsvendors', 'jsclosure', 'envcopy']);
+ gulp.task('default', ['scss', 'pug', 'img', 'jsvendors', 'jsclosure']);

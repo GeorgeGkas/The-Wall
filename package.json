@@ -7,9 +7,10 @@
     "babel": "babel app/ -d dist/ --ignore app/public/",
     "build": "npm run babel && npm run gulp",
     "serve": "node dist/app.js",
-    "test": "jasmine-node tests",
+    "e2e": "mocha --compilers js:babel-register --recursive ./test/e2e/*.spec.js",
+    "cover": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover node_modules/.bin/_mocha -- test/e2e/specs/**/*.spec.js -x ./app/public/javascript/vendors/**",
     "gulp": "./node_modules/.bin/gulp",
-    "eslint": "eslint --ext js gulpfile.babel.js app/ "
+    "eslint": "eslint --ext js gulpfile.babel.js app/ tests/"
   },
   "author": "GeorgeGkas",
   "license": "ISC",

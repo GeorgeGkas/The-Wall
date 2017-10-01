@@ -2,10 +2,13 @@
   "parser": "babel-eslint",
   "extends": ["airbnb-base"],
   "plugins": ["import"],
-  "env":
-  {
+  "env": {
+    "mocha": true,
     "node": true,
     "jquery": true,
     "browser": true
+  },
+  "globals": {
+    "expect": true
   }
 }
