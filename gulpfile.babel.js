@@ -30,7 +30,7 @@ const fonts = {
  */
 const JQuery = {
   in: './node_modules/jquery/dist/jquery.min.js',
-  out: './dist/public/javascript/vendors/'
+  out: './dist/public/javascript/vendors/',
 };
 
 /**
@@ -51,12 +51,12 @@ const scss = {
 const pug = {
   in: './app/views/**/*.pug',
   out: './dist/views/',
-}
+};
 
 const img = {
   in: './app/public/img/**/*',
   out: './dist/public/img/',
-}
+};
 
 /**
  * Copy bootstrap required fonts to public folder.
@@ -123,11 +123,11 @@ gulp.task('jsvendors', () => {
  * Compile js front end files with closure compiler
  */
 gulp.task('jsclosure', () => (
-  gulp.src('./app/public/javascript/pages/*.js', {base: './'})
+  gulp.src('./app/public/javascript/pages/*.js', { base: './' })
     .pipe(flatmap((stream, file) => (
       stream.pipe(closureCompiler.gulp()({
         compilation_level: 'SIMPLE',
-        js_output_file: path.basename(file.path).replace(/js$/, 'min.js')
+        js_output_file: path.basename(file.path).replace(/js$/, 'min.js'),
       }))
     )))
     .pipe(gulp.dest('./dist/public/javascript/pages/'))
@@ -136,4 +136,4 @@ gulp.task('jsclosure', () => (
 /**
  * Default
  */
- gulp.task('default', ['scss', 'pug', 'img', 'jsvendors', 'jsclosure']);
+gulp.task('default', ['scss', 'pug', 'img', 'jsvendors', 'jsclosure']);
