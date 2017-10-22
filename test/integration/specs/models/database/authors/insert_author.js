@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import mysqlConn from '../setup';
 
 describe('insert_author()', function () {
-  it('should return error if either `email`, `name`, `avatar`or `description` properties are false values.', function () {
+  it('should return error if either `email`, `name`, `avatar`, `description` or `role` properties are not provided.', function () {
     expect(function () {
       mysqlConn.insert_author({
         email: '',
