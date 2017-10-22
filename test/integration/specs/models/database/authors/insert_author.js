@@ -97,6 +97,8 @@ describe('insert_author()', function () {
   });
 
   it('should succeed.', function (done) {
+    this.timeout(5000);
+    
     expect(function () {
       mysqlConn.insert_author({
         name: 'george',
@@ -104,6 +106,19 @@ describe('insert_author()', function () {
         avatar: 'https://some-image.com/img.png',
         description: 'web developer',
         role: 'admin',
+      }, function (err, res) {
+        if (err) throw err;
+        expect(res).to.have.property('affectedRows', 1);
+      });
+    }).to.not.throw();
+
+    expect(function () {
+      mysqlConn.insert_author({
+        name: 'nick',
+        email: 'olow@gmail.com',
+        avatar: 'https://some-image.com/img2.png',
+        description: 'web designer',
+        role: 'writer',
       }, function (err, res) {
         if (err) throw err;
         expect(res).to.have.property('affectedRows', 1);
