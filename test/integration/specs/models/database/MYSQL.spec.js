@@ -1,10 +1,6 @@
 import mysqlConn from './setup';
 
 describe('MYSQL#', function () {
-  describe('query()', function () {
-    require('./MYSQL.query.js');
-  });
-
   describe('authors', function () {
     beforeEach(function () {
       mysqlConn.query('TRUNCATE authors;');

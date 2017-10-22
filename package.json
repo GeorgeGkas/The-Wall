@@ -7,8 +7,8 @@
     "babel": "babel app/ -d dist/ --ignore app/public/",
     "build": "npm run babel && npm run gulp",
     "serve": "node dist/app.js",
-    "unit": "mocha --compilers js:babel-register --recursive ./test/unit/**/*.spec.js",
-    "cover": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover  node_modules/.bin/_mocha -- test/unit/specs/**/*.spec.js",
+    "IT": "mocha --compilers js:babel-register --recursive ./test/integration/**/*.spec.js",
+    "cover": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover  node_modules/.bin/_mocha -- test/integration/specs/**/*.spec.js",
     "gulp": "./node_modules/.bin/gulp",
     "eslint": "eslint --ext js gulpfile.babel.js test/"
   },
