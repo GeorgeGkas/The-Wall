@@ -98,7 +98,7 @@ describe('insert_author()', function () {
 
   it('should succeed.', function (done) {
     this.timeout(5000);
-    
+
     expect(function () {
       mysqlConn.insert_author({
         name: 'george',

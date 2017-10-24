@@ -10,26 +10,32 @@ module.exports = {
     delete_author: function(author_email, callback) {
         if (!(callback instanceof Function)) callback = function() {};
 
-        if (author_email != null || typeof author_email != 'undefined') {
-            this.pool.getConnection(function(err, connection) {
-                if (err) {
-                    return callback(err);
-                }
-                connection.query(
-                    'DELETE FROM authors WHERE author_email = ?', [author_email],
-                    function(err, result) {
-                        connection.release();
-                        if (err) {
-                            callback(err);
-                        } else {
-                            callback(null, result);
-                        }
-                    }
-                );
-            });
-        } else {
-           callback(new Error('No parameter provided to delete_author call.'));
+        if (typeof author_email != 'string' || author_email.trim() === '') {
+            return callback(new Error('Parameter provided to delete_author should be string and not empty.'));
         }
+
+        var emailReg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        if (!emailReg.test(author_email.trim())) {
+            return callback(new Error('Email format is not valid.'));
+        }
+       
+        this.pool.getConnection(function(err, connection) {
+            if (err) {
+                return callback(err);
+            }
+            connection.query(
+                'DELETE FROM authors WHERE author_email = ?', [author_email.trim()],
+                function(err, result) {
+                    connection.release();
+                    if (err) {
+                        callback(err);
+                    } else {
+                        callback(null, result);
+                    }
+                }
+            );
+        });
+    
     }
 }
 

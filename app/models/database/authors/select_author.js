@@ -37,15 +37,23 @@ module.exports = {
                 );
             });
         } else if (typeof select_details == 'object') {
+           if (select_details == null) {
+                return callback(null, null);
+            }
+
             var params = ['email', 'role'];
             var provided = [];
             var db_params = ['author_email', 'author_role']
 
             for (var i = 0; i < params.length; i++) {
                 var p = params[i];
-                if (select_details[p] !== undefined) {
+                if (select_details.hasOwnProperty(p)) {
                     provided.push(db_params[i] + '=\'' + select_details[params[i]] + '\'');
                 }
+            }
+
+            if (provided.length == 0) {
+                return callback(null, null);
             }
 
             var query = 'SELECT * FROM authors WHERE ' + provided.join(' AND ') + ' ';
@@ -64,9 +72,6 @@ module.exports = {
                         }
                     });
             });
-
-        } else {
-            callback(new Error('Please provide either string/object parameter to select_author call.'));
         }
     }
 }

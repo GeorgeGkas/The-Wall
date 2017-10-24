@@ -15,38 +15,53 @@ module.exports = {
     update_author: function(author_details, callback) {
         if (!(callback instanceof Function)) callback = function() {};
 
-        if (typeof author_details == 'undefined' || !('newName' in author_details) && !('newDescription' in author_details) && !('newAvatar' in author_details) && !('newRole' in author_details)) {
-            callback(new Error('Empty parameter provided. Can not change anything.'));
-        } else if (!('email' in author_details)) {
-            callback(new Error("Please provide the author's email whose informations will be change."));
-        } else {
-            var params = ['newAvatar', 'newDescription', 'newName', 'newRole'];
-            var provided = [];
-            var db_params = ['author_avatar', 'author_description', 'author_name', 'author_role'];
-
-            for (var i = 0; i < params.length; i++) {
-                var p = params[i];
-                if (author_details[p] !== undefined) {
-                    provided.push(db_params[i] + '=\'' + author_details[params[i]] + '\'');
-                }
-            }
-
-            var query = 'UPDATE authors SET ' + provided.join(' , ') + ' WHERE author_email = \'' + author_details.email + '\'';
-            this.pool.getConnection(function(err, connection) {
-                if (err) {
-                    return callback(err);
-                }
-                connection.query(
-                    query,
-                    function(err, result) {
-                        connection.release();
-                        if (err) {
-                            callback(err);
-                        } else {
-                            callback(null, result);
-                        }
-                    });
-            });
+        if (!author_details.hasOwnProperty('email')) {
+            return callback(new Error("Please provide the author's email whose informations will be change."));
         }
+
+        var emailReg = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        if (!emailReg.test(author_details.email)) {
+            return callback(new Error('Email format is not valid.'));
+        }
+
+        if (!author_details.hasOwnProperty('newName') &&
+            !author_details.hasOwnProperty('newDescription') &&
+            !author_details.hasOwnProperty('newAvatar') &&
+            !author_details.hasOwnProperty('newRole')) {
+            return callback(new Error('Empty parameter provided. Can not change anything.'));
+        }
+
+        if (author_details.hasOwnProperty('newRole') && author_details.newRole != 'admin' && author_details.newRole != 'writer') {
+            return callback(new Error('Author\'s new role must be set to either `admin` or `writer`.'));
+        }
+
+        var params = ['newAvatar', 'newDescription', 'newName', 'newRole'];
+        var provided = [];
+        var db_params = ['author_avatar', 'author_description', 'author_name', 'author_role'];
+
+        for (var i = 0; i < params.length; i++) {
+            var p = params[i];
+            if (author_details[p] !== undefined) {
+                provided.push(db_params[i] + '=\'' + author_details[params[i]] + '\'');
+            }
+        }
+
+        var query = 'UPDATE authors SET ' + provided.join(' , ') + ' WHERE author_email = \'' + author_details.email + '\'';
+        this.pool.getConnection(function(err, connection) {
+            if (err) {
+                return callback(err);
+            }
+            connection.query(
+                query,
+                function(err, result) {
+                    connection.release();
+                    if (err) {
+                        callback(err);
+                    } else {
+                        callback(null, result);
+                    }
+                });
+        });
+        
     }
 }

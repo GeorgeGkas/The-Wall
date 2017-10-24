@@ -42,7 +42,7 @@ describe('insert_comment()', function () {
         post_id: '',
         author_name: 'a',
         content: 'a',
-        author_email: 'a'
+        author_email: 'a',
       }, function (err) {
         if (err) throw err;
       });
@@ -53,7 +53,7 @@ describe('insert_comment()', function () {
         post_id: 'a',
         author_name: '',
         content: 'a',
-        author_email: 'a'
+        author_email: 'a',
       }, function (err) {
         if (err) throw err;
       });
@@ -64,7 +64,7 @@ describe('insert_comment()', function () {
         post_id: 'a',
         author_name: 'a',
         content: '',
-        author_email: 'a'
+        author_email: 'a',
       }, function (err) {
         if (err) throw err;
       });
@@ -75,20 +75,20 @@ describe('insert_comment()', function () {
         post_id: 'a',
         author_name: 'a',
         content: 'a',
-        author_email: ''
+        author_email: '',
       }, function (err) {
         if (err) throw err;
       });
     }).to.throw(Error, 'No empty property is allowed.');
   });
-  
-  it('should return error if `author_name` is not valid email.', function() {
+
+  it('should return error if `author_name` is not valid email.', function () {
     expect(function () {
       mysqlConn.insert_comment({
         post_id: 'a',
         author_name: 'a',
         content: 'a',
-        author_email: 'false.com'
+        author_email: 'false.com',
       }, function (err) {
         if (err) throw err;
       });
@@ -97,13 +97,13 @@ describe('insert_comment()', function () {
 
   it('should return error if `post_id` is not valid post.');
 
-  it('should succeed.', function(done) {    
+  it('should succeed.', function (done) {
     expect(function () {
       mysqlConn.insert_comment({
         post_id: '3',
         author_name: 'george',
         content: 'hello',
-        author_email: 'george@email.com'
+        author_email: 'george@email.com',
       }, function (err, res) {
         if (err) throw err;
         expect(res).to.have.property('affectedRows', 1);
