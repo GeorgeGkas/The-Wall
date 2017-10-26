@@ -1,5 +1,5 @@
 module.exports = {
-    /** 
+    /**
      * Select a comment entry.
      * @method select_comment
      * @memberof MYSQL#
@@ -22,6 +22,8 @@ module.exports = {
             callback(new Error('No parameter provided to select_comment call.'));
         } else if (typeof select_details != 'object') {
             callback(new Error('Non Object. Wrong parameter provided to select_comment call.'));
+        } else if (select_details.state != 'approved' && select_details.state != 'pending') {
+            callback(new Error('Cannot read state value.'));
         } else {
             var params = ['post_id', 'state'];
             var provided = [];

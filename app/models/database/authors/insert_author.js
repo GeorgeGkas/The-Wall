@@ -1,5 +1,5 @@
 module.exports = {
-     /** 
+    /** 
      * Insert a new author entry.
      * @method insert_author
      * @memberof MYSQL#
@@ -15,9 +15,9 @@ module.exports = {
     insert_author: function(author_details, callback) {
         if (!(callback instanceof Function)) callback = function() {};
 
-        if (!author_details.hasOwnProperty('name') || 
-            !author_details.hasOwnProperty('email') || 
-            !author_details.hasOwnProperty('avatar') || 
+        if (!author_details.hasOwnProperty('name') ||
+            !author_details.hasOwnProperty('email') ||
+            !author_details.hasOwnProperty('avatar') ||
             !author_details.hasOwnProperty('description') ||
             !author_details.hasOwnProperty('role')) {
             return callback(new Error('You need to provide all the parameters to insert_author call.'));
@@ -37,7 +37,7 @@ module.exports = {
                 return callback(err);
             }
             connection.query(
-                'INSERT INTO authors (author_avatar, author_description, author_name, author_email, author_role) VALUES(?, ?, ?, ?, ?);', 
+                'INSERT INTO authors (author_avatar, author_description, author_name, author_email, author_role) VALUES(?, ?, ?, ?, ?);',
                 [author_details.avatar, author_details.description, author_details.name, author_details.email, author_details.role],
                 function(err, result) {
                     connection.release();
@@ -49,6 +49,6 @@ module.exports = {
                 }
             );
         });
-        
+
     }
 }
