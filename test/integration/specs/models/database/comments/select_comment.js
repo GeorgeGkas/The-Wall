@@ -50,7 +50,7 @@ describe('select_comment()', function () {
     });
   });
 
-  it('should return error if `post_id` is not valid post.');
+  it('should return error if `post_id` is not valid post. ');
 
   it('should return error if `state` is not valid state.');
 
