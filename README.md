@@ -1,3 +1,7 @@
+***Update 23 April 2019**
+
+*I created this project a long time ago. I checked the repo again today and saw the progress I made since the last commit. Definitely not a good codebase, but I will keep it to remind me my past projects. 😃*
+
 # The Wall
 ### My personal Bloggin platform.
 
