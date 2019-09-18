@@ -1,13 +1,13 @@
-##Folder contents:
+## Folder contents:
 
 - `mockups`: Contains the database schema.
 
 
-##TODO
+## TODO
 
 `TODO.txt` contains basic functionalities that needs to be added in the blog.
 
-##Generating documents
+## Generating documents
 
 The MYSQL module (under `app/models/database`) uses JSDoc syntax to generate documents on the methods used in the module, as well as, to illustrate simple examples. 
 
