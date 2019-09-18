@@ -1,11 +1,5 @@
-**Update 23 April 2019**
-
-*I created this project a long time ago. I checked the repo again today and saw the progress I made since the last commit. Definitely not a good codebase, but I will keep it to remind me my past projects. 😃*
-
 # The Wall
-### My personal Bloggin platform.
-
-This is my personal blogging platform created **completely** from scratch. This happened, both because I didn't like any of the current available platforms on the market and because I wanted to create a unique blog to serve me in the upcoming years. 
+### Personal Bloggin platform.
 
 Some of the technologies I used are listed bellow:
 
@@ -27,9 +21,9 @@ Documentation support was provided for the database models located under (`app/m
 
 ---
 
-**Caution: This project was not designed for publication.**
+**Caution: This project was not designed for use outside my own enviroment.**
 
- However, you are able to run the project locally from npm. If you find any issues you can make a **PR** *(pull request)* or write a new issue. The Database schema is under `etc/mockups/db_schema/` path. To run the app you have to create a `config.js` file under `app/config` folder. The structure of the file is given bellow:
+ However, you are able to run the project locally from npm. The Database schema is under `etc/mockups/db_schema/` path. To run the app you have to create a `config.js` file under `app/config` folder. The structure of the file is given bellow:
 
  ```js
 export default {
